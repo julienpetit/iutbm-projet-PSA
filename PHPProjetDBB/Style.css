@@ -1,0 +1,290 @@
+
+/**********************général***************/
+body {
+background-color:#EBFF87;
+color:Blue;
+font-size:20px;
+}
+
+
+#contenu
+{   
+    margin-left:100px;
+}
+
+#val {
+    
+    margin-left:600px;
+    font-size:20px;
+    color:White;
+}
+#anu{
+    
+    margin-left:800px;
+    font-size:20px;
+    color:White;
+}
+
+#accueil, #accueil fieldset input, #contenu input, label, #sous-titre{
+    margin-left:50px;
+}
+
+#type_piece
+{
+    font-size:11px; 
+    text-align:center;
+}
+
+th#titre1{
+	text-align:right;
+} 
+
+th{
+    text-align:left;
+}
+
+#titre1{margin-left:0px;font-size: 20px; font-weight: bold; }
+
+#titreprincipal{font-size:35px;font-weight:bold;text-align:center;margin-bottom:70px;}
+
+label{font-weight: bold;}
+
+#titre{display: block;width: 150px;float: left;}
+    
+#pieces_fournies, #pieces_fournie p{
+        width:300px;
+        height:100px;
+        margin-left:1200px;
+        margin-top:-570px;
+        border-color:Black;
+        border-width:medium;
+        border-style:solid;
+      }
+#etat{
+        position:absolute;
+        width:400px;
+        height:50px;
+        margin-left:1200px;
+        margin-top:-850px;
+        font-weight:bold;
+}
+div#test div.etat_synch 
+{
+           
+        margin-top:-650px;
+        
+}
+input#val{background-color:Blue; width:auto; }
+input#anu{background-color:Red;width:auto;}
+/*****************Exportation*****************/
+#tablexp{
+	border:0;
+	margin-left:40px;
+}
+#fieldexp{
+        margin-left:200px;
+        width:800px;
+}
+
+
+table label#export{
+	width:200px;
+	margin-right:10px;
+}
+#anu.anul{
+    margin-left:0px;
+    font-size:20px;
+    color:White;
+}
+
+/*****************accueil*********************/
+#accueil{
+    margin-left:200px;
+    width:700px;
+    
+}
+
+fieldset{
+    width:750px;
+}
+#visualiser, #annuler, #masse, #fermer, #extraire
+{
+    margin-bottom:20px;
+}
+/*****************commande synchrone******************/
+.select{margin-right:50px;}
+
+/******************masses_details*******************/
+
+#designation_p, #designation_e{width:400px; }
+#quantite_p {width:50px;margin-right:30px;}
+#quantite_e{width:50px;margin-right:200px;}
+#potentiel_p{width:50px;margin-right:70px;}
+#reste{width:50px;color:#ffffff;}
+#livraison{width:100px; margin-right:-40px;}
+#quantite{width:30px;}
+#titre2{text-align:center;font-weight:bold;}
+/********************commande de masse*************/
+
+table#derniere tr td input{
+	margin-left:0px;
+}
+input{
+    
+    width:120px;
+}
+
+#DesignationCM_pp1, #DesignationCM_pe1, #DesignationCM_pp2, #DesignationCM_pe2, #DesignationCM_pe3
+{
+    width:500px;
+}
+
+#QuantiteCM_pp1, #PotentielCM_pp1, #ResteLivreCM_pp1, #QuantiteCM_pe1, #ResteLivreCM_pe1, #QuantiteCM_pp2, #PotentielCM_pp2, #ResteLivreCM_pp2, #QuantiteCM_pe2, #ResteLivreCM_pe2, #QuantiteCM_pe3, #ResteLivreCM_pe3
+{
+    width:50px;
+}
+
+#ReferenceCM_pp1, #ReferenceCM_pe1, #ReferenceCM_pp2, #ReferenceCM_pe2, #ReferenceCM_pe3
+{
+    width:100px;
+    
+}
+
+table#derniere
+{
+    margin-bottom:100px;
+}
+
+#ReferenceDossierCM
+{
+    margin-left:50px;
+}
+
+caption{
+    text-align:left;
+}
+table#derniere th #sous-titre{
+    margin-left:50px;
+    margin-top:10px;
+}
+
+/***************tableaux de données********************/
+
+#tab{
+    position:absolute;
+    height:500px;
+    width:100%;
+    margin-left:10px;
+    margin-top:10px;
+    text-align:center;
+    overflow:scroll;
+} 
+
+#tableau {
+    font-size: 20px;
+    border-collapse: collapse;
+    width:1500px;
+}
+#tableau th {
+    font-size: 13px;
+    font-weight: normal;
+    background: #b9c9fe;
+    border-top: 2px solid #d3ddff;
+    border-bottom: 1px solid #fff;
+    color: #039;
+    text-align:center;
+}
+#tableau td {
+    padding: 8px;
+    background-color:#e8edff;
+    border-top: 1px solid #fff;
+    border-bottom:1px solid #fff;
+   
+}
+#tableau tr td {
+  
+    font-size: 16px;
+    
+    text-align:center;
+}
+#tableau tr:hover td{
+    background-color:#aed8f3;
+    color: #339;
+}
+/******************** formulaires administrateur *******************/
+
+.myform{
+position:fixed;
+margin-top:40px;
+margin-left:300px;
+width:500px;
+height:400px;
+padding:14px;
+
+}
+body div#page1{
+width:900px;
+}
+#myform{
+border:solid 2px #b7ddf2;
+background:#ebf4fb;
+
+}
+#myform h1 {
+
+font-size:20px;
+font-weight:bold;
+margin-bottom:8px;
+}
+#myform p{
+
+font-size:11px;
+color:#666666;
+margin-bottom:20px;
+border-bottom:solid 1px #b7ddf2;
+padding-bottom:10px;
+}
+#label{
+    
+display:block;
+width:200px;
+float:left;
+font-weight:bold;
+font-size:15px;
+}
+#label_droit_lab{
+position:absolute;
+margin-left:450px;
+margin-top:-315px;
+}
+#label_droit{
+margin-left:520px;
+margin-top:-300px;
+}
+.checktable{
+width:25px;
+}
+#label_droit label{
+margin-left:0px;
+margin-right: 25px;
+}
+#myform input{
+
+border:solid 1px #aacfe4;
+margin-bottom:20px;
+width:150px;
+
+}
+#myform button{
+clear:both;
+margin-top:50px;
+margin-left:100px;
+width:125px;
+height:31px;
+background:#666666;
+text-align:center;
+line-height:31px;
+color:#FFFFFF;
+font-size:11px;
+font-weight:bold;
+}

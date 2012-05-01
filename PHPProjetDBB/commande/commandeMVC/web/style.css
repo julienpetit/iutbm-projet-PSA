@@ -1,0 +1,22 @@
+div#wrap {
+	display: block;
+	width: 960px;
+	padding: 20px;
+	min-height: 400px;
+	margin: 20px auto;
+	
+	background-color: gray;
+}
+
+
+form#formulaire{
+	background-color: #DDD;
+	width: 100%;
+	
+}
+
+
+form#formulaire caption {
+	font-weight: bold;
+	margin-bottom: 30px;
+}
