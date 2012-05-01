@@ -53,6 +53,8 @@ interface iCommande
 									$idUtilisateurAnnule,
 									$idUtilisateurFerme,
 									$codeTypeCommande);
+	
+	public function displayChoiceBox($reference, $libelle);
 
 }
 
@@ -291,9 +293,42 @@ class Commande implements iCommande
 		}		
 
 		return true;
-
 	}
+	
+	public function displayChoiceBox($reference, $libelle){
+		echo "<div id='confirmOverlay'>\n";
+		echo "<div id='confirmBox'>\n";
 
+		echo "<h2>Ajout d'une pièce à la commande</h2>\n";
+	
+		echo "<table>\n";
+		echo "<tr>\n";
+		echo "<td>Référence : </td>\n";
+		echo "<td id='ajoutPieceCommandeReference' >$reference</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<td>Libellé : </td>\n";
+		echo "<td id='ajoutPieceCommandeLibelle' >$libelle</td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<td>Quantité : </td>\n";
+		echo "<td><input type='text' id='ajoutPieceCommandeQuantite' name='ajoutPieceCommandeQuantite' value='1' /></td>\n";
+		echo "</tr>\n";
+		echo "<tr>\n";
+		echo "<td>Potentiel/jours : </td>\n";
+		echo "<td><input type='text' id='ajoutPieceCommandePj' name='ajoutPieceCommandePj' value='1'/></td>\n";
+		echo "</tr>\n";
+		echo "</table>\n";
+		
+		
+		echo "<div id='confirmButtons'>\n";
+		echo "<a id='ajoutPiecePrincipale' class='small blue nice button radius' href='#'><span>pièce principale</span></a>\n";
+		echo "<a id='ajoutPieceEnvironnement' class='small blue nice button radius' href='#'><span>pièce d'environnement</span></a>\n";
+		echo "<a id='annulerAjoutPieceCommande' class='small red nice button radius' href='#'><span>annuler</span></a>\n";
+		echo "</div>\n";
+		echo "</div>\n";
+		echo "</div>\n";
+	}
 
 }
 ?>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Ajout d'une commande de masse</title>
 <link href='web/style.css' rel='stylesheet' type='text/css'>
-<link href='/include/framework/foundation.àcss' rel='stylesheet' type='text/css'>
+<link href='/include/framework/foundation.css' rel='stylesheet' type='text/css'>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
 <script src="web/script.js" type="text/javascript" ></script>
 </head>
@@ -36,10 +36,10 @@
 								<td>Jean-Pascal FB45034</td>
 							</tr>
 							<tr>
-								<td><label for="ReferenceDossierCommandeMasse">Référence du dossier : </label></td>
+								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>
 								<td>
 									<select id="ReferenceDossierCommandeMasse" name="ReferenceDossierCommandeMasse">
-			                            <option>choisir une option</option>
+			                            <option>choisir un motif</option>
 			                            <option value="crise">Crise</option>
 			                            <option value="panne">Panne</option> 
 			                        </select>
@@ -107,7 +107,7 @@
 								<td>Entité</td>
 								<td>
 									<select id="EntiteCM" name="EntiteCM" onchange="Change(this.value);">
-	                                	<option>choisir option</option>
+	                                	<option>choisir une entité</option>
 	                                    <option value="en001">defaut</option>
 	                                    <option value="en002">casse</option>
 	                                    <option value="en003">rebut</option>
@@ -122,8 +122,8 @@
 					</fieldset>	
 					
 					<!-- Boutons de soumission du formulaire -->
-					<input type='submit' class="small white nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
-					<input type='button' class="small white nice button radius" id='cancel' name='cancel' value='effacer' />
+					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
+					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>
 		</div>

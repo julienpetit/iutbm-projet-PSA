@@ -14,11 +14,27 @@ $modelePiece = new Piece($link);
  * Ajax --> Widget Pièces - Recherche de pièces
  */
 if (isset($_GET['ajax']) && $_GET['ajax'] == "recherchePieces"){
-	echo $chaine = html($_POST['chaine']);
-	echo $where = " WHERE reference_piece LIKE '%$chaine%' OR designation_Piece LIKE '%$chaine%'";
+	$chaine = html($_POST['chaine']);
+	$where = " WHERE reference_piece LIKE '%$chaine%' OR designation_Piece LIKE '%$chaine%'";
 	$modelePiece->displayListePieces($where);
 	exit();
 }
+
+
+/**
+* Ajax --> Widget Pièces - Recherche de pièces
+*/
+if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPieceCommande"){
+
+	$reference = html($_POST['reference']);
+	$libelle = html($_POST['libelle']);
+	
+	$modeleCommande->displayChoiceBox($reference, $libelle);
+	exit();
+}
+
+
+
 /**
  * Ajout d'une nouvelle commande
  */

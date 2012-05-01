@@ -137,7 +137,7 @@ class Piece implements iPiece
 	public function displayListePieces($where = ""){
 		
 		foreach($this->getList($where) as $piece){
-			echo "<tr>\n";
+			echo "<tr class='piece' >\n";
 			echo "<td>".$piece['reference']."</td>\n";
 			echo "<td>".$piece['libelle']."</td>\n";
 			echo "</tr>\n";
