@@ -1,3 +1,9 @@
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+
+}
+
 div#wrap {
 	display: block;
 	width: 960px;
@@ -6,9 +12,13 @@ div#wrap {
 	margin: 20px auto;
 	
 	background-color: gray;
+	
+	
+	font-family : Verdana;
+	font-size: 15px;
 }
 
-
+/* ###### Formulaire global ###### */
 form#formulaire{
 	background-color: #DDD;
 	width: 100%;
@@ -16,7 +26,118 @@ form#formulaire{
 }
 
 
-form#formulaire caption {
+form#formulaire legend {
 	font-weight: bold;
 	margin-bottom: 30px;
 }
+
+
+
+
+
+
+
+
+/* ###### Section Commande ###### */
+
+
+
+
+
+
+
+
+
+/* ###### Section Pièces ###### */
+
+/* Tableau de pièces */
+form#formulaire div#piecesAjoutee table {
+	display: block;
+	background-color: white;
+	width: 600px;
+	border: solid 1px black;
+	margin: 10px;
+	border-collapse: collapse;
+}
+
+form#formulaire div#piecesAjoutee table td, form#formulaire div#piecesAjoutee table th {
+	border: solid 1px black;
+}
+
+
+form#formulaire div#piecesAjoutee table caption{
+	width: 600px;
+}
+
+
+
+/* Widget Piece */
+form#formulaire div#listePieces {
+	display: block;
+	background-color: #AAA;
+
+	float: right;
+	border: solid 2px #AAA;
+}
+
+form#formulaire div#listePieces table {
+	display: block;
+	background-color: #CCC;
+	width: 230px;
+	height: 400px;
+	overflow: scroll;
+	font-size: 13px;
+	border: solid 1px black;
+	border-collapse: collapse;
+}
+
+
+
+form#formulaire div#listePieces table tr th{
+	color: #333;
+	padding: 9px 10px;
+	vertical-align: middle;
+	border: none;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: left;
+	background-color: #AAA;
+}
+
+form#formulaire div#listePieces table tr td{
+	color: #333;
+	padding: 9px 10px;
+	vertical-align: middle;
+	border: none;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: left;
+}
+
+form#formulaire div#listePieces table tr:hover {
+	background-color: #BBB !important; 
+	cursor: pointer; 
+}
+
+form#formulaire div#listePieces table tr:nth-child(2n + 1) {
+	background-color: white;
+}
+
+
+form#formulaire div#listePieces tbody {
+
+}
+
+
+form#formulaire div#listePieces input#recherchePiece {
+	width: 210px;
+	margin: 3px;
+	height: 24px;
+	padding: 3px 5px;
+	font-size: 15px;
+}
+
+
+
+
+/* ###### Section Responsable ###### */

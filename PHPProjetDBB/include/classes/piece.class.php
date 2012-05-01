@@ -11,6 +11,9 @@ interface iPiece
 	public function removePiece($ReferencePiece);
 	public function updatePiece($ReferencePiece,
 				  			    $DesignationPiece);
+	
+	public function displayWidgetPiece();
+	public function displayListePieces($where = "");
 
 }
 
@@ -65,8 +68,7 @@ class Piece implements iPiece
 		return $tabPiece[0];
 	}
 
-	public function addPiece($ReferencePiece,
-				  			 $DesignationPiece)
+	public function addPiece($ReferencePiece, $DesignationPiece)
 		{
 
 		// Insertion de l'Piece 
@@ -93,8 +95,7 @@ class Piece implements iPiece
 		return true;
 	}
 
-	public function updatePiece($ReferencePiece,
-				  			 $DesignationPiece)
+	public function updatePiece($ReferencePiece, $DesignationPiece)
 	{
 		$sql = "INSERT INTO PIECE SET reference_piece = '$ReferencePiece',
 					       			  designation_piece='$DesignationPiece'
@@ -110,8 +111,38 @@ class Piece implements iPiece
 
 	
 
-
 	
-
+	public function displayWidgetPiece(){
+		echo "<h3>Pièces disponibles<span><a href='' title='ajouter une nouvelle pièce'>+</a></span></h3>\n";
+		echo "<input type='text' id='recherchePiece' maxlength=15 name='recherchePiece' placeholder='rechercher une pièce' />";
+		echo "<table>\n";
+		
+		// en-tête du tableau
+		echo "<thead>\n";
+		echo "<tr>\n";
+		echo "<th>référence</th>\n";
+		echo "<th>libellé</th>\n";
+		echo "<tr>\n";
+		echo "</thead>\n";
+		
+		// Corps du tableau
+		echo "<tbody>\n";
+		$this->displayListePieces();
+		echo "</tbody>\n";
+		echo "</table>\n";
+		
+		
+	}
+	
+	public function displayListePieces($where = ""){
+		
+		foreach($this->getList($where) as $piece){
+			echo "<tr>\n";
+			echo "<td>".$piece['reference']."</td>\n";
+			echo "<td>".$piece['libelle']."</td>\n";
+			echo "</tr>\n";
+		}
+		
+	}
 }
 ?>

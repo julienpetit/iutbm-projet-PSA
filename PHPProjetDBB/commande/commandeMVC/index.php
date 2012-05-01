@@ -7,10 +7,18 @@ include "../../include/classes/piece.class.php";
 //include "../../include/classes/cadence.class.php";
 
 $modeleCommande = new Commande($link);
+$modelePiece = new Piece($link);
 
 
-
-
+/**
+ * Ajax --> Widget Pièces - Recherche de pièces
+ */
+if (isset($_GET['ajax']) && $_GET['ajax'] == "recherchePieces"){
+	echo $chaine = html($_POST['chaine']);
+	echo $where = " WHERE reference_piece LIKE '%$chaine%' OR designation_Piece LIKE '%$chaine%'";
+	$modelePiece->displayListePieces($where);
+	exit();
+}
 /**
  * Ajout d'une nouvelle commande
  */
