@@ -72,6 +72,7 @@
 										<td>libellé</td>
 										<td>quantité</td>
 										<td>potentiel / jours</td>
+										<td>supprimer</td>
 									</tr>
 								</thead>
 								<tbody>
@@ -89,11 +90,18 @@
 										<td>libellé</td>
 										<td>quantité</td>
 										<td>potentiel / jours</td>
+										<td>supprimer</td>
 									</tr>
 								</thead>
 								<tbody>
 								</tbody>
 							</table>
+						</div>
+						
+						
+						<div id='piecesPrincipalesHidden'>
+						</div>
+						<div id='piecesEnvironnementHidden'>
 						</div>
 					</fieldset>
 					

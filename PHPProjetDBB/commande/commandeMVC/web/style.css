@@ -4,6 +4,20 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
+.loader {
+	background: url('/css/img/ajax-loader.gif') no-repeat center right;
+	z-index: 1;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.removable:hover{
+	background: url('/css/img/remove.png') no-repeat center;
+}
+
+
 div#wrap {
 	display: block;
 	width: 960px;
