@@ -17,6 +17,10 @@ h1, h2, h3, h4, h5, h6 {
 	background: url('/css/img/remove.png') no-repeat center;
 }
 
+.selected{
+	background: url('/css/img/check-icon.png') no-repeat center right;
+}
+
 
 div#wrap {
 	display: block;

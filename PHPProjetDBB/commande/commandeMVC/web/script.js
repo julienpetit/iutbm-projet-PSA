@@ -1,4 +1,7 @@
 $(document).ready(function() {
+
+	
+	
    /**
     * Widget Pièces ----------------------------------------------------------------------------------------
     */
@@ -19,6 +22,7 @@ $(document).ready(function() {
 				// Affichage du loader
 				$('div#listePieces > input').toggleClass('loader');
 			},
+			async: false,
 			complete: function(x){
 				if(x.responseText != ""){
 					$('div#listePieces > table > tbody').html(x.responseText);
@@ -30,6 +34,8 @@ $(document).ready(function() {
 				$('div#listePieces > input').toggleClass('loader');
 			}
 		});
+		
+		addClassPiecesDispo();
 		
 	});
 	
@@ -80,7 +86,7 @@ $(document).ready(function() {
 		chaine += "<td>" + libelle + "</td>\n";
 		chaine += "<td><input type='text' id='tablePiecePrincipaleQuantite' name='tablePiecePrincipaleQuantite' value='" + quantite + "' /></td>\n";
 		chaine += "<td><input type='text' id='tablePiecePrincipalePotentiel' name='tablePiecePrincipalePotentiel' value='" + potentiel + "' /></td>\n";
-		chaine += "<td class='clickable removable principal'></td>\n";
+		chaine += "<td class='clickable removable principale'></td>\n";
 		chaine += "</tr>\n";
 		
 		// suppression du formulaire 
@@ -94,6 +100,7 @@ $(document).ready(function() {
 		var value = reference + "--" + quantite + "--" + potentiel; 
 		$('#piecesEnvironnementHidden').append("<input type='hidden' class='piecesEnv' name='piecesEnv[]' value='" + value + "' />");
 		
+		addClassPiecesDispo();
 		e.preventDefault();
 	});
 	
@@ -113,7 +120,7 @@ $(document).ready(function() {
 		chaine += "<td>" + libelle + "</td>\n";
 		chaine += "<td><input type='text' id='tablePieceEnvironementQuantite' name='tablePiecePrincipaleQuantite' value='" + quantite + "' /></td>\n";
 		chaine += "<td><input type='text' id='tableEnvironnementPotentiel' name='tablePieceEnvironnementPotentiel' value='" + potentiel + "' /></td>\n";
-		chaine += "<td class='clickable removable environnement'></td>\n";
+		chaine += "<td class='clickable removable principale'></td>\n";
 		chaine += "</tr>\n";
 		
 		// suppression du formulaire 
@@ -127,6 +134,7 @@ $(document).ready(function() {
 		var value = reference + "--" + quantite + "--" + potentiel; 
 		$('#piecesPrincipalesHidden').append("<input type='hidden' class='piecesPrinc' name='piecesPrinc[]' value='" + value + "' />");
 		
+		addClassPiecesDispo();
 		e.preventDefault();
 	});
 	
@@ -139,8 +147,9 @@ $(document).ready(function() {
 	
 	
 	// Suppression de pièce principale
-	$("tr.principale").live('click', function(e){
-
+	$("td.principale").live('click', function(e){
+		addClassPiecesDispo();
+		alert('');
 	})
 	
 	
@@ -158,3 +167,29 @@ $(document).ready(function() {
 	
 	
 });
+
+/*
+ * Global functions
+ */
+function addClassPiecesDispo(){
+	// création d'une liste des pièces ajoutées dans la commande
+	pieces = new Array();
+	
+	$('#pieceEnvironnement > tbody > tr').each(function(i, value){
+		pieces.push($(value).find("td:first-child").html());
+	});
+	
+	$('#piecePrincipales > tbody > tr').each(function(i, value){
+		pieces.push($(value).find("td:first-child").html());
+	});
+	
+	// Parcours de la liste des pièces disponibles et ajout de classe "selected" si la pièce à été selectionnée
+	$('#listePieces table > tbody > tr.piece').each(function(i, value){
+		$(value).find('td:last-child').removeClass('selected');
+		if($.inArray($(value).find("td:first-child").html(), pieces) != -1){
+			$(value).find('td:last-child').addClass('selected');
+		}
+	});
+}
+
+	
