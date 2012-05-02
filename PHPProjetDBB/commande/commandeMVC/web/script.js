@@ -8,6 +8,37 @@ $(document).ready(function() {
 		ajoutChampsCachesSoumission();
 	});
 	
+	
+	/**
+	 * Reset du formulaire
+	 */
+	$("#cancel").click(function(e){
+		// Mise par défaut de la liste déroulante "motif du dossier" :
+		$("#ReferenceDossierCommandeMasse").val("0");
+		
+		// Suppression des pièces selectonnées
+		$('#pieceEnvironnement > tbody > tr').each(function(i, value){
+			reference = $(value).find("td:first-child").html();
+			supprimerPieceCommande(reference);
+		});
+
+		$('#piecePrincipales > tbody > tr').each(function(i, value){
+			reference = $(value).find("td:first-child").html();
+			supprimerPieceCommande(reference);
+		});
+		
+		// Mise à jour du widget pièces disponibles
+		$("input#recherchePiece").val("");
+		majRechercheWidgetPiecesDispo("");
+		addClassSelectedPiecesDispo();
+		
+		
+		// Mise par défaut des responsable
+		$("#EntiteCM").val("0");
+		$("#CAImpute").val("");
+	});
+	
+	
    /**
     * Widget Pièces ----------------------------------------------------------------------------------------
     */
@@ -19,30 +50,7 @@ $(document).ready(function() {
 	$("input#recherchePiece").keyup(function(){
 		var chaine = $('input#recherchePiece').val();
 		
-		params = {};
-		params['chaine'] = chaine;
-
-		// On vérifie si le classement n'existe pas
-		$.ajax({
-			type: 'post',
-			url: 'index.php?ajax=recherchePieces',
-			data: params,
-			beforeSend: function(){
-				// Affichage du loader
-				$('div#listePieces > input').toggleClass('loader');
-			},
-			async: false,
-			complete: function(x){
-				if(x.responseText != ""){
-					$('div#listePieces > table > tbody').html(x.responseText);
-				}
-				else {
-					$('div#listePieces > table > tbody').html("<span id='pasTrouve'>Aucune pièce trouvée.</span>");
-				}
-				// Masquage du loader
-				$('div#listePieces > input').toggleClass('loader');
-			}
-		});
+		majRechercheWidgetPiecesDispo(chaine);
 		
 		addClassSelectedPiecesDispo();
 		
@@ -112,11 +120,6 @@ $(document).ready(function() {
 		
 		// Ajout de la pièce dans la commande
 		$("table#pieceEnvironnement tbody").append(chaine).hide().fadeIn('slow');
-		
-		
-		// Ajout d'un champs caché pour la soumission du formulaire
-//		var value = reference + "--" + quantite + "--" + potentiel; 
-//		$('#piecesEnvironnementHidden').append("<input type='hidden' class='piecesEnv' name='piecesEnv[]' value='" + value + "' />");
 		
 		addClassSelectedPiecesDispo();
 		e.preventDefault();
@@ -230,18 +233,21 @@ function supprimerPieceCommande(noPiece){
 	$('#pieceEnvironnement > tbody > tr').each(function(i, value){
 		reference = $(value).find("td:first-child");
 		if(reference.html() == noPiece) {
-			reference.parent().remove();
+			reference.parent().fadeOut().remove();
 		}
 	});
 	$('#piecePrincipales > tbody > tr').each(function(i, value){
 		reference = $(value).find("td:first-child");
 		if(reference.html() == noPiece) {
-			reference.parent().remove();
+			reference.parent().fadeOut().remove();
 		}
 	});
 	
 };
 
+/**
+ * récupere les valeurs des pièces dans le tableau et les convertis en champs caché pour pouvoir les récupèrer lors de la soumission du formulaire
+ */
 function ajoutChampsCachesSoumission(){
 	$('#pieceEnvironnement > tbody > tr').each(function(i, value){
 		reference = $(value).find("td:first-child").html();
@@ -262,4 +268,34 @@ function ajoutChampsCachesSoumission(){
 		$('#piecesPrincipalesHidden').append("<input type='hidden' class='piecesPrinc' name='piecesPrinc[]' value='" + value + "' />");
 
 	});
-}
+	
+};
+
+/**
+ * Met à jour la liste des pièces disponible en fonction d'un motif de recherche
+ */
+function majRechercheWidgetPiecesDispo(chaine){
+	params = {};
+	params['chaine'] = chaine;
+
+	$.ajax({
+		type: 'post',
+		url: 'index.php?ajax=recherchePieces',
+		data: params,
+		beforeSend: function(){
+			// Affichage du loader
+			$('div#listePieces > input').toggleClass('loader');
+		},
+		async: false,
+		complete: function(x){
+			if(x.responseText != ""){
+				$('div#listePieces > table > tbody').html(x.responseText);
+			}
+			else {
+				$('div#listePieces > table > tbody').html("<span id='pasTrouve'>Aucune pièce trouvée.</span>");
+			}
+			// Masquage du loader
+			$('div#listePieces > input').toggleClass('loader');
+		}
+	});
+};

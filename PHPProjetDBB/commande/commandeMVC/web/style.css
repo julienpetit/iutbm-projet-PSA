@@ -78,22 +78,35 @@ form#formulaire .button {
 /* Tableau de pièces */
 form#formulaire div#piecesAjoutee table {
 	display: block;
-	background-color: white;
 	width: 650px;
-	border: solid 1px black;
 	margin: 10px;
 	border-collapse: collapse;
 }
 
+form#formulaire div#piecesAjoutee table thead tr th{
+	background-color: #888;
+}
 
+form#formulaire div#piecesAjoutee table tbody tr:nth-child(2n + 1){
+	background-color: #FFF;
+}
+
+
+form#formulaire div#piecesAjoutee table th{
+	font-weight: bold;
+}
 form#formulaire div#piecesAjoutee table td, form#formulaire div#piecesAjoutee table th {
 	border: solid 1px black;
 	width: 160px;
+	padding: 4px;
+	background-color: white;
 }
 
 
 form#formulaire div#piecesAjoutee table caption{
-	width: 600px;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 4px;
 }
 
 

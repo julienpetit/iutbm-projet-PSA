@@ -39,7 +39,7 @@
 								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>
 								<td>
 									<select id="ReferenceDossierCommandeMasse" name="ReferenceDossierCommandeMasse">
-			                            <option>choisir un motif</option>
+			                            <option value="0" >choisir un motif</option>
 			                            <option value="crise">Crise</option>
 			                            <option value="panne">Panne</option> 
 			                        </select>
@@ -68,11 +68,11 @@
 								<caption>Pièces principales</caption>
 								<thead>
 									<tr>
-										<td>référence</td>
-										<td>libellé</td>
-										<td>quantité</td>
-										<td>potentiel / jours</td>
-										<td>supprimer</td>
+										<th>référence</th>
+										<th>libellé</th>
+										<th>quantité</th>
+										<th>potentiel / jours</th>
+										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -86,11 +86,11 @@
 								<caption>Pièces d'environnement</caption>
 								<thead>
 									<tr>
-										<td>référence</td>
-										<td>libellé</td>
-										<td>quantité</td>
-										<td>potentiel / jours</td>
-										<td>supprimer</td>
+										<th>référence</th>
+										<th>libellé</th>
+										<th>quantité</th>
+										<th>potentiel / jours</th>
+										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -114,17 +114,17 @@
 							<tr>
 								<td>Entité</td>
 								<td>
-									<select id="EntiteCM" name="EntiteCM" onchange="Change(this.value);">
-	                                	<option>choisir une entité</option>
-	                                    <option value="en001">defaut</option>
-	                                    <option value="en002">casse</option>
-	                                    <option value="en003">rebut</option>
-	                               </select>
+									<select id="EntiteCM" name="EntiteCM">
+										<option value="0">choisir une entité</option>
+										<option value="en001">defaut</option>
+										<option value="en002">casse</option>
+										<option value="en003">rebut</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
 								<td><label>Chiffre d'affaire imputé : </label></td>
-								<td><input type='text' name='CAImpute' id='CAImpute' /></td>
+								<td><input type='text' name='CAImpute' id='CAImpute'/></td>
 							</tr>
 						</table>
 					</fieldset>	
