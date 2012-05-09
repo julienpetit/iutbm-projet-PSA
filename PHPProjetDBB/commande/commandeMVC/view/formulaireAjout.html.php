@@ -64,6 +64,7 @@
 						</div>
 							
 						<div id="piecesAjoutee">
+						
 							<table id='piecePrincipales'>
 								<caption>Pièces principales</caption>
 								<thead>
@@ -96,13 +97,12 @@
 								<tbody>
 								</tbody>
 							</table>
+							
 						</div>
 						
 						
-						<div id='piecesPrincipalesHidden'>
-						</div>
-						<div id='piecesEnvironnementHidden'>
-						</div>
+						<div id='piecesPrincipalesHidden'></div>
+						<div id='piecesEnvironnementHidden'></div>
 					</fieldset>
 					
 					

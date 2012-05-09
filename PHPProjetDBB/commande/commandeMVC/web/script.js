@@ -5,6 +5,11 @@ $(document).ready(function() {
 	 * Soumission du formulaire
 	 */
 	$("#formulaire").submit(function(e){
+		var valide = true; 
+		if(!verifieMotifCommande()) { valide = false; }
+		if(!verifieEntiteCommande()) { valide = false; }
+		if(!valide) return false;
+		
 		ajoutChampsCachesSoumission();
 	});
 	
@@ -14,7 +19,13 @@ $(document).ready(function() {
 	 */
 	$("#cancel").click(function(e){
 		// Mise par défaut de la liste déroulante "motif du dossier" :
-		$("#ReferenceDossierCommandeMasse").val("0");
+		selectMotif = $("#ReferenceDossierCommandeMasse");
+		selectMotif.val("0");
+		
+		if(selectMotif.parent().find(".error-form").length > 0){
+			selectMotif.parent().find(".error-form").remove();		
+		}
+		
 		
 		// Suppression des pièces selectonnées
 		$('#pieceEnvironnement > tbody > tr').each(function(i, value){
@@ -34,7 +45,12 @@ $(document).ready(function() {
 		
 		
 		// Mise par défaut des responsable
-		$("#EntiteCM").val("0");
+		select = $("#EntiteCM");
+		select.val("0");
+		
+		if(select.parent().find(".error-form").length > 0){
+			select.parent().find(".error-form").remove();		
+		}
 		$("#CAImpute").val("");
 	});
 	
@@ -191,7 +207,6 @@ $(document).ready(function() {
 	
 	
 	
-	
 });
 
 /*
@@ -299,3 +314,62 @@ function majRechercheWidgetPiecesDispo(chaine){
 		}
 	});
 };
+
+
+function verifieMotifCommande(){
+	selectMotif = $("#ReferenceDossierCommandeMasse");
+
+	if(selectMotif.val() == "0"){
+		if(selectMotif.parent().find(".error-form").length == 0){
+			selectMotif.parent().append("<span class='error-form'>Veuillez choisir un motif</span>");
+			
+		}
+		return false;
+	}
+	else {
+		if(selectMotif.parent().find(".error-form").length > 0){
+			selectMotif.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+	
+}
+
+
+function verifieEntiteCommande(){
+	selectEntite = $("#EntiteCM");
+
+	if(selectEntite.val() == "0"){
+		if(selectEntite.parent().find(".error-form").length == 0){
+			selectEntite.parent().append("<span class='error-form'>Veuillez choisir une entité</span>");
+		}
+		return false;
+	}
+	else {
+		if(selectEntite.parent().find(".error-form").length > 0){
+			selectEntite.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+	
+}
+
+
+function verifieCAImputeCommande(){
+	selectEntite = $("#EntiteCM");
+
+	if(selectEntite.val() == "0"){
+		if(selectEntite.parent().find(".error-form").length == 0){
+			selectEntite.parent().append("<span class='error-form'>Veuillez choisir une entité</span>");
+		}
+		return false;
+	}
+	else {
+		if(selectEntite.parent().find(".error-form").length > 0){
+			selectEntite.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+	
+}
+
