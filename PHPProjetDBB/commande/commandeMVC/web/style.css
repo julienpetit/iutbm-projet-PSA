@@ -21,6 +21,9 @@ h1, h2, h3, h4, h5, h6 {
 	background: url('/css/img/check-icon.png') no-repeat center right;
 }
 
+.error-form {
+	color: red;
+}
 
 div#wrap {
 	display: block;
@@ -118,6 +121,17 @@ form#formulaire div#listePieces {
 
 	float: right;
 	border: solid 2px #888;
+}
+
+form#formulaire div#listePieces h3 {
+	padding: 7px 14px;
+}
+form#formulaire div#listePieces h3 span {
+	float: right;
+}
+
+form#formulaire div#listePieces h3 span a {
+	font-size: 25px;
 }
 
 form#formulaire div#listePieces table {
