@@ -82,7 +82,20 @@ if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 * Modification - Soumission du formulaire
 */
 if (isset($_GET['action']) && $_GET['action'] == "modif"){
-
+	// récupération du no de la commande
+	$noCommande = html($_POST['noCommande']);
+	
+	// récupération des infos de la commande
+	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
+						   'code_imputation' 		=> html($_POST['EntiteCM']),
+						   'code_type_commande' 	=> 'M');
+	
+	// récupération des pièces de la commande
+	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
+	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
+	
+	$modeleCommande->updateCommande($noCommande, $infosCommande);
+	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
 	print_r_html($_POST);
 	exit();
 }

@@ -8,6 +8,8 @@ interface iPiece
 
 	public function addPiece($ReferencePiece,
 				  			 $DesignationPiece);
+	
+//	public function addPiecesToCommande($pieces);
 
 	public function removePiece($ReferencePiece);
 	public function updatePiece($ReferencePiece,
@@ -87,6 +89,49 @@ class Piece implements iPiece
 		return true;
 	}
 	
+	public function addPiecesToCommande($noCommande, $piecesPrinc, $piecesEnv)
+	{
+		// Supression d'éventuelles pièce dans la table COMPREND
+		$sql = "DELETE FROM COMPREND WHERE no_commande = $noCommande";
+		
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur suppression des pièces de la commande $noCommande";
+			exit();
+		}
+		
+		// Ajout des pièces principales de la commande dans la table COMPREND
+		if(!empty($piecesPrinc)) foreach($piecesPrinc as $piece)
+		{
+			$sql = "INSERT INTO COMPREND 
+					SET libelle_type_piece = 'pieces principales',
+						reference_piece    = '".$piece['reference']."',
+						no_commande 	   = '$noCommande',
+						quantite_piece 	   = ".$piece['quantite'].";";
+						
+			
+			if(!$resultat = mysqli_query($this->link, $sql)) {
+				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
+				echo $sql;
+				exit();
+			}
+		}
+
+		if(!empty($piecesEnv))foreach($piecesEnv as $piece)
+		{
+			$sql = "INSERT INTO COMPREND 
+					SET libelle_type_piece = 'pieces environnement',
+						reference_piece    = '".$piece['reference']."',
+						no_commande 	   = '$noCommande',
+						quantite_piece 	   = '".$piece['quantite']."';";
+				
+			if(!$resultat = mysqli_query($this->link, $sql)) {
+				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
+				exit();
+			}
+		}
+	}
+	
+	
 	/**
 	 * Retourne un tableau de pièce de la commande dont le no est passé en paramètre. (non-PHPdoc)
 	 * @see iPiece::getPieceByCommandeId()
@@ -111,14 +156,14 @@ class Piece implements iPiece
 		$env = array();
 		while ($row = mysqli_fetch_row($resultat))
 		{
-			if($row[0] == "pieces environnement") 
+			if($row[0] == "pieces principales") 
 			{
 				$princ[] = array('reference' => $row[1],
 								 'libelle'   => $row[2],
 								 'quantite'  => $row[3]
 								);	
 			}
-			if($row[0] == "pieces principales")
+			if($row[0] == "pieces environnement")
 			{
 				$env[] = array('reference' => $row[1],
 												 'libelle'   => $row[2],
@@ -220,5 +265,19 @@ class Piece implements iPiece
 		echo "</tr>\n";
 	}
 	
+	/*
+	 * Retourne un tableau de pièce au format no--quantite--potentiel/jour  => array associatif
+	 */
+ 	public function piecesParser($pieces){
+ 		$newPieces = array();
+ 		if(!empty($pieces))foreach ($pieces as $piece)
+ 		{
+ 			$temp = explode("--", $piece);
+ 			$newPieces[] = array('reference' => $temp[0],
+ 								 'quantite'  => $temp[1],
+ 								 'potentiel' => $temp[2]);
+ 		}
+ 		return $newPieces;
+ 	}
 }
 ?>

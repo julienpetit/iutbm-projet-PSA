@@ -1,4 +1,4 @@
-<?php header_html("Ajout d'une commande de masse", array("web/style.css"), array("web/script.js"))?>
+<?php header_html("Ajout d'une commande de masse", array("web/style.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='section'>
 				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
@@ -36,6 +36,7 @@
 							</tr>
 
 						</table>	
+						
 							
 					</fieldset>
 					
@@ -111,9 +112,11 @@
 						</table>
 					</fieldset>	
 					
+					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
 					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>
+
 <?php footer_html(); ?>

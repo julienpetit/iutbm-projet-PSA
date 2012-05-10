@@ -31,28 +31,7 @@ interface iCommande
 	
 	public function removeCommande($noCommande);
 	
-	public function updateCommande($noCommande,
-									$date,
-									$heure,
-									$noChantier,
-									$libeleTypeChantier,
-									$refVehicule,
-									$descDefaut,
-									$dateFermeture,
-									$heureFermeture,
-									$motifFermeture,
-									$dateAnnulation,
-									$heureAnnulation,
-									$dateReception,
-									$heureReception,
-									$codeImputation,
-									$codeSilhouette,
-									$idFournisseur,
-									$idUtilisateurReceptionne,
-									$idUtilisateurPasse,
-									$idUtilisateurAnnule,
-									$idUtilisateurFerme,
-									$codeTypeCommande);
+	public function updateCommande($noCommande, $infosCommande);
 	
 	public function displayChoiceBox($reference, $libelle);
 
@@ -239,54 +218,45 @@ class Commande implements iCommande
 
 
 
-	public function updateCommande($noCommande,
-								$date,
-								$heure,
-								$noChantier,
-								$libeleTypeChantier,
-								$refVehicule,
-								$descDefaut,
-								$dateFermeture,
-								$heureFermeture,
-								$motifFermeture,
-								$dateAnnulation,
-								$heureAnnulation,
-								$dateReception,
-								$heureReception,
-								$codeImputation,
-								$codeSilhouette,
-								$idFournisseur,
-								$idUtilisateurReceptionne,
-								$idUtilisateurPasse,
-								$idUtilisateurAnnule,
-								$idUtilisateurFerme,
-								$codeTypeCommande){
+	public function updateCommande($noCommande, $infosCommande){
+		// @ Exemple, passez en parametre ce tableau
+		// 		array(
+		// 				'date_commande' => $date,
+		// 				'heure_commande' => $heure,
+		// 				'no_chantier' => $noChantier,
+		// 				'libele_type_chantier' => $libeleTypeChantier,
+		// 				'ref_vehicule' => $refVehicule,
+		// 				'desc_defaut' => $descDefaut,
+		// 				'date_fermeture' => $dateFermeture,
+		// 				'heure_fermeture' => $heureFermeture,
+		// 				'motif_fermeture' => $motifFermeture,
+		// 				'date_annulation' => $dateAnnulation,
+		// 				'heure_annulation' => $heureAnnulation,
+		// 				'date_reception' => $dateReception,
+		// 				'heure_reception' => $heureReception,
+		// 				'code_imputation' => $codeImputation,
+		// 				'code_silhouette' => $codeSilhouette,
+		// 				'id_sournisseur' => $idFournisseur,
+		// 				'id_utilisateur_receptionne' => $idUtilisateurReceptionne,
+		// 				'id_utilisateur_passe' => $idUtilisateurPasse,
+		// 				'id_utilisateur_annule' => $idUtilisateurAnnule,
+		// 				'id_utilisateur_ferme' => $idUtilisateurFerme,
+		// 				'code_type_commande' => $codeTypeCommande);
+		
 		
 		// Mise à jour des informations de la commande
-		$sql = "UPDATE COMMANDE SET
-								no_commande = $noCommande,
-								date_commande = $date,
-								heure_commande = $heure,
-								no_chantier = $noChantier,
-								libele_type_chantier = $libeleTypeChantier,
-								ref_vehicule = $refVehicule,
-								desc_defaut = $descDefaut,
-								date_fermeture = $dateFermeture,
-								heure_fermeture = $heureFermeture,
-								motif_fermeture = $motifFermeture,
-								date_annulation = $dateAnnulation,
-								heure_annulation = $heureAnnulation,
-								date_reception = $dateReception,
-								heure_reception = $heureReception,
-								code_imputation = $codeImputation,
-								code_silhouette = $codeSilhouette,
-								id_sournisseur = $idFournisseur,
-								id_utilisateur_receptionne = $idUtilisateurReceptionne,
-								id_utilisateur_passe = $idUtilisateurPasse,
-								id_utilisateur_annule = $idUtilisateurAnnule,
-								id_utilisateur_ferme = $idUtilisateurFerme,
-								code_type_commande = $codeTypeCommande;";
-
+		$sql = "UPDATE COMMANDE SET ";
+		$i = 0;
+		$max = count($infosCommande) - 1;
+		foreach($infosCommande as $champs => $value){
+			$sql .= "$champs = '$value'";
+			if($i < $max)
+				$sql .= ", ";
+			$i++;
+		
+		}
+		$sql .= " WHERE no_commande = $noCommande";
+		
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();
