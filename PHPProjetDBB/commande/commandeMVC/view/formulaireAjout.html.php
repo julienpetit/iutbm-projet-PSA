@@ -1,20 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Ajout d'une commande de masse</title>
-<link href='web/style.css' rel='stylesheet' type='text/css'>
-<link href='/include/framework/foundation.css' rel='stylesheet' type='text/css'>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-<script src="web/script.js" type="text/javascript" ></script>
-</head>
-<body>
-	<div id='main'>
-		<div id='header'>
-		</div>
-		<div id='wrap'>
+<?php include ROOT . "/include/layout/header.inc.php"; ?>
 			<div id='section'>
-			
 				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
 					
@@ -114,12 +99,7 @@
 							<tr>
 								<td>Entité</td>
 								<td>
-									<select id="EntiteCM" name="EntiteCM">
-										<option value="0">choisir une entité</option>
-										<option value="en001">defaut</option>
-										<option value="en002">casse</option>
-										<option value="en003">rebut</option>
-									</select>
+								<?php $modeleEntite->displaySelect("EntiteCM"); ?>
 								</td>
 							</tr>
 							<tr>
@@ -134,9 +114,4 @@
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>
-		</div>
-		<div id='footer'>
-		</div>
-	</div>
-</body>
-</html>
+<?php include ROOT . "/include/layout/footer.inc.php"; ?>

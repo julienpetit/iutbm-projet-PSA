@@ -1,6 +1,7 @@
 <?php 
 include "../../include/library/bd.inc.php";
 include "../../include/library/library.inc.php";
+include "../../include/library/constantes.inc.php";
 include "../../include/classes/commande.class.php";
 include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
@@ -8,7 +9,7 @@ include "../../include/classes/piece.class.php";
 
 $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
-
+$modeleEntite = new Entite($link);
 
 /**
  * Ajax --> Widget Pièces - Recherche de pièces
@@ -39,7 +40,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPieceComma
  * Ajout d'une nouvelle commande
  */
 if (isset($_GET['ajout'])){
-	
+
 	
 	$method = 'ajout';
 	include "view/formulaireAjout.html.php";
@@ -51,7 +52,7 @@ if (isset($_GET['ajout'])){
 */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 	
-	print_r($_POST);
+	print_r_html($_POST);
 	exit();
 }
 
@@ -61,7 +62,6 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 * Modification d'une commande
 */
 if (isset($_GET['ajout'])){
-
 
 	$method = 'add';
 	include "view/formulaireAjout.html.php";
