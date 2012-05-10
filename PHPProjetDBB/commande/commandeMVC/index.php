@@ -7,6 +7,8 @@ include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
 //include "../../include/classes/cadence.class.php";
 
+include ROOT . "/include/layout/layout.inc.php";
+
 $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
@@ -61,11 +63,27 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 /**
 * Modification d'une commande
 */
-if (isset($_GET['ajout'])){
+if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
+	$noCommande = html($_GET['modifier']);
+	
+	
+	$commande = $modeleCommande->getCommande($noCommande);
+	
+	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
+	
+	$method = 'modif';
+	include "view/formulaireModification.html.php";
 
-	$method = 'add';
-	include "view/formulaireAjout.html.php";
-	echo "bonjour";
+	print_r_html($commande = $modeleCommande->getCommande($noCommande));
+	exit();
+}
+
+/**
+* Modification - Soumission du formulaire
+*/
+if (isset($_GET['action']) && $_GET['action'] == "modif"){
+
+	print_r_html($_POST);
 	exit();
 }
 

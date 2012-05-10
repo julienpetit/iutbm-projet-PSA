@@ -1,4 +1,4 @@
-<?php include ROOT . "/include/layout/header.inc.php"; ?>
+<?php header_html("Ajout d'une commande de masse", array("web/style.css"), array("web/script.js"))?>
 			<div id='section'>
 				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
@@ -9,14 +9,6 @@
 						
 						<table>
 							<tr>
-								<td><label>Commande n° : </label></td>
-								<td>1034356543</td>
-							</tr>
-							<tr>
-								<td><label>Effectuée le : </label></td>
-								<td>02/02/2012 à 10h54</td>
-							</tr>
-							<tr>
 								<td><label>Emetteur : </label></td>
 								<td>Jean-Pascal FB45034</td>
 							</tr>
@@ -25,7 +17,7 @@
 								<td>
 									<select id="ReferenceDossierCommandeMasse" name="ReferenceDossierCommandeMasse">
 			                            <option value="0" >choisir un motif</option>
-			                            <option value="crise">Crise</option>
+			                            <option <?php ?>value="crise">Crise</option>
 			                            <option value="panne">Panne</option> 
 			                        </select>
 								</td>
@@ -114,4 +106,4 @@
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>
-<?php include ROOT . "/include/layout/footer.inc.php"; ?>
+<?php footer_html(); ?>
