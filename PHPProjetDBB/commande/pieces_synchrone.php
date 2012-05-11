@@ -20,13 +20,13 @@ echo("<body>");
 	$numCommande = noCommande();
         $droit=$_SESSION['no_droit'];        
 	echo(   "<label id=\"titre\">Commande N&deg;</label><input readonly type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" />
-			<label>Date</label><input readonly type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" />
-			<label>&agrave;</label><input readonly type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\"/><br /><br />
+			<label>Date</label><input readonly type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" disabled=\"disabled\" />
+			<label>&agrave;</label><input readonly type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\" disabled=\"disabled\"/><br /><br />
                 
-			<label id=\"titre\">Emetteur</label><input readonly type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\"/>
-			<input readonly type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\"/>
-			<input readonly type=\"text\" name=\"Sigle\" id=\"sigle\"  value=\"$_SESSION[sigle]\"/><br />
-			<label id=\"titre\">Et</label><input readonly type=\"text\" name=\"Tel\" id=\"tel\"  value=\"$_SESSION[telephone]\"/>
+			<label id=\"titre\">Emetteur</label><input readonly type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\" disabled=\"disabled\"/>
+			<input readonly type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\" disabled=\"disabled\"/>
+			<input readonly type=\"text\" name=\"Sigle\" id=\"sigle\"  value=\"$_SESSION[sigle]\" disabled=\"disabled\"/><br />
+			<label id=\"titre\">Et</label><input readonly type=\"text\" name=\"Tel\" id=\"tel\"  value=\"$_SESSION[telephone]\" disabled=\"disabled\"/>
 			");
                 
 ?>
@@ -92,7 +92,7 @@ echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."
 
 	        <td>
                 
-                <div id="resultat1"><input readonly value="" /></div>
+                <div id="resultat1"><input readonly value="" disabled="disabled"/></div>
                 
             </td>
         </tr>
@@ -114,7 +114,7 @@ echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."
 $sql = "SELECT * FROM ENTITE";
 $req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 while($data = mysql_fetch_assoc($req)){
-echo("<option value=".$data['code_imputation'].">".$data['libelle_entite']."</option>");
+echo("<option value=".$data['code_imputation']." >".$data['libelle_entite']."</option>");
 }
 ?>
                     
@@ -122,7 +122,7 @@ echo("<option value=".$data['code_imputation'].">".$data['libelle_entite']."</op
              </td>
         </tr>
 		<tr> 
-            <td><label id="titre">CA imput&eacute;</label><div id="resultat"><input  value="" /> </div> </td>
+            <td><label id="titre">CA imput&eacute;</label><div id="resultat"><input readonly value="" /> </div> </td>
         </tr>
 		
     </table>
