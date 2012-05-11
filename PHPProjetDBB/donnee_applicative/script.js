@@ -94,6 +94,8 @@ function Sauvegarde_piece()
 	xmlhttp.open("POST","sauvegarde_piece.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("noPiece="+noPiece+"&libellePiece="+libellePiece);
+	
+	alert("La pièce n° "+noPiece+" a bien été moidifée");
 
 }
 ///////////////////////Suppression////////////////////////////////////////////
@@ -195,6 +197,8 @@ function Sauvegarde_silouhette()
 	xmlhttp.open("POST","sauvegarde_silouhette.php",true);
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("noSilouhette="+noSilouhette+"&libelleSilouhette="+libelleSilouhette);
+	
+	alert("La silouhette n° "+noSilouhette+" a bien été moidifée");
 }
 ///////////////////////Suppression//////////////////////////////////////////////
 function suppression_silouhette(id_silouhette){
@@ -306,6 +310,7 @@ function Sauvegarde_fournisseur()
 	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 	xmlhttp.send("code_mode_ref_vehicule="+code_mode_ref_vehicule+"&nom_dest_commande="+nom_dest_commande+"&cofor="+cofor+"&nom_fournisseur="+nom_fournisseur+"&id_fournisseur="+id_fournisseur);
 
+	alert("Le fournisseur n° "+id_fournisseur+" a bien été moidifé");
 }
 ///////////////////////Suppression//////////////////////////////////////////////
 function suppression_fournisseur(id_fournisseur){
@@ -438,7 +443,7 @@ function Sauvegarde_utilisateur()
 	xmlhttp.send("id="+id_utilisateur+"&nom="+nom_utilisateur+"&prenom="+prenom_utilisateur+"&service="+service_utilisateur+"&tel="+no_telephone+"&email="+email_utilisateur+"&mdp="+mdp_utilisateur+"&nb_droits="+nb_droits+droit_utilisateur);
 
 	
-	alert("L'utilisateur a bien été modifié");
+	alert("L'utilisateur n° "+id_utilisateur+" a bien été modifié");
 }
 ///////////////////////Suppression//////////////////////////////////////////////
 function suppression_utilisateur(id_utilisateur){
@@ -462,39 +467,3 @@ function suppression_utilisateur(id_utilisateur){
 		xmlhttp.send("id="+id_utilisateur);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
