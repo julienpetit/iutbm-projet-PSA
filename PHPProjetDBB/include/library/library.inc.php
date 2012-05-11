@@ -39,4 +39,11 @@ function sql($sql){
 
 	return str_replace($cmd, $newCmd, $sql);
 }
+
+function print_r_html ($arr) {
+	echo "<pre>";
+        print_r($arr);
+    echo "</pre>";
+}
+
 ?>

@@ -31,28 +31,7 @@ interface iCommande
 	
 	public function removeCommande($noCommande);
 	
-	public function updateCommande($noCommande,
-									$date,
-									$heure,
-									$noChantier,
-									$libeleTypeChantier,
-									$refVehicule,
-									$descDefaut,
-									$dateFermeture,
-									$heureFermeture,
-									$motifFermeture,
-									$dateAnnulation,
-									$heureAnnulation,
-									$dateReception,
-									$heureReception,
-									$codeImputation,
-									$codeSilhouette,
-									$idFournisseur,
-									$idUtilisateurReceptionne,
-									$idUtilisateurPasse,
-									$idUtilisateurAnnule,
-									$idUtilisateurFerme,
-									$codeTypeCommande);
+	public function updateCommande($noCommande, $infosCommande);
 	
 	public function displayChoiceBox($reference, $libelle);
 
@@ -77,7 +56,7 @@ class Commande implements iCommande
 	{
 	
 		// Sélection des infos des Commandes et de leurs iut.
-		$sql = "SELECT no_commande 
+		$sql = "SELECT no_commande, 
 						date_commande,
 						heure_commande,
 						no_chantier,
@@ -118,28 +97,28 @@ class Commande implements iCommande
 		$Commandes = array();
 		while ($row = mysqli_fetch_row($resultat)){
 
-			$Commandes[] = array(no_commande 				=> $row[0],
-						date_commande  						=> $row[1],
-						heure_commande  					=> $row[2],
-						no_chantier  						=> $row[3],
-						libelle_type_chantier  				=> $row[4],
-						ref_vehicule 		 				=> $row[4],
-						desc_defaut  						=> $row[5],
-						date_fermeture  					=> $row[6],
-						heure_fermeture  					=> $row[7],
-						motif_fermeture  					=> $row[8],
-						date_annulation  					=> $row[9],
-						heure_annulation  					=> $row[10],
-						date_reception  					=> $row[11],
-						heure_reception  					=> $row[12],
-						code_imputation  					=> $row[13],
-						code_silhouette  					=> $row[14],
-						id_fournisseur  					=> $row[15],
-						id_utilisateur_receptionne  		=> $row[16],
-						id_utilisateur_passe  				=> $row[17],
-						id_utilisateur_annule  				=> $row[18],
-						id_utilisateur_ferme  				=> $row[19],
-						code_type_commande 					=> $row[20]
+			$Commandes[] = array('no_commande'				=> $row[0],
+						'date_commande'  					=> $row[1],
+						'heure_commande'  					=> $row[2],
+						'no_chantier'  						=> $row[3],
+						'libelle_type_chantier'  			=> $row[4],
+						'ref_vehicule' 		 				=> $row[5],
+						'desc_defaut'						=> $row[6],
+						'date_fermeture'  					=> $row[7],
+						'heure_fermeture' 					=> $row[8],
+						'motif_fermeture'  					=> $row[9],
+						'date_annulation'  					=> $row[10],
+						'heure_annulation' 					=> $row[11],
+						'date_reception'  					=> $row[12],
+						'heure_reception'  					=> $row[13],
+						'code_imputation'  					=> $row[14],
+						'code_silhouette'					=> $row[15],
+						'id_fournisseur'  					=> $row[16],
+						'id_utilisateur_receptionne'  		=> $row[17],
+						'id_utilisateur_passe'  			=> $row[18],
+						'id_utilisateur_annule'  			=> $row[19],
+						'id_utilisateur_ferme'  			=> $row[20],
+						'code_type_commande' 				=> $row[21]
 							 );
 		}
 		return $Commandes;
@@ -148,9 +127,9 @@ class Commande implements iCommande
 
 
 	public function getCommande($noCommande){
-		$tabCommande = $this->getList(" no_commande = $no_commande ");
+		$tabCommande = $this->getList(" no_commande = $noCommande ");
 
-		return $tabCommande[0];
+		return isset($tabCommande[0]) ? $tabCommande[0] : null;
 	}
 
 
@@ -239,54 +218,45 @@ class Commande implements iCommande
 
 
 
-	public function updateCommande($noCommande,
-								$date,
-								$heure,
-								$noChantier,
-								$libeleTypeChantier,
-								$refVehicule,
-								$descDefaut,
-								$dateFermeture,
-								$heureFermeture,
-								$motifFermeture,
-								$dateAnnulation,
-								$heureAnnulation,
-								$dateReception,
-								$heureReception,
-								$codeImputation,
-								$codeSilhouette,
-								$idFournisseur,
-								$idUtilisateurReceptionne,
-								$idUtilisateurPasse,
-								$idUtilisateurAnnule,
-								$idUtilisateurFerme,
-								$codeTypeCommande){
+	public function updateCommande($noCommande, $infosCommande){
+		// @ Exemple, passez en parametre ce tableau
+		// 		array(
+		// 				'date_commande' => $date,
+		// 				'heure_commande' => $heure,
+		// 				'no_chantier' => $noChantier,
+		// 				'libele_type_chantier' => $libeleTypeChantier,
+		// 				'ref_vehicule' => $refVehicule,
+		// 				'desc_defaut' => $descDefaut,
+		// 				'date_fermeture' => $dateFermeture,
+		// 				'heure_fermeture' => $heureFermeture,
+		// 				'motif_fermeture' => $motifFermeture,
+		// 				'date_annulation' => $dateAnnulation,
+		// 				'heure_annulation' => $heureAnnulation,
+		// 				'date_reception' => $dateReception,
+		// 				'heure_reception' => $heureReception,
+		// 				'code_imputation' => $codeImputation,
+		// 				'code_silhouette' => $codeSilhouette,
+		// 				'id_sournisseur' => $idFournisseur,
+		// 				'id_utilisateur_receptionne' => $idUtilisateurReceptionne,
+		// 				'id_utilisateur_passe' => $idUtilisateurPasse,
+		// 				'id_utilisateur_annule' => $idUtilisateurAnnule,
+		// 				'id_utilisateur_ferme' => $idUtilisateurFerme,
+		// 				'code_type_commande' => $codeTypeCommande);
+		
 		
 		// Mise à jour des informations de la commande
-		$sql = "UPDATE COMMANDE SET
-								no_commande = $noCommande,
-								date_commande = $date,
-								heure_commande = $heure,
-								no_chantier = $noChantier,
-								libele_type_chantier = $libeleTypeChantier,
-								ref_vehicule = $refVehicule,
-								desc_defaut = $descDefaut,
-								date_fermeture = $dateFermeture,
-								heure_fermeture = $heureFermeture,
-								motif_fermeture = $motifFermeture,
-								date_annulation = $dateAnnulation,
-								heure_annulation = $heureAnnulation,
-								date_reception = $dateReception,
-								heure_reception = $heureReception,
-								code_imputation = $codeImputation,
-								code_silhouette = $codeSilhouette,
-								id_sournisseur = $idFournisseur,
-								id_utilisateur_receptionne = $idUtilisateurReceptionne,
-								id_utilisateur_passe = $idUtilisateurPasse,
-								id_utilisateur_annule = $idUtilisateurAnnule,
-								id_utilisateur_ferme = $idUtilisateurFerme,
-								code_type_commande = $codeTypeCommande;";
-
+		$sql = "UPDATE COMMANDE SET ";
+		$i = 0;
+		$max = count($infosCommande) - 1;
+		foreach($infosCommande as $champs => $value){
+			$sql .= "$champs = '$value'";
+			if($i < $max)
+				$sql .= ", ";
+			$i++;
+		
+		}
+		$sql .= " WHERE no_commande = $noCommande";
+		
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();

@@ -42,8 +42,8 @@ class Entite implements iEntite
 
 	
 		// Sélection des infos des Entites.
-		$sql = "SELECT code_imputation,libelle_entite,exterieur
-			FROM ENTITE
+		$sql = "SELECT code_imputation, libelle_entite, exterieur
+				FROM ENTITE
 			    $where
 			    $limit;";
 		
@@ -56,8 +56,8 @@ class Entite implements iEntite
 		$Entites = array();
 		while ($row = mysqli_fetch_row($resultat)){
 			$Entites[] = array('no' 	  		=> $row[0],
-					   'libelle' 	   		=> $row[1],
-					   'exterieur'			=> $row[2]);
+					   		'libelle' 	   		=> $row[1],
+					   		'exterieur'			=> $row[2]);
 		}
 
 		return $Entites;
@@ -118,7 +118,21 @@ class Entite implements iEntite
 	}
 
 	
-
+	public function displaySelect($attributId, $defautValue = "0")
+	{
+		echo "<select id='$attributId' name='$attributId' >\n";
+			echo "<option value='0'>choisir une entité</option>\n";
+		foreach ($this->getList() as $entite) {
+			$no 	 = $entite['no'];
+			$libelle = $entite['libelle'];
+			
+			echo "<option ";
+			if($no == $defautValue) 
+				echo " selected='selected' ";
+			echo " value='$no'>$libelle</option>\n";
+		}
+		echo "</select>\n";
+	}
 
 	
 

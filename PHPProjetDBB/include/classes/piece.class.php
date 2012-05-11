@@ -4,9 +4,12 @@ interface iPiece
 {
 	public function getList($where="", $min=0, $max=0);
 	public function getPiece($ReferencePiece);
+	public function getPieceByCommandeId($noCommande);
 
 	public function addPiece($ReferencePiece,
 				  			 $DesignationPiece);
+	
+//	public function addPiecesToCommande($pieces);
 
 	public function removePiece($ReferencePiece);
 	public function updatePiece($ReferencePiece,
@@ -21,19 +24,14 @@ class Piece implements iPiece
 {
 
 	public $link;
-
-
-
 	
+	
+	public function __construct($link) { $this->link = $link; }
 
-	public function __construct($link)
-	{	
-		$this->link = $link;
-		
-		
-	}
-
-
+	/**
+	 * Retourne un tableau de pièces (non-PHPdoc)
+	 * @see iPiece::getList()
+	 */
 	function getList($where = "", $min=0, $max=0)
 	{
 	
@@ -62,12 +60,20 @@ class Piece implements iPiece
 		return $Pieces;
 	}
 
+	/**
+	 * retourne une pièce sous forme de tableau(non-PHPdoc)
+	 * @see iPiece::getPiece()
+	 */
 	public function getPiece($ReferencePiece){
 		$tabPiece = $this->getList(" AND reference_piece = '$ReferencePiece'", 0, 1);
 
 		return $tabPiece[0];
 	}
 
+	/** 
+	 * Ajoute un pièce dans la bdd (non-PHPdoc)
+	 * @see iPiece::addPiece()
+	 */
 	public function addPiece($ReferencePiece, $DesignationPiece)
 		{
 
@@ -82,8 +88,100 @@ class Piece implements iPiece
 
 		return true;
 	}
+	
+	public function addPiecesToCommande($noCommande, $piecesPrinc, $piecesEnv)
+	{
+		// Supression d'éventuelles pièce dans la table COMPREND
+		$sql = "DELETE FROM COMPREND WHERE no_commande = $noCommande";
+		
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur suppression des pièces de la commande $noCommande";
+			exit();
+		}
+		
+		// Ajout des pièces principales de la commande dans la table COMPREND
+		if(!empty($piecesPrinc)) foreach($piecesPrinc as $piece)
+		{
+			$sql = "INSERT INTO COMPREND 
+					SET libelle_type_piece = 'pieces principales',
+						reference_piece    = '".$piece['reference']."',
+						no_commande 	   = '$noCommande',
+						quantite_piece 	   = ".$piece['quantite'].";";
+						
+			
+			if(!$resultat = mysqli_query($this->link, $sql)) {
+				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
+				echo $sql;
+				exit();
+			}
+		}
 
-	public function removePiece($referencePiece){
+		if(!empty($piecesEnv))foreach($piecesEnv as $piece)
+		{
+			$sql = "INSERT INTO COMPREND 
+					SET libelle_type_piece = 'pieces environnement',
+						reference_piece    = '".$piece['reference']."',
+						no_commande 	   = '$noCommande',
+						quantite_piece 	   = '".$piece['quantite']."';";
+				
+			if(!$resultat = mysqli_query($this->link, $sql)) {
+				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
+				exit();
+			}
+		}
+	}
+	
+	
+	/**
+	 * Retourne un tableau de pièce de la commande dont le no est passé en paramètre. (non-PHPdoc)
+	 * @see iPiece::getPieceByCommandeId()
+	 */
+	public function getPieceByCommandeId($noCommande)
+	{
+	 	
+		$sql = "SELECT c.libelle_type_piece,
+					   p.reference_piece,
+					   p.designation_piece,
+				   	   c.quantite_piece
+				FROM PIECE p
+				INNER JOIN COMPREND c ON c.reference_piece = p.reference_piece
+				WHERE c.no_commande = $noCommande;";
+	
+		if(!$resultat = mysqli_query($this->link, $sql)) 
+		{
+			echo "Erreur : piece.class->getPieceByCommandeId($noCommande).";
+		}
+		
+		$princ = array();
+		$env = array();
+		while ($row = mysqli_fetch_row($resultat))
+		{
+			if($row[0] == "pieces principales") 
+			{
+				$princ[] = array('reference' => $row[1],
+								 'libelle'   => $row[2],
+								 'quantite'  => $row[3]
+								);	
+			}
+			if($row[0] == "pieces environnement")
+			{
+				$env[] = array('reference' => $row[1],
+												 'libelle'   => $row[2],
+												 'quantite'  => $row[3]
+				);
+			}
+		}
+		
+		return array('principales' => $princ, 'environnement' => $env);
+	}
+
+	
+	/**
+	 * Supprime la pièce de la bdd dont son no est passé en paramètre (non-PHPdoc)
+	 * @see iPiece::removePiece()
+	 */
+	public function removePiece($referencePiece)
+	{
 
 		$sql = "DELETE FROM PIECE WHERE reference_piece = '$ReferencePiece';";
 
@@ -95,6 +193,10 @@ class Piece implements iPiece
 		return true;
 	}
 
+	/**
+	 * Met à jour la base de données de la pièce concernée (non-PHPdoc)
+	 * @see iPiece::updatePiece()
+	 */
 	public function updatePiece($ReferencePiece, $DesignationPiece)
 	{
 		$sql = "INSERT INTO PIECE SET reference_piece = '$ReferencePiece',
@@ -111,7 +213,10 @@ class Piece implements iPiece
 
 	
 
-	
+	/**
+	 * Affiche un widget qui permet de choisir une pièce dans un tableau en html(non-PHPdoc)
+	 * @see iPiece::displayWidgetPiece()
+	 */
 	public function displayWidgetPiece(){
 		echo "<h3>Pièces disponibles<span><a href='' title='ajouter une nouvelle pièce'>+</a></span></h3>\n";
 		echo "<input type='text' id='recherchePiece' maxlength=15 name='recherchePiece' placeholder='rechercher une pièce' />";
@@ -134,6 +239,10 @@ class Piece implements iPiece
 		
 	}
 	
+	/**
+	 * Affiche seulement les lignes d'un tableau html de pièces (non-PHPdoc)
+	 * @see iPiece::displayListePieces()
+	 */
 	public function displayListePieces($where = ""){
 		
 		foreach($this->getList($where) as $piece){
@@ -146,5 +255,29 @@ class Piece implements iPiece
 	}
 	
 	
+	public function displayRowPrincipale($piece){
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td><input type='text' class='tablePieceEnvironementQuantite' name='tablePiecePrincipaleQuantite' value='".$piece['quantite']."'></td\n>";
+		echo "<td><input type='text' class='tableEnvironnementPotentiel' name='tablePieceEnvironnementPotentiel' value='1'></td>\n";
+		echo "<td class='clickable removable principale'></td>\n";
+		echo "</tr>\n";
+	}
+	
+	/*
+	 * Retourne un tableau de pièce au format no--quantite--potentiel/jour  => array associatif
+	 */
+ 	public function piecesParser($pieces){
+ 		$newPieces = array();
+ 		if(!empty($pieces))foreach ($pieces as $piece)
+ 		{
+ 			$temp = explode("--", $piece);
+ 			$newPieces[] = array('reference' => $temp[0],
+ 								 'quantite'  => $temp[1],
+ 								 'potentiel' => $temp[2]);
+ 		}
+ 		return $newPieces;
+ 	}
 }
 ?>

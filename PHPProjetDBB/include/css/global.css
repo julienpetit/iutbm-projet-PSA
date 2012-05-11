@@ -1,0 +1,49 @@
+/**
+* # Init de la feuille de style
+*/
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+
+}
+
+.loader {
+	background: url('/include/css/img/ajax-loader.gif') no-repeat center right;
+	z-index: 1;
+}
+
+.clickable {
+	cursor: pointer;
+}
+
+.removable:hover{
+	background: url('/include/css/img/remove.png') no-repeat center;
+}
+
+.selected{
+	background: url('/include/css/img/check-icon.png') no-repeat center right;
+}
+
+.error-form {
+	color: red;
+}
+
+/*
+ * @style standard page
+ */
+div#wrap {
+	display: block;
+	width: 960px;
+	padding: 20px;
+	min-height: 400px;
+	margin: 20px auto;
+	
+	background-color: gray;
+	
+	color: #333;
+	vertical-align: middle;
+	border: none;
+	line-height: 18px;
+	text-align: left;
+	font-size: 15px;
+}
