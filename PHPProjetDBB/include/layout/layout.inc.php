@@ -12,10 +12,10 @@
 	echo "<link href='$css' rel='stylesheet' type='text/css'>\n";
 }?>
 
-<!-- scripts -->
+<!-- Scripts -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
 <?php foreach ($scripts as $js) {
-	echo "<script src='$js' type='text/javascript' ></script>\n";
+	echo "<script src='$js' type='text/javascript'></script>\n";
 }?>
 
 </head>
