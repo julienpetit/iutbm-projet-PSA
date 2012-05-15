@@ -32,7 +32,7 @@
 							</tr>
 							<tr>
 								<td>N° du dossier</td>
-								<td><input type='text' id='noDossier' name='noDossier' /></td>
+								<td><input type='text' id='noDossier' name='noDossier' value='<?php printHtml($commande['no_chantier']); ?>'/></td>
 							</tr>
 
 						</table>	
@@ -103,10 +103,6 @@
 								<td>
 								<?php $modeleEntite->displaySelect("EntiteCM", html($commande['code_imputation'])); ?>
 								</td>
-							</tr>
-							<tr>
-								<td><label>Chiffre d'affaire imputé : </label></td>
-								<td><input type='text' name='CAImpute' id='CAImpute'/></td>
 							</tr>
 						</table>
 					</fieldset>	

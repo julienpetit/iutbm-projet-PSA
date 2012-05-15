@@ -8,7 +8,6 @@ $(document).ready(function() {
 		var valide = true; 
 		if(!verifieMotifCommande()) { valide = false; }
 		if(!verifieEntiteCommande()) { valide = false; }
-		if(!verifieCaImpute()) { valide = false; }
 		if(!verifieNoDossier()) { valide = false; }
 		if(!valide) return false;
 		
@@ -314,7 +313,10 @@ function majRechercheWidgetPiecesDispo(chaine){
 	});
 };
 
-
+/*
+ * Vérifie qu'une valeur à été choisie dans la liste déroulante motif du dossier. return true si valide.
+ * Dans le cas contraire, affichage d'un message + return false
+ */
 function verifieMotifCommande(){
 	selectMotif = $("#ReferenceDossierCommandeMasse");
 
@@ -335,25 +337,11 @@ function verifieMotifCommande(){
 }
 
 
-function verifieEntiteCommande(){
-	selectEntite = $("#EntiteCM");
 
-	if(selectEntite.val() == "0"){
-		if(selectEntite.parent().find(".error-form").length == 0){
-			selectEntite.parent().append("<span class='error-form'>Veuillez choisir une entité</span>");
-		}
-		return false;
-	}
-	else {
-		if(selectEntite.parent().find(".error-form").length > 0){
-			selectEntite.parent().find(".error-form").remove();		
-		}
-		return true;
-	}
-	
-}
-
-
+/*
+ * Vérifie qu'une valeur à été choisie dans la liste déroulante entité. return true si valide.
+ * Dans le cas contraire, affichage d'un message + return false
+ */
 function verifieEntiteCommande(){
 	selectEntite = $("#EntiteCM");
 
@@ -371,27 +359,15 @@ function verifieEntiteCommande(){
 	}
 }
 
+/*
+ * Vérifie que le champs NoDossier est rempli et est un nombre. return true si valide.
+ * Dans le cas contraire, affichage d'un message + return false
+ */
 function verifieNoDossier(){
 	champs = $("input#noDossier");
 	if(isNaN(champs.val()) || champs.val() == "") {
 		if(champs.parent().find(".error-form").length == 0){
 			champs.parent().append("<span class='error-form'>Veuillez entrez un numéro de dossier</span>");
-		}
-		return false;
-	}
-	else {
-		if(champs.parent().find(".error-form").length > 0){
-			champs.parent().find(".error-form").remove();		
-		}
-		return true;
-	}
-}
-
-function verifieCaImpute(){
-	champs = $("input#CAImpute");
-	if(isNaN(champs.val()) || champs.val() == "") {
-		if(champs.parent().find(".error-form").length == 0){
-			champs.parent().append("<span class='error-form'>Veuillez entrez un chiffre d'affaire en euros</span>");
 		}
 		return false;
 	}

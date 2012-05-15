@@ -93,10 +93,6 @@
 								<?php $modeleEntite->displaySelect("EntiteCM"); ?>
 								</td>
 							</tr>
-							<tr>
-								<td><label>Chiffre d'affaire imputé : </label></td>
-								<td><input type='text' name='CAImpute' id='CAImpute'/></td>
-							</tr>
 						</table>
 					</fieldset>	
 					

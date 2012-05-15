@@ -53,7 +53,21 @@ if (isset($_GET['ajout'])){
 * Ajout - Soumission du formulaire
 */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
+	$noCommande = noCommande();
+	// récupération des infos de la commande
+	$infosCommande = array('no_commande' 			=> $noCommande,
+						   'libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
+						   'code_imputation' 		=> html($_POST['EntiteCM']),
+						   'no_chantier'			=> html($_POST['noDossier']),
+						   'code_type_commande' 	=> 'M');
 	
+	// récupération des pièces de la commande
+	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
+	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
+	
+	$modeleCommande->addCommande($infosCommande);
+	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
+	print_r_html($_POST);
 	print_r_html($_POST);
 	exit();
 }
@@ -88,6 +102,7 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	// récupération des infos de la commande
 	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
 						   'code_imputation' 		=> html($_POST['EntiteCM']),
+						   'no_chantier'	=> html($_POST['noDossier']),
 						   'code_type_commande' 	=> 'M');
 	
 	// récupération des pièces de la commande
