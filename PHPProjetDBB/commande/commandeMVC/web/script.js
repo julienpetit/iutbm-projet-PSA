@@ -8,6 +8,8 @@ $(document).ready(function() {
 		var valide = true; 
 		if(!verifieMotifCommande()) { valide = false; }
 		if(!verifieEntiteCommande()) { valide = false; }
+		if(!verifieCaImpute()) { valide = false; }
+		if(!verifieNoDossier()) { valide = false; }
 		if(!valide) return false;
 		
 		ajoutChampsCachesSoumission();
@@ -120,14 +122,12 @@ $(document).ready(function() {
 		var reference = $("#confirmOverlay td#ajoutPieceCommandeReference").html();
 		var libelle   = $("#confirmOverlay td#ajoutPieceCommandeLibelle").html();
 		var quantite  = $("#confirmOverlay input#ajoutPieceCommandeQuantite").val();
-		var potentiel = $("#confirmOverlay input#ajoutPieceCommandePj").val();
 		
 		var chaine = "";
 		chaine += "<tr>\n";
 		chaine += "<td>" + reference + "</td>\n";
 		chaine += "<td>" + libelle + "</td>\n";
 		chaine += "<td><input type='text' id='tablePiecePrincipaleQuantite' name='tablePiecePrincipaleQuantite' value='" + quantite + "' /></td>\n";
-		chaine += "<td><input type='text' id='tablePiecePrincipalePotentiel' name='tablePiecePrincipalePotentiel' value='" + potentiel + "' /></td>\n";
 		chaine += "<td class='clickable removable principale'></td>\n";
 		chaine += "</tr>\n";
 		
@@ -267,9 +267,8 @@ function ajoutChampsCachesSoumission(){
 	$('#pieceEnvironnement > tbody > tr').each(function(i, value){
 		reference = $(value).find("td:first-child").html();
 		quantite = $(value).find("td:nth-child(3) > input").val();
-		potentiel = $(value).find("td:nth-child(4) > input").val();
 		
-		var value = reference + "--" + quantite + "--" + potentiel; 
+		var value = reference + "--" + quantite; 
 		$('#piecesEnvironnementHidden').append("<input type='hidden' class='piecesEnv' name='piecesEnv[]' value='" + value + "' />");
 
 	});
@@ -355,7 +354,7 @@ function verifieEntiteCommande(){
 }
 
 
-function verifieCAImputeCommande(){
+function verifieEntiteCommande(){
 	selectEntite = $("#EntiteCM");
 
 	if(selectEntite.val() == "0"){
@@ -370,6 +369,37 @@ function verifieCAImputeCommande(){
 		}
 		return true;
 	}
-	
+}
+
+function verifieNoDossier(){
+	champs = $("input#noDossier");
+	if(isNaN(champs.val()) || champs.val() == "") {
+		if(champs.parent().find(".error-form").length == 0){
+			champs.parent().append("<span class='error-form'>Veuillez entrez un numéro de dossier</span>");
+		}
+		return false;
+	}
+	else {
+		if(champs.parent().find(".error-form").length > 0){
+			champs.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+}
+
+function verifieCaImpute(){
+	champs = $("input#CAImpute");
+	if(isNaN(champs.val()) || champs.val() == "") {
+		if(champs.parent().find(".error-form").length == 0){
+			champs.parent().append("<span class='error-form'>Veuillez entrez un chiffre d'affaire en euros</span>");
+		}
+		return false;
+	}
+	else {
+		if(champs.parent().find(".error-form").length > 0){
+			champs.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
 }
 

@@ -23,8 +23,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td></td>
-								<td></td>
+								<td>N° du dossier</td>
+								<td><input type='text' id='noDossier' name='noDossier' /></td>
 							</tr>
 
 						</table>	
@@ -67,7 +67,6 @@
 										<th>référence</th>
 										<th>libellé</th>
 										<th>quantité</th>
-										<th>potentiel / jours</th>
 										<th>supprimer</th>
 									</tr>
 								</thead>

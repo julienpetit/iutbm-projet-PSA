@@ -254,13 +254,21 @@ class Piece implements iPiece
 		
 	}
 	
-	
 	public function displayRowPrincipale($piece){
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
-		echo "<td><input type='text' class='tablePieceEnvironementQuantite' name='tablePiecePrincipaleQuantite' value='".$piece['quantite']."'></td\n>";
-		echo "<td><input type='text' class='tableEnvironnementPotentiel' name='tablePieceEnvironnementPotentiel' value='1'></td>\n";
+		echo "<td><input type='text' class='tablePiecePrincipaleQuantite' name='tablePiecePrincipaleQuantite' value='".$piece['quantite']."'></td\n>";
+		echo "<td><input type='text' class='tablePrincipalePotentiel' name='tablePiecePrincipalePotentiel' value='1'></td>\n";
+		echo "<td class='clickable removable principale'></td>\n";
+		echo "</tr>\n";
+	}
+		
+	public function displayRowEnvironnement($piece){
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td><input type='text' class='tablePieceEnvironementQuantite' name='tablePieceEnvironementQuantite' value='".$piece['quantite']."'></td\n>";
 		echo "<td class='clickable removable principale'></td>\n";
 		echo "</tr>\n";
 	}
@@ -273,9 +281,11 @@ class Piece implements iPiece
  		if(!empty($pieces))foreach ($pieces as $piece)
  		{
  			$temp = explode("--", $piece);
+ 			
+ 			isset($temp[2]) ? $potentiel = $temp[2] : $potentiel = null;
  			$newPieces[] = array('reference' => $temp[0],
  								 'quantite'  => $temp[1],
- 								 'potentiel' => $temp[2]);
+ 								 'potentiel' => $potentiel);
  		}
  		return $newPieces;
  	}
