@@ -2,11 +2,14 @@
 
 session_start(); 
 include('../connexion/_connexion.php');
+include('../include/layout/layout.inc.php');
+include('../include/library/library.inc.php');
+header_html("Commande de pièces synchrones",array("../Style.css"),array("fonction.js","../controle/controle.js"));
 
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");
 require_once("./nocommande.php");
-html_entete_fichier("accueil","../Style.css","fonction.js","../controle/controle.js"); 
+// html_entete_fichier("accueil","../Style.css","fonction.js","../controle/controle.js"); 
 mysql_query("SET NAMES UTF8");
 check_log_user($_SESSION['no_droit'],1,NULL);
 echo("<body>");
@@ -19,7 +22,7 @@ echo("<body>");
 	$heure = date("h:i:s");
 	$numCommande = noCommande();
         $droit=$_SESSION['no_droit'];        
-	echo(   "<label id=\"titre\">Commande N&deg;</label><input readonly type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" />
+	echo(   "<label id=\"titre\">Commande N&deg;</label><input readonly type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" disabled=\"disabled\" />
 			<label>Date</label><input readonly type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" disabled=\"disabled\" />
 			<label>&agrave;</label><input readonly type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\" disabled=\"disabled\"/><br /><br />
                 
@@ -81,12 +84,12 @@ else{
                 <select name="vehicule" id="vehicule" onchange="Change1(this.value);">
                     <option>Choisissez la silhouette</option>
                      <?php
-$sql = "SELECT * FROM SILHOUETTE";
-$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-while($data = mysql_fetch_assoc($req)){
-echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."</option>");
-}
-?>
+						$sql = "SELECT * FROM SILHOUETTE";
+						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+						while($data = mysql_fetch_assoc($req)){
+							echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."</option>");
+						}
+					?>	
                 </select> 
             </td>
 
@@ -111,18 +114,18 @@ echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."
                 <select name="nomca" onchange="Change(this.value);">
                     <option>Choisissez votre entite</option>
                     <?php
-$sql = "SELECT * FROM ENTITE";
-$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
-while($data = mysql_fetch_assoc($req)){
-echo("<option value=".$data['code_imputation']." >".$data['libelle_entite']."</option>");
-}
-?>
+						$sql = "SELECT * FROM ENTITE";
+						$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
+						while($data = mysql_fetch_assoc($req)){
+							echo("<option value=".$data['code_imputation']." >".$data['libelle_entite']."</option>");
+						}
+					?>
                     
                 </select> 
              </td>
         </tr>
 		<tr> 
-            <td><label id="titre">CA imput&eacute;</label><div id="resultat"><input readonly value="" /> </div> </td>
+            <td><label id="titre">CA imput&eacute;</label><div id="resultat"><input value="" /> </div> </td>
         </tr>
 		
     </table>
@@ -130,6 +133,12 @@ echo("<option value=".$data['code_imputation']." >".$data['libelle_entite']."</o
     <br />
   <input id="val" type="submit" action="" value="Enregistrer la commande">
   <input type="reset" id="anu" value="Abandonner la commande" onclick="document.location.href='../commande/accueil.php';">
+  
+   <!-- Bouton de remise à zéro 
+        On efface les champs en appelant la page courante
+    -->
+    <input id='reset' type='button' value="Effacer" onclick="document.location.href='pieces_synchrone.php';" />
+  
 </div>
 <div id="pieces_fournie" style="display:none;">
   
@@ -137,6 +146,22 @@ echo("<option value=".$data['code_imputation']." >".$data['libelle_entite']."</o
 </div>
 </form>
 
-</body>
-</html>
+<!-- 
+--  Message d'erreur si tous les champs n'ont pas été remplis
+--  Affiche un pop-up
+-->
+<?php
+    if( isset($_GET['erreur']) && ($_GET['erreur'] == 1) )
+    { 
+?>
+        <script language="Javascript">
+            alert( "Erreur : Tous les champs ne sont pas remplis." );
+        </script>
+<?php
+    }
+?>
+
+<?php 
+footer_html();
+?>
 

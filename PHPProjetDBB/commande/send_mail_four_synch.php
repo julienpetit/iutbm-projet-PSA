@@ -219,8 +219,9 @@ echo("<p>La commande n&deg;$numCommande est enregistr&eacute; et envoy&eacute;</
 else
 {
 
-header("Refresh: 2;URL=pieces_synchrone.php");
-echo("un ou plusieurs champ ne sont pas remplies");
+//====== On met dans l'url qu'il y a une erreur ======//
+header("Refresh: 0;URL=pieces_synchrone.php?erreur=1");
+//echo("un ou plusieurs champ ne sont pas remplies");
 
 }
 ?>
