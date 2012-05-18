@@ -8,6 +8,7 @@ require_once("../fonctionhtml.php");
 html_entete_fichier("accueil","../Style.css","fonction.js"); 
 
 $num_commande=$_GET['num_commande'];
+$choix=$_GET['choix'];
 
 echo("<body onload=\"etat();\" >");
 	
@@ -180,11 +181,24 @@ while($data = mysql_fetch_assoc($req)){
 	
             </table>
             
-      <?php   }   ?>
-        <input type="submit" id="val" action="" value="détails commande">
+            
+        
+        <?php   }
+	  if ($choix==2)
+	  { ?>  
+		<input type="submit" id="val" action="" value="détails commande">
         <input type="reset" id="anu" value="Remettre a zero">
-        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php';" /> 
-        </div>	
+        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php' "/> 
+        </div>
+	  <?php   }
+      else if ($choix==4)
+	  {	?>
+        <input type="submit" id="val" action="" value="détails commande">
+        <a href="./traitement/annuler_commande.php?num_commande=<?php '$num_commande' ?>">Annuler</a> 
+        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php'"/> 
+        </div>
+		
+	 <?php } ?>	
         
     </form>
     <div id="etat">

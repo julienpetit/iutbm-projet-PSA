@@ -79,6 +79,7 @@ else if ($list_value=="fournisseur"){
 		while ( $line =  mysql_fetch_array($reponse) ) 
 		{  
 		
+			$query2 = " select ;";
 		 	// Récupère la ligne suivante d'un jeu de résultats 
 			echo("
 				<tr >\n

@@ -1,36 +1,20 @@
 /* ###### Formulaire global ###### */
-form#formulaire{
+form#formulaire {
 	margin: 20px 0;
 	background-color: #DDD;
 	width: 100%;
-	
-	
 }
-
 
 form#formulaire legend {
 	font-weight: bold;
 	margin-bottom: 30px;
 }
 
-
 form#formulaire .button {
 	margin: 10px;
 }
 
-
-
-
-
 /* ###### Section Commande ###### */
-
-
-
-
-
-
-
-
 
 /* ###### Section Pièces ###### */
 
@@ -42,39 +26,36 @@ form#formulaire div#piecesAjoutee table {
 	border-collapse: collapse;
 }
 
-form#formulaire div#piecesAjoutee table thead tr th{
+form#formulaire div#piecesAjoutee table thead tr th {
 	background-color: #888;
 }
 
-form#formulaire div#piecesAjoutee table tbody tr:nth-child(2n + 1){
+form#formulaire div#piecesAjoutee table tbody tr:nth-child(2n + 1) {
 	background-color: #FFF;
 }
 
-
-form#formulaire div#piecesAjoutee table th{
+form#formulaire div#piecesAjoutee table th {
 	font-weight: bold;
 }
-form#formulaire div#piecesAjoutee table td, form#formulaire div#piecesAjoutee table th {
+
+form#formulaire div#piecesAjoutee table td,form#formulaire div#piecesAjoutee table th
+	{
 	border: solid 1px black;
 	width: 160px;
 	padding: 4px;
 	background-color: white;
 }
 
-
-form#formulaire div#piecesAjoutee table caption{
+form#formulaire div#piecesAjoutee table caption {
 	font-size: 16px;
 	font-weight: bold;
 	padding: 4px;
 }
 
-
-
 /* Widget Piece */
 form#formulaire div#listePieces {
 	display: block;
 	background-color: #AAA;
-
 	float: right;
 	border: solid 2px #888;
 }
@@ -82,6 +63,7 @@ form#formulaire div#listePieces {
 form#formulaire div#listePieces h3 {
 	padding: 7px 14px;
 }
+
 form#formulaire div#listePieces h3 span {
 	float: right;
 }
@@ -97,13 +79,10 @@ form#formulaire div#listePieces table {
 	height: 400px;
 	overflow: scroll;
 	font-size: 13px;
-
 	border-collapse: collapse;
 }
 
-
-
-form#formulaire div#listePieces table tr th{
+form#formulaire div#listePieces table tr th {
 	color: #333;
 	padding: 9px 10px;
 	vertical-align: middle;
@@ -115,7 +94,7 @@ form#formulaire div#listePieces table tr th{
 	width: 100px;
 }
 
-form#formulaire div#listePieces table tr td{
+form#formulaire div#listePieces table tr td {
 	color: #333;
 	padding: 9px 10px;
 	vertical-align: middle;
@@ -127,19 +106,17 @@ form#formulaire div#listePieces table tr td{
 }
 
 form#formulaire div#listePieces table tr:hover {
-	background-color: #BBB !important; 
-	cursor: pointer; 
+	background-color: #BBB !important;
+	cursor: pointer;
 }
 
 form#formulaire div#listePieces table tr:nth-child(2n + 1) {
 	background-color: white;
 }
 
-
 form#formulaire div#listePieces tbody {
-
+	
 }
-
 
 form#formulaire div#listePieces input#recherchePiece {
 	width: 210px;
@@ -157,15 +134,11 @@ div#confirmOverlay {
 	background-color: white;
 	width: 400px;
 	height: 230px;
-	
 	left: 50%;
 	margin-left: -200px;
-	
 	top: 50%;
 	margin-top: -150px;
-	
 	z-index: 1;
-	
 	box-shadow: 1px 1px 12px #555;
 }
 
@@ -173,6 +146,7 @@ div#confirmOverlay h2 {
 	margin: 15px 0 30px 0;
 	text-align: center;
 }
+
 div#confirmButtons {
 	margin-top: 40px;
 }
