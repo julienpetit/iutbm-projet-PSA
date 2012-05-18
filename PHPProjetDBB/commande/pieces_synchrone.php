@@ -21,7 +21,10 @@ echo("<body>");
 	$date = date("d/m/Y");
 	$heure = date("h:i:s");
 	$numCommande = noCommande();
-        $droit=$_SESSION['no_droit'];        
+        $droit=$_SESSION['no_droit'];   
+
+    echo("<fieldset>");
+    echo("<legend>Informations </legend>");
 	echo(   "<label id=\"titre\">Commande N&deg;</label><input readonly type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" disabled=\"disabled\" />
 			<label>Date</label><input readonly type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" disabled=\"disabled\" />
 			<label>&agrave;</label><input readonly type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\" disabled=\"disabled\"/><br /><br />
@@ -31,12 +34,18 @@ echo("<body>");
 			<input readonly type=\"text\" name=\"Sigle\" id=\"sigle\"  value=\"$_SESSION[sigle]\" disabled=\"disabled\"/><br />
 			<label id=\"titre\">Et</label><input readonly type=\"text\" name=\"Tel\" id=\"tel\"  value=\"$_SESSION[telephone]\" disabled=\"disabled\"/>
 			");
+	echo("</fieldset>");
                 
 ?>
 
 <br /><br />
+
+	<fieldset>
+    <legend>Pi&egrave;ces commande </legend>
+
     <table>
-        <caption id="titre1"> Pi&egrave;ces commande </caption>
+    
+        <!-- <caption id="titre1"> Pi&egrave;ces commande </caption> -->
    	    <tr> 
 	        <td><label id="titre" class="select">Fournisseurs</label> 
                 <select name="four" onchange="mode_ref_vehicule(this.value); pieces_fournies(this.value);">
@@ -71,9 +80,13 @@ else{
         </tr>
 
     </table>
+    </fieldset>
 <br />
+
+	<fieldset>
+    <legend>Vehicule concern&eacute; </legend>
     <table id="vehicule_concerne">
-        <caption id="titre1">Vehicule concern&eacute;</caption>
+        <!-- <caption id="titre1">Vehicule concern&eacute;</caption>  -->
         
         <tr id="mode_ref_vehicule">
         
@@ -105,9 +118,13 @@ else{
         </tr>
 
     </table>
+    </fieldset>
 <br />
+
+	<fieldset>
+	<legend>Responsable d&eacute;faut </legend>
     <table id="Responsable defaut">
-        <caption id="titre1">Responsable d&eacute;faut </caption>
+   <!--  <caption id="titre1">Responsable d&eacute;faut </caption> -->    
    	
 		<tr> 
              <td><label id="titre" class="select">Entit&eacute;</label> 
@@ -129,6 +146,7 @@ else{
         </tr>
 		
     </table>
+    </fieldset>
     <br />
     <br />
   <input id="val" type="submit" action="" value="Enregistrer la commande">
