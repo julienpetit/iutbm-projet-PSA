@@ -17,11 +17,11 @@ if(mysql_num_rows($result)>0){
     	if($choix=='2'){                     // si l'utilisateur a choisi la visualisation
        	if($row['code_type_commande']=='S') // si la commande est de type synchrone on va sur cette page sinon sur la page de masse.
         {
-        header("Location: ../pieces_synchrone_visualisation.php?num_commande=".$num_commande);
+        header("Location: ../pieces_synchrone_visualisation.php?num_commande=".$num_commande."&choix=2");
         }
         else if($row['code_type_commande']=='M')
         {
-        header("Location: ../commande_de_masse_visualisation.php?num_commande=".$num_commande);
+        header("Location: ../commande_de_masse_visualisation.php?num_commande=".$num_commande."&choix=2");
         }
       	}
         
@@ -57,33 +57,16 @@ if(mysql_num_rows($result)>0){
             }
         
         }
-        if($choix=='4'){ // si l'utilisateur choisi d'annuler la commande
         
-        $sql1="SELECT date_fermeture, date_annulation, date_reception FROM COMMANDE WHERE no_commande = '".$num_commande."'";
-            $result1 = mysql_query($sql1);
-            $row1 = mysql_fetch_array($result1);
-          
-            if(!$row1['date_fermeture'] && !$row1['date_reception'] && !$row1['date_annulation']) // si la commande n'est pas déjà fermée, réceptionnée ou annulée
+        if($choix=='4'){ 						 // si l'utilisateur choisi d'annuler la commande, on visualise d'abord la commande
+        	if($row['code_type_commande']=='S') // si la commande est de type synchrone on va sur cette page sinon sur la page de masse
         	{
-        
-      	if($row['code_type_commande']=='S')
-        {
-        header("Location: annuler_commande.php?num_commande=".$num_commande);
-        }
-        else if($row['code_type_commande']=='M')
-        {
-        header("Location: annuler_commande.php?num_commande=".$num_commande);
-        }
-        }
-        else                                                                                    // sinon erreur!
-        {
-        echo "<script event=onload>
-		                    alert(\"La commande ne peut pas etre annulee, elle est deja receptionee, fermee ou annulee\");
-		                    document.location.href='../accueil.php';
-		                    </script>";
-        
-        }
-        
+        		header("Location: ../pieces_synchrone_visualisation.php?num_commande=".$num_commande."&choix=4");
+        	}
+        	else if($row['code_type_commande']=='M')
+        	{
+        		header("Location: ../commande_de_masse_visualisation.php?num_commande=".$num_commande."&choix=4");
+        	}
         }
         
         if($choix=='5'){ // si l'utilisateur choisi de réceptionnée une commande synchrone
