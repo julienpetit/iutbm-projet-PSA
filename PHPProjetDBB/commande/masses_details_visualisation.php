@@ -169,7 +169,7 @@ html_entete_fichier("accueil","../Style.css","fonction.js");
             </table><br />
 		<input type="submit" id="anu" value="Retour accueil" />
 		<?php
-		echo "<input type='reset' id='val' value='Retour à commande de masse' onclick=\"document.location.href='commande_de_masse_visualisation.php?num_commande=",$num_commande,"';\" />";
+		echo "<a href=\"./commande_de_masse_visualisation.php?num_commande=".$num_commande."&choix=4\">Retour commande</a>"
       ?>
             </div>
             

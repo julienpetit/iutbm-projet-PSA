@@ -186,15 +186,16 @@ while($data = mysql_fetch_assoc($req)){
         <?php   }
 	  if ($choix==2)
 	  { ?>  
-		<input type="submit" id="val" action="" value="détails commande">
+		<input type="submit" id="val" action="" value="Détail commande">
         <input type="reset" id="anu" value="Remettre a zero">
         <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php' "/> 
         </div>
 	  <?php   }
       else if ($choix==4)
-	  {	?>
-        <input type="submit" id="val" action="" value="détails commande">
-        <a href="./traitement/annuler_commande.php?num_commande=<?php '$num_commande' ?>">Annuler</a> 
+	  {	
+        echo"<a href=\"./masses_details_visualisation.php?num_commande=".$num_commande." \">Détail commande</a>
+        <a href=\"./traitement/annuler_commande.php?num_commande=".$num_commande." \">Annuler</a>";
+       ?>
         <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php'"/> 
         </div>
 		
