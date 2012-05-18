@@ -285,7 +285,7 @@ class Commande implements iCommande
 		echo "<td><input type='text' id='ajoutPieceCommandeQuantite' name='ajoutPieceCommandeQuantite' value='1' /></td>\n";
 		echo "</tr>\n";
 		echo "<tr>\n";
-		echo "<td>Potentiel/jours : </td>\n";
+		echo "<td>Potentiel/jours (falcultatif) : </td>\n";
 		echo "<td><input type='text' id='ajoutPieceCommandePj' name='ajoutPieceCommandePj' value='1'/></td>\n";
 		echo "</tr>\n";
 		echo "</table>\n";

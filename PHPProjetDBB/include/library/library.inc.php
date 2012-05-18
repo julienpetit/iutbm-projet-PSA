@@ -23,12 +23,12 @@ function convertDate_Amj_jmA($date)
 	return strftime("%d/%m/%Y", strtotime($date)); 
 }
 
-
+// Conversion de 1 -> 01
 function nb2chiffres($nb){
 	return sprintf("%02d", $nb);
 }
 
-
+// Sql formatter
 function sql($sql){
 	$cmd = array("DISTINCT", "NOT IN", "SELECT", "UPDATE", "DELETE", "GROUP BY", "HAVING", "FROM", "ON", "INNER JOIN", "WHERE", "ORDER BY", "AND");
 	$newCmd = array();
@@ -40,6 +40,7 @@ function sql($sql){
 	return str_replace($cmd, $newCmd, $sql);
 }
 
+// Affiche un tableau dans des balises pre
 function print_r_html ($arr) {
 	echo "<pre>";
         print_r($arr);

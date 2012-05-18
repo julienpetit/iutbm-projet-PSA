@@ -31,6 +31,6 @@ echo("<body>");
 	
    </fieldset>
    
- </form>
+</form>
 </body>
 </html>
