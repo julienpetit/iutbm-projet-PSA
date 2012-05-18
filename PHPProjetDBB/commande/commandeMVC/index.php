@@ -25,13 +25,13 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "recherchePieces"){
 
 
 /**
-* Ajax --> Widget Pièces - Recherche de pièces
-*/
+ * Ajax --> Widget Pièces - Recherche de pièces
+ */
 if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPieceCommande"){
 
 	$reference = html($_POST['reference']);
 	$libelle = html($_POST['libelle']);
-	
+
 	$modeleCommande->displayChoiceBox($reference, $libelle);
 	exit();
 }
@@ -43,17 +43,17 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPieceComma
  */
 if (isset($_GET['ajout'])){
 
-	
+
 	$method = 'ajout';
 	include "view/formulaireAjout.html.php";
 	exit();
 }
 
 /**
-* Ajout - Soumission du formulaire
-*/
+ * Ajout - Soumission du formulaire
+ */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
-	
+
 	print_r_html($_POST);
 	exit();
 }
@@ -61,16 +61,16 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 
 
 /**
-* Modification d'une commande
-*/
+ * Modification d'une commande
+ */
 if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 	$noCommande = html($_GET['modifier']);
-	
-	
+
+
 	$commande = $modeleCommande->getCommande($noCommande);
-	
+
 	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
-	
+
 	$method = 'modif';
 	include "view/formulaireModification.html.php";
 
@@ -79,21 +79,21 @@ if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 }
 
 /**
-* Modification - Soumission du formulaire
-*/
+ * Modification - Soumission du formulaire
+ */
 if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	// récupération du no de la commande
 	$noCommande = html($_POST['noCommande']);
-	
+
 	// récupération des infos de la commande
 	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
-						   'code_imputation' 		=> html($_POST['EntiteCM']),
-						   'code_type_commande' 	=> 'M');
-	
+			'code_imputation' 		=> html($_POST['EntiteCM']),
+			'code_type_commande' 	=> 'M');
+
 	// récupération des pièces de la commande
 	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
 	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
-	
+
 	$modeleCommande->updateCommande($noCommande, $infosCommande);
 	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
 	print_r_html($_POST);

@@ -1,12 +1,23 @@
 ///////////////////////CHOIX DE LA TABLE///////////////////////
-function choix_table(num){
+function choix_table(nom_table){
 
 			xmlhttp = new XMLHttpRequest();
-			if(num.length==0){
+			if(nom_table.length==0){
 				document.getElementById("page").innerHTML="";
 				return;
 			}
-			
+			if(nom_table.value ="pièce"){
+				alert("Pièce");
+			}
+			if(nom_table.value ="fournisseur"){
+				alert("fournisseur");
+			}
+			if(nom_table.value ="silouhette"){
+				alert("silouhette");
+			}
+			if(nom_table.value ="utilisateur"){
+				alert("utilisateur");
+			}
 			xmlhttp.onreadystatechange=function(){
 				if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					document.getElementById("page1").innerHTML=xmlhttp.responseText;
@@ -14,7 +25,7 @@ function choix_table(num){
 			}
 			xmlhttp.open("POST","afficher_table.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-			xmlhttp.send("list_value="+num);
+			xmlhttp.send("list_value="+nom_table);
 			
 }
 ///////////////////////PIECE//////////////////////////////////////////////////////////////////////////////////////////////////
