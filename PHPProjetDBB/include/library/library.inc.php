@@ -47,7 +47,7 @@ function print_r_html ($arr) {
     echo "</pre>";
 }
 
-function noCommande(){
+function noCommande($link){
 
 	$date1 = date("ymd");
 	$cocentre = "01";
@@ -57,8 +57,8 @@ function noCommande(){
 	$sql="select MAX(no_commande) from COMMANDE where no_commande LIKE ('".$numCommande."%');";
 
 	//exécution de notre requête SQL:
-	$result = mysql_query($sql);
-	$row = mysql_fetch_assoc($result);
+	$result = mysqli_query($link, $sql);
+	$row = mysqli_fetch_assoc($result);
 	if(is_null($row['MAX(no_commande)'])){
 		$noCommande=$numCommande."00";
 		return $noCommande;
