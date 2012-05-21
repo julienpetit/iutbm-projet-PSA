@@ -6,18 +6,6 @@ function choix_table(nom_table){
 				document.getElementById("page").innerHTML="";
 				return;
 			}
-			if(nom_table.value ="pièce"){
-				alert("Pièce");
-			}
-			if(nom_table.value ="fournisseur"){
-				alert("fournisseur");
-			}
-			if(nom_table.value ="silouhette"){
-				alert("silouhette");
-			}
-			if(nom_table.value ="utilisateur"){
-				alert("utilisateur");
-			}
 			xmlhttp.onreadystatechange=function(){
 				if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					document.getElementById("page1").innerHTML=xmlhttp.responseText;
@@ -372,6 +360,8 @@ function ajout_utilisateur(form){
 	var service_utilisateur= document.getElementById("service_utilisateur").value;
 	var no_telephone= document.getElementById("no_telephone").value;	
 	var email_utilisateur= document.getElementById("email_utilisateur").value;	
+	var verif_email_utilisateur= document.getElementById("verif_email_utilisateur").value;	
+	var verif_mdp_utilisateur= document.getElementById("verif_mdp_utilisateur").value;	
 	var mdp_utilisateur= document.getElementById("mdp_utilisateur").value;	
 	var droit_utilisateur="";
 	var nb_droits=0;
@@ -382,11 +372,34 @@ function ajout_utilisateur(form){
 		}
 	}
 	
-	if(code_utilisateur.length==0 || nom_utilisateur.length==0 || prenom_utilisateur.length==0 || service_utilisateur.length==0 || no_telephone.length==0 || email_utilisateur.length==0 || mdp_utilisateur.length==0 ){
-		alert("Un ou plusieurs champs sont vides");
+	if(verif_mdp_utilisateur != mdp_utilisateur){
+		alert("La vérification du mot de passe ne correspond pas avec le mot de passe entré");
+		document.getElementById("mdp_utilsateur").value="";
+		document.getElementById("verif_mdp_utilsateur").value="";
+		document.getElementById("mdp_utilsateur").style.backgroundColor="red";
+		document.getElementById("verif_mdp_utilsateur").style.backgroundColor="red";
 		return;
 	}
-			
+	
+	if(verif_email_utilisateur != email_utilisateur){
+		alert("La vérification de l'email ne correspond pas avec l'email entré");
+		document.getElementById("email_utilsateur").value="";
+		document.getElementById("verif_email_utilsateur").value="";
+		document.getElementById("email_utilsateur").style.backgroundColor="red";
+		document.getElementById("verif_email_utilsateur").style.backgroundColor="red";
+		return;
+	}
+	
+	if(code_utilisateur.length==0 || nom_utilisateur.length==0 || prenom_utilisateur.length==0 || service_utilisateur.length==0 || no_telephone.length==0 || email_utilisateur.length==0 || mdp_utilisateur.length==0 ){
+		alert("Un ou plusieurs champs sont vides");
+		document.getElementById("email_utilsateur").style.backgroundColor="white";
+		document.getElementById("verif_email_utilsateur").style.backgroundColor="white";
+		document.getElementById("mdp_utilsateur").style.backgroundColor="white";
+		document.getElementById("verif_mdp_utilsateur").style.backgroundColor="white";
+		return;
+	}
+	
+	
 	xmlhttp.onreadystatechange=function(){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			document.getElementById("page1").innerHTML=xmlhttp.responseText;
