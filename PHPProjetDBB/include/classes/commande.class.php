@@ -5,28 +5,7 @@ interface iCommande
 	public function getList($where="", $min=0, $max=0);
 	public function getCommande($noCommande);
 
-	public function addCommande($noCommande,
-								$date,
-								$heure,
-								$noChantier,
-								$libeleTypeChantier,
-								$refVehicule,
-								$descDefaut,
-								$dateFermeture,
-								$heureFermeture,
-								$motifFermeture,
-								$dateAnnulation,
-								$heureAnnulation,
-								$dateReception,
-								$heureReception,
-								$codeImputation,
-								$codeSilhouette,
-								$idFournisseur,
-								$idUtilisateurReceptionne,
-								$idUtilisateurPasse,
-								$idUtilisateurAnnule,
-								$idUtilisateurFerme,
-								$codeTypeCommande);
+	public function addCommande($infosCommande);
 	
 	
 	public function removeCommande($noCommande);
@@ -56,29 +35,7 @@ class Commande implements iCommande
 	{
 	
 		// Sélection des infos des Commandes et de leurs iut.
-		$sql = "SELECT no_commande, 
-						date_commande,
-						heure_commande,
-						no_chantier,
-						libelle_type_chantier,
-						ref_vehicule,
-						desc_defaut,
-						date_fermeture,
-						heure_fermeture,
-						motif_fermeture,
-						date_annulation,
-						heure_annulation,
-						date_reception,
-						heure_reception,
-						code_imputation,
-						code_silhouette,
-						id_fournisseur,
-						id_utilisateur_receptionne,
-						id_utilisateur_passe,
-						id_utilisateur_annule,
-						id_utilisateur_ferme,
-						code_type_commande 
-				FROM COMMANDE";
+		$sql = "SELECT * FROM COMMANDE";
 
 		if($where != "") $sql .= " WHERE $where";
 
@@ -137,59 +94,25 @@ class Commande implements iCommande
 
 
 
-	public function addCommande($noCommande,
-								$date,
-								$heure,
-								$noChantier,
-								$libeleTypeChantier,
-								$refVehicule,
-								$descDefaut,
-								$dateFermeture,
-								$heureFermeture,
-								$motifFermeture,
-								$dateAnnulation,
-								$heureAnnulation,
-								$dateReception,
-								$heureReception,
-								$codeImputation,
-								$codeSilhouette,
-								$idFournisseur,
-								$idUtilisateurReceptionne,
-								$idUtilisateurPasse,
-								$idUtilisateurAnnule,
-								$idUtilisateurFerme,
-								$codeTypeCommande)
-		{
-
-		// Insertion de la commande 
-		$sql = "INSERT INTO COMMANDE SET
-								no_commande = $noCommande,
-								date_commande = $date,
-								heure_commande = $heure,
-								no_chantier = $noChantier,
-								libelle_type_chantier = $libeleTypeChantier,
-								ref_vehicule = $refVehicule,
-								desc_defaut = $descDefaut,
-								date_fermeture = $dateFermeture,
-								heure_fermeture = $heureFermeture,
-								motif_fermeture = $motifFermeture,
-								date_annulation = $dateAnnulation,
-								heure_annulation = $heureAnnulation,
-								date_reception = $dateReception,
-								heure_reception = $heureReception,
-								code_imputation = $codeImputation,
-								code_silhouette = $codeSilhouette,
-								id_fournisseur = $idFournisseur,
-								id_utilisateur_receptionne = $idUtilisateurReceptionne,
-								id_utilisateur_passe = $idUtilisateurPasse,
-								id_utilisateur_annule = $idUtilisateurAnnule,
-								id_utilisateur_ferme = $idUtilisateurFerme,
-								code_type_commande = $codeTypeCommande;";
-
-		if(!$resultat = mysqli_query($this->link, $sql)) {
-			echo "Erreur de de insertion de la commande $noCommande.";
-			exit();
+	public function addCommande($infosCommande){
+		
+		// Mise à jour des informations de la commande
+		$sql = "INSERT INTO COMMANDE SET ";
+		$i = 0;
+		$max = count($infosCommande) - 1;
+		foreach($infosCommande as $champs => $value){
+			$sql .= "$champs = '$value'";
+			if($i < $max)
+				$sql .= ", ";
+			$i++;
+		
 		}
+		
+		echo $sql;
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur de de mise à jour de la commande n°$noCommande.";
+			exit();
+		}		
 
 		return true;
 	}
@@ -236,7 +159,7 @@ class Commande implements iCommande
 		// 				'heure_reception' => $heureReception,
 		// 				'code_imputation' => $codeImputation,
 		// 				'code_silhouette' => $codeSilhouette,
-		// 				'id_sournisseur' => $idFournisseur,
+		// 				'id_fournisseur' => $idFournisseur,
 		// 				'id_utilisateur_receptionne' => $idUtilisateurReceptionne,
 		// 				'id_utilisateur_passe' => $idUtilisateurPasse,
 		// 				'id_utilisateur_annule' => $idUtilisateurAnnule,
@@ -253,10 +176,9 @@ class Commande implements iCommande
 			if($i < $max)
 				$sql .= ", ";
 			$i++;
-		
 		}
 		$sql .= " WHERE no_commande = $noCommande";
-		
+		echo $sql;
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();

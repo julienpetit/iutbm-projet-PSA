@@ -6,7 +6,8 @@ include('../connexion/_connexion.php');
 require_once("../fonctionhtml.php");  
 mysql_query("SET NAMES UTF8");
 html_entete_fichier("accueil","../Style.css","fonction.js"); 
-    $num_commande=$_GET['num_commande'];
+$num_commande=$_GET['num_commande'];
+$choix=$_GET['choix'];
 
 mysql_query("SET NAMES UTF8");
     echo("<body onload=\"etat();\" >");
@@ -151,14 +152,27 @@ while($data = mysql_fetch_assoc($req)){
              </td>
         </tr>
 		<tr> 
-            <td><label id="titre">Ã  </label><?php echo("<input readonly value=".$data['heure_reception'].">"); ?></td>
+            <td><label id="titre">à </label><?php echo("<input readonly value=".$data['heure_reception'].">"); ?></td>
         </tr>
 		
     </table>
     <?php  }  ?>
      <br />
     <br />
-  <input  id="val" type="submit" value="Retour accueil">
+   <?php   }
+	  if ($choix==2)
+	  { ?>  
+        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php' "/> 
+        </div>
+	  <?php   }
+      else if ($choix==4)
+	  {	
+        echo"<a href=\"./traitement/annuler_commande.php?num_commande=".$num_commande." \">Annuler</a>";
+       ?>
+        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php'"/> 
+        </div>
+		
+	 <?php } ?>	
   
 </div>	
 </form>
@@ -174,21 +188,11 @@ while($data = mysql_fetch_assoc($req)){
 $sql = "SELECT t.libelle_type_piece_2 FROM TYPE_PIECE2 t, APPROVISIONNE a, FOURNISSEUR f WHERE a.id_fournisseur=f.id_fournisseur AND a.libelle_type_piece_2=t.libelle_type_piece_2 AND a.id_fournisseur='$id_fournisseur';";
 $req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 while($data = mysql_fetch_assoc($req)){
-echo("<p>PiÃ¨ces fournies:<br/>".$data['libelle_type_piece_2']."</p>");
+echo("<p>Pièces fournies:<br/>".$data['libelle_type_piece_2']."</p>");
 }
 ?>
    
 </div>
-<?php
-}
-else
-{
-echo "veuillez entrez un numÃ©ro de commande";
-header('Refresh: 3;URL=accueil.php');
-}
-
-?>
-
 
 </body>
 </html>

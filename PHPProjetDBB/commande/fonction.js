@@ -1,8 +1,9 @@
 function Change(str)
 {
-        document.getElementById("resultat").innerHTML="<input type=\"text\" name=\"numCA\" id=\"CaImputeCM\" value= "+str+" />"; //fonction affichant le CA imputé 
+	 /*====== Ajout des caractéristiques disabled et readonly ======*/
+    document.getElementById("resultat").innerHTML="<input type=\"text\" name=\"numCA\" id=\"CaImputeCM\" readonly disabled=\"disabled\" value= "+str+" />"; //fonction affichant le CA imputé 
 }
-
+    
 function pieces_fournies(str) // fonction qui envoie l'id du fournisseur a la page pieces_fournies.php qui va retourner les pièces que fournies le fournisseur
 {
     xmlhttp=new XMLHttpRequest();
@@ -41,7 +42,8 @@ function mode_ref_vehicule(str) // fonction qui envoie l'id_fournisseur a la pag
 
 function Change1(str)
 {
-             document.getElementById("resultat1").innerHTML="<input id=\"codesil\" name=\"codesil\" readonly value=\""+str+"\" />";// fnction qui affiche le code silouhette
+	// fonction qui affiche le code silouhette
+	document.getElementById("resultat1").innerHTML="<input id=\"codesil\" name=\"codesil\" readonly disabled=\"disabled\" value=\""+str+"\" />";
                                      
 }
 

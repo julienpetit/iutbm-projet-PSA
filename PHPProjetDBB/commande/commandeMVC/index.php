@@ -5,13 +5,14 @@ include "../../include/library/constantes.inc.php";
 include "../../include/classes/commande.class.php";
 include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
-//include "../../include/classes/cadence.class.php";
+include "../../include/classes/cadence.class.php";
 
-include ROOT . "/include/layout/layout.inc.php";
+include "../../include/layout/layout.inc.php";
 
 $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
+$modeleCadence = new Cadence($link);
 
 /**
  * Ajax --> Widget Pièces - Recherche de pièces
@@ -50,7 +51,28 @@ if (isset($_GET['ajout'])){
 }
 
 /**
- * Ajout - Soumission du formulaire
+* Ajout - Soumission du formulaire
+*/
+if (isset($_GET['action']) && $_GET['action'] == "ajout"){
+	$noCommande = noCommande($link);
+	// récupération des infos de la commande
+	$infosCommande = array('no_commande' 			=> $noCommande,
+						   'libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
+						   'code_imputation' 		=> html($_POST['EntiteCM']),
+						   'no_chantier'			=> html($_POST['noDossier']),
+						   'code_type_commande' 	=> 'M');
+	
+	// récupération des pièces de la commande
+	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
+	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
+	
+	$modeleCommande->addCommande($infosCommande);
+	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
+	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
+	print_r_html($_POST);
+}
+
+ /* Ajout - Soumission du formulaire
  */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 
@@ -87,18 +109,20 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 
 	// récupération des infos de la commande
 	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
-			'code_imputation' 		=> html($_POST['EntiteCM']),
-			'code_type_commande' 	=> 'M');
-
+						   'code_imputation' 		=> html($_POST['EntiteCM']),
+						   'no_chantier'			=> html($_POST['noDossier']),
+						   'code_type_commande' 	=> 'M');
+	
 	// récupération des pièces de la commande
+	echo $noCommande;
 	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
 	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
 
 	$modeleCommande->updateCommande($noCommande, $infosCommande);
 	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
+	
+	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
 	print_r_html($_POST);
 	exit();
 }
-
-
 ?>

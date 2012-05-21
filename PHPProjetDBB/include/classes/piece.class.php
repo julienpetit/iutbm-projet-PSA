@@ -41,12 +41,13 @@ class Piece implements iPiece
 
 	
 		// Sélection des infos des Pieces.
-		$sql = "SELECT reference_piece,designation_Piece FROM PIECE
+		$sql = "SELECT p.reference_piece, p.designation_Piece
+				FROM PIECE p 
 			    $where
 			    $limit;";
 		
 		if(!$resultat = mysqli_query($this->link, $sql)) {
-			echo "Erreur de récupération des Pieces.";
+			echo "Erreur de récupération des Pieces. $sql";
 			exit();
 		}
 		
@@ -54,7 +55,8 @@ class Piece implements iPiece
 		$Pieces = array();
 		while ($row = mysqli_fetch_row($resultat)){
 			$Pieces[] = array('reference' 	  		=> $row[0],
-					   		  'libelle' 	   		=> $row[1]);
+					   		  'libelle' 	   		=> $row[1],
+							  );
 		}
 
 		return $Pieces;
@@ -65,7 +67,7 @@ class Piece implements iPiece
 	 * @see iPiece::getPiece()
 	 */
 	public function getPiece($ReferencePiece){
-		$tabPiece = $this->getList(" AND reference_piece = '$ReferencePiece'", 0, 1);
+		$tabPiece = $this->getList("WHERE AND p.reference_piece = '$ReferencePiece'", 0, 1);
 
 		return $tabPiece[0];
 	}
@@ -92,8 +94,8 @@ class Piece implements iPiece
 	public function addPiecesToCommande($noCommande, $piecesPrinc, $piecesEnv)
 	{
 		// Supression d'éventuelles pièce dans la table COMPREND
-		$sql = "DELETE FROM COMPREND WHERE no_commande = $noCommande";
-		
+		$sql = "DELETE FROM COMPREND WHERE no_commande = '$noCommande'";
+		echo "<br/>$sql<br>";
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur suppression des pièces de la commande $noCommande";
 			exit();
@@ -110,8 +112,8 @@ class Piece implements iPiece
 						
 			
 			if(!$resultat = mysqli_query($this->link, $sql)) {
-				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
-				echo $sql;
+				echo "Impossible d'ajouter la pièce princ $piece à la commande n° $noCommande";
+				echo sql($sql);
 				exit();
 			}
 		}
@@ -125,7 +127,7 @@ class Piece implements iPiece
 						quantite_piece 	   = '".$piece['quantite']."';";
 				
 			if(!$resultat = mysqli_query($this->link, $sql)) {
-				echo "Impossible d'ajouter la pièce $piece à la commande n° $noCommande";
+				echo "Impossible d'ajouter la pièce env $piece à la commande n° $noCommande";
 				exit();
 			}
 		}
@@ -145,7 +147,7 @@ class Piece implements iPiece
 				   	   c.quantite_piece
 				FROM PIECE p
 				INNER JOIN COMPREND c ON c.reference_piece = p.reference_piece
-				WHERE c.no_commande = $noCommande;";
+				WHERE c.no_commande = $noCommande";
 	
 		if(!$resultat = mysqli_query($this->link, $sql)) 
 		{
@@ -158,9 +160,18 @@ class Piece implements iPiece
 		{
 			if($row[0] == "pieces principales") 
 			{
+				$sql2 = "SELECT potentiel_jour FROM CADENCEE WHERE no_commande = '$noCommande' AND reference_piece = '$row[1]'";
+				if(!$resultat2 = mysqli_query($this->link, $sql2))
+				{
+					echo "Erreur cadence Piece";
+					echo "$sql2";
+				}
+				$row2 = mysqli_fetch_row($resultat2);
+				
 				$princ[] = array('reference' => $row[1],
 								 'libelle'   => $row[2],
-								 'quantite'  => $row[3]
+								 'quantite'  => $row[3],
+								 'potentiel' => $row2[0]
 								);	
 			}
 			if($row[0] == "pieces environnement")
@@ -171,7 +182,7 @@ class Piece implements iPiece
 				);
 			}
 		}
-		
+
 		return array('principales' => $princ, 'environnement' => $env);
 	}
 
@@ -259,7 +270,7 @@ class Piece implements iPiece
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
 		echo "<td><input type='text' class='tablePiecePrincipaleQuantite' name='tablePiecePrincipaleQuantite' value='".$piece['quantite']."'></td\n>";
-		echo "<td><input type='text' class='tablePrincipalePotentiel' name='tablePiecePrincipalePotentiel' value='1'></td>\n";
+		echo "<td><input type='text' class='tablePrincipalePotentiel' name='tablePiecePrincipalePotentiel' value='".$piece['potentiel']."'></td>\n";
 		echo "<td class='clickable removable principale'></td>\n";
 		echo "</tr>\n";
 	}
