@@ -69,18 +69,18 @@ else if ($list_value=="fournisseur"){
 			</thead>\n
 		"); 
 
-		$query ="SELECT f.id_fournisseur, f.nom_fournisseur, cofor, f.nom_dest_commande, f.code_mode_ref_vehicule, m.libelle_mode_ref_vehicule, a.libelle_type_piece_2 
-						FROM FOURNISSEUR f, MODE_REF_VEHICULE m ,APPROVISIONNE a
-						WHERE f.code_mode_ref_vehicule = m.code_mode_ref_vehicule AND f.id_fournisseur=a.id_fournisseur 
+		$query ="SELECT f.id_fournisseur, f.nom_fournisseur, cofor, f.nom_dest_commande, f.code_mode_ref_vehicule, m.libelle_mode_ref_vehicule, a.libelle_type_piece_2, count(c.no_commande)
+						FROM FOURNISSEUR f
+						INNER JOIN MODE_REF_VEHICULE m ON f.code_mode_ref_vehicule = m.code_mode_ref_vehicule 
+						LEFT JOIN APPROVISIONNE a ON f.id_fournisseur=a.id_fournisseur
+						LEFT JOIN COMMANDE c ON c.id_fournisseur = f.id_fournisseur
+						GROUP BY f.id_fournisseur
 						ORDER BY f.id_fournisseur;";
 
 		$reponse =  mysql_query($query); 
 	
 		while ( $line =  mysql_fetch_array($reponse) ) 
 		{  
-		
-			$query2 = " select ;";
-		 	// Récupère la ligne suivante d'un jeu de résultats 
 			echo("
 				<tr >\n
 					<td onclick='Modifier_fournisseur(\"".$line[0]."\")' >".$line[0]."</td>
@@ -90,13 +90,19 @@ else if ($list_value=="fournisseur"){
 					<td onclick='Modifier_fournisseur(\"".$line[0]."\")'>".$line[5]."</td> \n
 					<td onclick='Modifier_fournisseur(\"".$line[0]."\")'>".$line[6]."</td>
 					<td>
+					");
+					if($line[7] == 0){
+						echo("
 						<a href='#' onClick='suppression_fournisseur(\"".$line[0]."\")'>
 							<img src='delete.png'>
 						</a>
+						");
+					}
+			echo("
 					</td>\n
 				</tr>\n
-			"); 
-		} 	
+			");
+		}  	
 
 		print("</table><br />\n"); 
 	print("</div>");

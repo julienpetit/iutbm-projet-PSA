@@ -36,10 +36,17 @@
 <input type="text" id="email_utilisateur" onchange="isEmail('email_utilisateur');" value=""/>
 <br />
 
-<label id="label" for="mdp_utilisateur">Mot de passe</label>
-<input type="text" id="mdp_utilisateur" value=""/>
+<label id="label" for="verif_email_utilisateur">Vérification Email</label>
+<input type="text" id="verif_email_utilisateur" value=""/>
 <br />
 
+<label id="label" for="mdp_utilisateur">Mot de passe</label>
+<input type="password" id="mdp_utilisateur" value=""/>
+<br />
+
+<label id="label" for="verif_mdp_utilisateur">Vérification Mot de passe</label>
+<input type="password" id="verif_mdp_utilisateur" value=""/>
+<br />
 
 <label id="label_droit_lab">Droit</label>
 <table id="label_droit">
