@@ -37,6 +37,7 @@
 
 						</table>	
 						
+						<div id='boxHistory'><?php echo $modeleCommandeHistorique->displayBoxHistory("0111121785"); ?></div>
 							
 					</fieldset>
 					

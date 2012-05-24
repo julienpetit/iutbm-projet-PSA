@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6 {
 	cursor: pointer;
 }
 
-.removable:hover{
+.removable {
 	background: url('/include/css/img/remove.png') no-repeat center;
 }
 
