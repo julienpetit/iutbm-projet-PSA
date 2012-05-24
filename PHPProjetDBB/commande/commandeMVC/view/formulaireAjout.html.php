@@ -1,4 +1,5 @@
 <?php header_html("Ajout d'une commande de masse", array("web/style.css"), array("web/script.js"))?>
+			
 			<div id='section'>
 				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
