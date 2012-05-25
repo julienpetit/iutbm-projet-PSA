@@ -13,7 +13,7 @@ echo("<body>");
 
 
 echo("<div id=\"titreprincipal\">Commande de masse</div><br/>" );
-echo( "<form method=\"post\" action=\"traitement/validation.php?num_commande=".$num_commande."&vali=".$_SESSION['pseudo']."&date=".$date."&hour=".$heure."\">
+echo( "<form method=\"post\" action=\"traitement/validation.php?num_commande=".$num_commande."&vali=".$_SESSION['id']."&date=".$date."&hour=".$heure."\">
 		<div id=\"contenu\">
 		<table border=\"0\" cellspacing=\"\" cellpadding=\"\" >");
  
