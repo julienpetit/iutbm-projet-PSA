@@ -36,10 +36,10 @@ if ( isset($_POST) && (!empty($_POST['login'])) || (!empty($_POST['password'])) 
 // Si le login a �t� valid� on met les donn�es en sessions
 if ($loginOK) {
 	
-  $_SESSION['pseudo'] = $data['id_utilisateur'];
+  $_SESSION['id'] = $data['id_utilisateur'];
   $_SESSION['prenom'] = $data['prenom_utilisateur'];
   $_SESSION['nom'] = $data['nom_utilisateur'];
-  $_SESSION['sigle'] = $data['service_utilisateur'];
+  $_SESSION['service'] = $data['service_utilisateur'];
   $_SESSION['telephone'] = $data['no_telephone'];
   
     $droit=array();
