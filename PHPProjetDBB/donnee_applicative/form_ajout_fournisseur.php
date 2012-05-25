@@ -27,7 +27,7 @@ mysql_query("SET NAMES UTF8");
         <label id="label" for="mail_copie_commande">Mail copie</label>
         <input type="text" id="mail_copie_commande" value="" onchange="testEmail(this.value)"/>
         <br />
-        <label id="label" for="approvisionne">approvisionne</label>
+        <label id="label" for="approvisionne">Approvisionne</label>
         <input type="text" id="approvisionne" value="" />
         <br />
         <label id="label">Mode ref vehicule</label>

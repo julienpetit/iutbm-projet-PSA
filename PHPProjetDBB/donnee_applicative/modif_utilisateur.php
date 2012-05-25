@@ -20,26 +20,31 @@ echo "
 <br /><br />
 
 
-<label id=\"label\" for=\"id_utilisateur\">id utilisateur:</label>
-<input readonly type=\"text\" name=\"id_utilisateur\" id=\"id_utilisateur\" value=\"".$row['id_utilisateur']."\" /><br/>
+<label id=\"label\" for=\"id_utilisateur\">Identifiant Utilisateur:</label>
+<input type=\"text\" disabled='disabled' name=\"id_utilisateur\" id=\"id_utilisateur\" value=\"".$row['id_utilisateur']."\" /><br/>
 
-<label id=\"label\" for=\"nom_utilisateur\">nom utilisateur:</label>
+<label id=\"label\" for=\"nom_utilisateur\">Nom Utilisateur:</label>
 <input type=\"text\" name=\"nom_utilisateur\" id=\"nom_utilisateur\" value=\"".$row['nom_utilisateur']."\" /><br/>
 
-<label id=\"label\" for=\"prenom_utilisateur\">prenom utilisateur:</label>
+<label id=\"label\" for=\"prenom_utilisateur\">Prenom Utilisateur:</label>
 <input type=\"text\" name=\"prenom_utilisateur\" id=\"prenom_utilisateur\" value=\"".$row['prenom_utilisateur']."\" /><br/>
 
-<label id=\"label\" for=\"service_utilisateur\">service utilisateur:</label>
+<label id=\"label\" for=\"service_utilisateur\">Service Utilisateur:</label>
 <input type=\"text\" name=\"service_utilisateur\" id=\"service_utilisateur\" value=\"".$row['service_utilisateur']."\" /><br/>
 
-<label id=\"label\" for=\"no_telephone\">no Telephone:</label>
+<label id=\"label\" for=\"no_telephone\">Numéro Telephone:</label>
 <input type=\"text\" name=\"no_telephone\" id=\"no_telephone\" value=\"".$row['no_telephone']."\" /><br/>
 
-<label id=\"label\" for=\"email_utilisateur\">email:</label>
-<input type=\"text\" name=\"email_utilisateur\" id=\"email_utilisateur\" value=\"".$row['email_utilisateur']."\" /><br/>
+<label id=\"label\" for=\"email_utilisateur\">Email:</label>
+<input type=\"text\" name=\"email_utilisateur\" id=\"email_utilisateur\" value=\"".$row['email_utilisateur']."\" onchange='isEmail()'/><br/>
 
-<label id=\"label\" for=\"mdp_utilisateur\">mdp:</label>
-<input type=\"text\" name=\"mdp_utilisateur\" id=\"mdp_utilisateur\" value='' /><br/>
+<label id=\"label\" for=\"mdp_utilisateur\">Mot de Passe:</label>
+<input type=\"password\" name=\"mdp_utilisateur\" id=\"mdp_utilisateur\" value='' onchange='verif_mdp(this.value)'/><br/>
+
+<div id='verif_mdp_utilisateur_modif'>
+<label id='label' id='label_verif_mdp_utilisateur' for='verif_mdp_utilisateur'>Verification Mot de Passe:</label>
+<input type=\"password\" name=\"verif_mdp_utilisateur_modif\" id=\"verif_mdp_utilisateur\" value=''/><br/>
+</div>
 
 <label id=\"label_droit_lab\">Droit</label>
 <table id=\"label_droit\">

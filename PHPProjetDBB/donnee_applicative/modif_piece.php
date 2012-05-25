@@ -17,10 +17,10 @@ echo "
 
 
 
-<label id=\"label\" for=\"reference_piece\">reference piece:</label>
+<label id=\"label\" for=\"reference_piece\">Reference Piece:</label>
 <input readonly type=\"text\" name=\"reference_piece\" id=\"reference_piece\" value=\"".$row['reference_piece']."\" /><br/>
 
-<label id=\"label\" for=\"designation_piece\">libelle piece</label>
+<label id=\"label\" for=\"designation_piece\">Libelle Piece</label>
 <input type=\"text\" name=\"designation_piece\" id=\"designation_piece\" value=\"".$row['designation_piece']."\" /></br>
 
 <button type=\"button\" id=\"but_mod\" onClick=\"Sauvegarde_piece()\">Sauvegarder</button>

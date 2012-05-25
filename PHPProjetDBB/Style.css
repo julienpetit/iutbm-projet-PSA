@@ -354,3 +354,9 @@ body div#page1 {
 	color: white;
 	display: none;
 }
+
+
+/******************** données applicatives *******************/
+#verif_mdp_utilisateur_modif{
+	display: none;
+}
