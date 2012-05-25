@@ -20,13 +20,18 @@ echo("<body>");
 	$date = date("d/m/Y");
 	$heure = date("h:i:s");
 	$numCommande = noCommande();
-        $droit=$_SESSION['no_droit'];        
-	echo(   "<label id=\"titre1\">RECAPITULATIF</label><br />
+        $droit=$_SESSION['no_droit'];
+        echo("<fieldset>");
+        echo("<legend>RECAPITULATIF </legend>");
+	echo(   "<br />
 			<label id=\"titre\">Commande N&deg;</label><input readonly disabled=\"disabled\" type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" />
 			<label>effectu&eacute;e le</label><input readonly disabled=\"disabled\" type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" />
 			<label>&agrave;</label><input readonly disabled=\"disabled\" type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\"/><br /><br />
-                
-			<label id=\"titre1\">EMETTEUR</label><br />
+         ");
+		echo("</fieldset>");
+		echo("<fieldset>");
+	echo("       
+			<legend>EMETTEUR</legend><br />
 			<label>Num&eacute;ro</label><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[id]\"/><br />
 			<label>Nom</label><input readonly disabled=\"disabled\" type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\"/><br />
 			<label>Pr&eacute;nom</label><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\"/><br />
@@ -34,12 +39,14 @@ echo("<body>");
 			<label>N&deg; de T&eacute;l&eacute;phone</label><input readonly disabled=\"disabled\" type=\"text\" name=\"Tel\" id=\"tel\" value=\"$_SESSION[telephone]\"/>
 			");
 			
-                
+        echo("</fieldset>")        
 ?>
 
 <br /><br />
-    <table>
-        <caption id="titre1"> Pi&egrave;ces de la commande </caption>
+    
+    	<fieldset>
+    	<table>
+        <legend> Pi&egrave;ces de la commande </legend>
    	    <tr> 
 	        <td><label id="titre" class="select">Fournisseurs</label> 
                 <select name="four" onchange="mode_ref_vehicule(this.value); pieces_fournies(this.value);">
@@ -74,9 +81,11 @@ else{
         </tr>
 
     </table>
+    </fieldset>
 <br />
+	<fieldset>
     <table id="vehicule_concerne">
-        <caption id="titre1">Vehicule concern&eacute;</caption>
+        <legend>Vehicule concern&eacute;</legend>
         <tr id="mode_ref_vehicule">
         
         </tr>
@@ -101,9 +110,11 @@ echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."
         </tr>
 
     </table>
+    </fieldset>
 <br />
+	<fieldset>
     <table id="Responsable defaut">
-        <caption id="titre1">Responsable par d&eacute;faut </caption>
+        <legend>Responsable par d&eacute;faut </legend>
    	
 		<tr> 
              <td><label id="titre" class="select">Entit&eacute;</label>
@@ -125,11 +136,18 @@ echo("<option value=".$data['code_imputation'].">".$data['libelle_entite']."</op
         </tr>
 		
     </table>
+    </fieldset>
     <br />
     <br />
   <input id="val" type="submit" action="" value="Enregistrer la commande">
   <input type="reset" id="anu" value="Annuler la commande" onclick="document.location.href='../commande/accueil.php';">
-</div>
+
+	<!-- Bouton de remise à zéro 
+	On efface les champs en appelant la page courante
+	-->
+	<input id='reset' type='button' value="Effacer" onclick="document.location.href='pieces_synchrone.php';" />
+
+	</div>
 <div id="pieces_fournie" style="display:none;">
   
       
