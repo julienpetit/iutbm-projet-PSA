@@ -15,7 +15,31 @@ form#formulaire .button {
 }
 
 /* ###### Section Commande ###### */
+/* infos commande */
+form#formulaire fieldset#commande table {
+	display: inline-block;
+	vertical-align: top;
+}
 
+/* Box history */
+form#formulaire div#boxHistory {
+	display: inline-block;
+	float: right;
+	color: blue;
+	font-size: 12px;
+	height: 50px;
+	padding: 10px;
+	width: 370px;
+	background-color: #AAA;
+}
+
+form#formulaire div#boxHistory {
+	
+}
+
+form#formulaire div#boxHistory {
+	
+}
 /* ###### Section Pièces ###### */
 
 /* Tableau de pièces */

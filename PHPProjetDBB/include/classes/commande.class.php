@@ -1,22 +1,5 @@
 <?php 
-
-interface iCommande
-{
-	public function getList($where="", $min=0, $max=0);
-	public function getCommande($noCommande);
-
-	public function addCommande($infosCommande);
-	
-	
-	public function removeCommande($noCommande);
-	
-	public function updateCommande($noCommande, $infosCommande);
-	
-	public function displayChoiceBox($reference, $libelle);
-
-}
-
-class Commande implements iCommande
+class Commande
 {
 
 	public $link;

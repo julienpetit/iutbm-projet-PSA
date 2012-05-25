@@ -1,4 +1,4 @@
-<?php header_html("Ajout d'une commande de masse", array("web/style.css"), array("web/script.js", "web/scriptModification.js"))?>
+<?php header_html("Ajout d'une commande de masse", array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='section'>
 				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
@@ -37,6 +37,7 @@
 
 						</table>	
 						
+						<div id='boxHistory'><?php echo $modeleCommandeHistorique->displayBoxHistory("0111121785"); ?></div>
 							
 					</fieldset>
 					

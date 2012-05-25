@@ -15,10 +15,10 @@ while($row = mysql_fetch_array($result))
 echo "<form id=\"myform\">
 
 
-<label id=\"label\" for=\"code_silouhette\">code silouhette:</label>
+<label id=\"label\" for=\"code_silouhette\">Code Silouhette:</label>
 <input readonly type=\"text\" name=\"code_silouhette\" id=\"code_silouhette\" value=\"".$row['code_silhouette']."\" /><br/>
 
-<label id=\"label\" for=\"libelle_silouhette\">libelle silouhette</label>
+<label id=\"label\" for=\"libelle_silouhette\">Libelle Silouhette</label>
 <input type=\"text\" name=\"libelle_silouhette\" id=\"libelle_silouhette\" value=\"".$row['libelle_silhouette']."\" /><br/>
 
 

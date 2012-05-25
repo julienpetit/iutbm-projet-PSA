@@ -1,8 +1,14 @@
 /**********************général***************/
 body {
-	background-color: #EBFF87;
+	background-color: white;
 	color: Blue;
 	font-size: 20px;
+}
+.error{
+
+font-weight: bold;
+color : Red;
+font-size : 30px;
 }
 
 #contenu {
@@ -64,8 +70,8 @@ label {
 #pieces_fournies,#pieces_fournie p {
 	width: 300px;
 	height: 100px;
-	margin-left: 1200px;
-	margin-top: -570px;
+	display: block;
+	margin: 20px auto;
 	border-color: Black;
 	border-width: medium;
 	border-style: solid;
@@ -346,5 +352,11 @@ body div#page1 {
 	width: 60px;
 	background-color: rgb(161, 208, 241);
 	color: white;
+	display: none;
+}
+
+
+/******************** données applicatives *******************/
+#verif_mdp_utilisateur_modif{
 	display: none;
 }

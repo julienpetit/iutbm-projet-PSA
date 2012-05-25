@@ -47,7 +47,7 @@ function print_r_html ($arr) {
     echo "</pre>";
 }
 
-function noCommande($link){
+function noCommandeMysqli($link){
 
 	$date1 = date("ymd");
 	$cocentre = "01";

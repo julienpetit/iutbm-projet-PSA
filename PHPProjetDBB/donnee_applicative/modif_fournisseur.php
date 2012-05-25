@@ -20,23 +20,23 @@ $row = mysql_fetch_assoc($result);
 echo"
 <form id=\"myform\">
 
-<label id=\"label\" for=\"id_fournisseur\">id fournisseur:</label>
+<label id=\"label\" for=\"id_fournisseur\">Identifiant Fournisseur:</label>
 <input type=\"text\" readonly name=\"id_fournisseur\" id=\"id_fournisseur\" value='".$row['id_fournisseur']."' /><br/>
 
-<label id=\"label\" for=\"nom_fournisseur\">nom fournisseur:</label>
+<label id=\"label\" for=\"nom_fournisseur\">Nom Fournisseur:</label>
 <input type=\"text\" name=\"nom_fournisseur\" id=\"nom_fournisseur\" value='".$row['nom_fournisseur']."' /><br/>
 
-<label id=\"label\" for=\"cofor\">COFOR:</label>
+<label id=\"label\" for=\"cofor\">Code Founrisseur:</label>
 <input type=\"text\" name=\"cofor\" id=\"cofor\" value='".$row['cofor']."' /><br/>
 
-<label id=\"label\" for=\"nom_dest_commande\">Nom destinataire commande:</label>
+<label id=\"label\" for=\"nom_dest_commande\">Nom Destinataire Commande:</label>
 <input type=\"text\" name=\"nom_dest_commande\" id=\"nom_dest_commande\" value='".$row['nom_dest_commande']."'/><br/>
 
-<label id=\"label\" for=\"mail_dest_commande\">Mail destinataire</label>
-<input type=\"text\" id=\"mail_dest_commande\" value=\"".$row['adresse_email']."\"/><br />
+<label id=\"label\" for=\"mail_dest_commande\">Mail Destinataire</label>
+<input type=\"text\" id=\"mail_dest_commande\" value=\"".$row['adresse_email']."\" onchange='isEmail()' /><br />
         
-<label id=\"label\" for=\"mail_copie_commande\">Mail copie</label>
-<select type=\"text\" id=\"mail_copie_commande\" value=\"\">";
+<label id=\"label\" for=\"mail_copie_commande\">Mail Copie</label>
+<select type=\"text\" id=\"mail_copie_commande\" value=\"\" onchange='isEmail()'>";
 
 $query1="SELECT adresse_email FROM COPIE_COMMANDE WHERE id_fournisseur='".$row['id_fournisseur']."';";
 						
@@ -49,10 +49,10 @@ $query1="SELECT adresse_email FROM COPIE_COMMANDE WHERE id_fournisseur='".$row['
 
 echo"
 </select><br /><br/>
-<label id=\"label\" for=\"approvisionne\">approvisionne</label>
+<label id=\"label\" for=\"approvisionne\">Approvisionne</label>
 <input type=\"text\" id=\"approvisionne\" value=\"".$row['libelle_type_piece_2']."\"/><br />
 
-<label id=\"label\">Libelle mode ref vehicule:</label>
+<label id=\"label\">Libelle Mode Reference Vehicule:</label>
 <select name=\"libelle_mode_ref_vehicule\" id=\"code_mode_ref_vehicule\">
 ";
 
