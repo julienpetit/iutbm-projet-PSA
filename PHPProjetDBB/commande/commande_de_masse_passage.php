@@ -21,7 +21,7 @@ echo("<h1 id=\"titreprincipal\">Commande de masse</h1>");
 			$date = date("d/m/Y");
 			$heure = date("h:i:s");
 			$numCommande = noCommande();
-			$emet = $_SESSION['pseudo'];
+			$emet = $_SESSION['id'];
 
 
 
