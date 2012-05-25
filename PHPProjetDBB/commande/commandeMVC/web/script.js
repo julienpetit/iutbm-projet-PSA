@@ -191,23 +191,33 @@ $(document).ready(function() {
 		supprimerPieceCommande(reference);
 		
 		addClassSelectedPiecesDispo();
-	})
-	
-	
-	
-	
-	
-	
+	});
+		
    /**
     * Ajout d'une pièce globale  -------------------------------YOHAN--------------------------------
     */	
-	
-	
-	
-	
-	
+	$("div#listePieces > h3 > span > a").live('click',function(e){
+		
+		$.ajax({
+			type: 'post',
+			url: 'index.php?ajax=affichageFormulaireAjoutPiece',
+			complete: function(x){
+				$('body').append(x.responseText);
+				$("#confirmOverlay").hide().fadeIn('slow');
+			}
+		});
+		e.preventDefault();
+		
+		
+		
 });
-
+	/**
+	 * Click sur annuler la pièce sur le formulaire précédent
+	 */
+	$("#annulerAjoutPiece").live('click', function(e){
+		$("#confirmOverlay").remove();
+		e.preventDefault();
+	});
 /*
  * Global functions   ----------------------------------------------------------
  */
@@ -378,4 +388,4 @@ function verifieNoDossier(){
 		return true;
 	}
 }
-
+});

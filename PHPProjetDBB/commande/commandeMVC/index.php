@@ -37,6 +37,15 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPieceComma
 	exit();
 }
 
+/**
+ * Ajax --> Ajout de Piece
+ */
+if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
+	$modelePiece->displayAjoutPieces();
+	
+	
+	exit();
+}
 
 
 /**

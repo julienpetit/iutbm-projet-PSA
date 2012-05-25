@@ -17,6 +17,7 @@ interface iPiece
 	
 	public function displayWidgetPiece();
 	public function displayListePieces($where = "");
+	public function displayAjoutPieces();
 
 }
 
@@ -299,6 +300,39 @@ class Piece implements iPiece
  								 'potentiel' => $potentiel);
  		}
  		return $newPieces;
+ 	}
+ 	
+ 	
+ 	//formulaire d'ajout d'une nouvelle piece
+ 	public function displayAjoutPieces()
+ 	{
+ 		echo "<div id='confirmOverlay'>\n";
+ 		echo "<div id='confirmBox'>\n";
+ 		echo "<table>\n";
+ 		echo "<h2>Nouvelle Piece </h2>\n";
+ 		echo "<form id=formPiece name=formulairePiece />\n";
+ 		echo "<tr>\n";
+ 		echo "<td>Reference : </td>\n";
+ 		echo "<td><input type='text' id='reference' name='reference' /></td>";
+ 		echo "</tr>\n";
+ 		echo "</br>";
+ 		echo "<tr>\n";
+ 		echo "<td>Libelle : </td>\n";
+ 		echo "<td><input type='text' id='libelle' name='libelle' /></td>";
+ 		echo "</tr>\n";
+ 		echo "</form>\n";
+ 		echo "</table>\n";
+ 			
+ 		
+ 		echo "<div id='confirmButtons'>\n";
+ 		
+ 		echo "<a id='ajoutNouvellePiece' class='small blue nice button radius' href='#'><span>ajouter piece</span></a>\n";
+ 		echo "<a id='annulerAjoutPiece' class='small red nice button radius' href='#'><span>annuler piece</span></a>\n";
+ 			
+ 		echo "</div>\n";
+ 		echo "</div>\n";
+ 		echo "</div>\n";
+ 			
  	}
 }
 ?>
