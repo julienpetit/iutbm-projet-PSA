@@ -1,6 +1,6 @@
 /**********************général***************/
 body {
-	background-color: #EBFF87;
+	background-color: white;
 	color: Blue;
 	font-size: 20px;
 }
@@ -64,8 +64,7 @@ label {
 #pieces_fournies,#pieces_fournie p {
 	width: 300px;
 	height: 100px;
-	margin-left: 1200px;
-	margin-top: -570px;
+	display : 0 auto;
 	border-color: Black;
 	border-width: medium;
 	border-style: solid;
