@@ -2,11 +2,13 @@
 
 session_start(); 
 include('../connexion/_connexion.php');
+include ('../include/layout/layout.inc.php');
+include('../include/library/library.inc.php');
 
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");
 require_once("./nocommande.php");
-html_entete_fichier("accueil","../Style.css","fonction.js","../controle/controle.js"); 
+header_html("Commande de pièces synchrones",array("../Style.css"),array("fonction.js","../controle/controle.js")); 
 mysql_query("SET NAMES UTF8");
 check_log_user($_SESSION['no_droit'],1,NULL);
 echo("<body>");
@@ -19,12 +21,12 @@ echo("<body>");
 	$heure = date("h:i:s");
 	$numCommande = noCommande();
         $droit=$_SESSION['no_droit'];        
-	echo(   "<label id=\"titre1\">RECAPITULATIF</label><br /><hr />
+	echo(   "<label id=\"titre1\">RECAPITULATIF</label><br />
 			<label id=\"titre\">Commande N&deg;</label><input readonly disabled=\"disabled\" type=\"text\" name=\"numCommandeMasse\" id=\"numCommandeMasse\"  value=\"$numCommande\" />
 			<label>effectu&eacute;e le</label><input readonly disabled=\"disabled\" type=\"text\" name=\"jourCommandeMasse\" id=\"jourCommandeMasse\" value=\"$date\" />
 			<label>&agrave;</label><input readonly disabled=\"disabled\" type=\"text\" name=\"heureCommandeMasse\" id=\"heureCommandeMasse\" value=\"$heure\"/><br /><br />
                 
-			<label id=\"titre1\">EMETTEUR</label><br /><hr />
+			<label id=\"titre1\">EMETTEUR</label><br />
 			<label>Num&eacute;ro</label><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[id]\"/><br />
 			<label>Nom</label><input readonly disabled=\"disabled\" type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\"/><br />
 			<label>Pr&eacute;nom</label><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\"/><br />
@@ -39,7 +41,7 @@ echo("<body>");
     <table>
         <caption id="titre1"> Pi&egrave;ces de la commande </caption>
    	    <tr> 
-	        <td><hr /><label id="titre" class="select">Fournisseurs</label> 
+	        <td><label id="titre" class="select">Fournisseurs</label> 
                 <select name="four" onchange="mode_ref_vehicule(this.value); pieces_fournies(this.value);">
                     <option>Choisissez un fournisseur</option>
                     <?php
@@ -79,7 +81,7 @@ else{
         
         </tr>
         <tr> 
-	        <td><hr /><label id="titre" class="select">Silhouette</label>
+	        <td><label id="titre" class="select">Silhouette</label>
                 <select name="vehicule" id="vehicule" onchange="Change1(this.value);">
                     <option>Choisissez la silhouette</option>
                      <?php
@@ -104,7 +106,7 @@ echo("<option value=".$data['code_silhouette'].">".$data['libelle_silhouette']."
         <caption id="titre1">Responsable par d&eacute;faut </caption>
    	
 		<tr> 
-             <td><hr /><label id="titre" class="select">Entit&eacute;</label>
+             <td><label id="titre" class="select">Entit&eacute;</label>
                 <select name="nomca" onchange="Change(this.value);">
                     <option>Choisissez votre entit&eacute;</option>
                     <?php
