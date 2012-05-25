@@ -65,7 +65,7 @@ if (isset($_GET['ajout'])){
 * Ajout - Soumission du formulaire
 */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
-	$noCommande = noCommande($link);
+	$noCommande = noCommandeMysqli($link);
 	// récupération des infos de la commande
 	$infosCommande = array('no_commande' 			=> $noCommande,
 						   'libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
