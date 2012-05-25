@@ -9,38 +9,38 @@
 
 
 
-<label id="label" for="code_utilisateur">Identifiant utilisateur</label>
+<label id="label" for="code_utilisateur">Identifiant Utilisateur</label>
 <input type="text" id="code_utilisateur" value=""/>
 <br />
 
 
-<label id="label" for="nom_utilisateur">Nom</label>
+<label id="label" for="nom_utilisateur">Nom Utilisateur:</label>
 <input type="text" id="nom_utilisateur" value=""/>
 <br />
 
-<label id="label" for="prenom_utilisateur">Prenom</label>
+<label id="label" for="prenom_utilisateur">Prenom Utilisateur:</label>
 <input type="text" id="prenom_utilisateur" value=""/>
 <br />
 
-<label id="label" for="service_utilisateur">Service</label>
+<label id="label" for="service_utilisateur">Service Utilisateur:</label>
 <input type="text" id="service_utilisateur" value=""/>
 <br />
 
 
-<label id="label" for="no_telephone">Téléphone</label>
+<label id="label" for="no_telephone">Téléphone Utilsiateur:</label>
 <input type="text" id="no_telephone" onchange="verifierTel('no_telephone');" value=""/>
 <br />
 
 
-<label id="label" for="email_utilisateur">Email</label>
-<input type="text" id="email_utilisateur" onchange="isEmail('email_utilisateur');" value=""/>
+<label id="label" for="email_utilisateur">Email Utilisateur:</label>
+<input type="text" id="email_utilisateur" onchange="isEmail();" value=""/>
 <br />
 
 <label id="label" for="verif_email_utilisateur">Vérification Email</label>
 <input type="text" id="verif_email_utilisateur" value=""/>
 <br />
 
-<label id="label" for="mdp_utilisateur">Mot de passe</label>
+<label id="label" for="mdp_utilisateur">Mot de passe Utilisateur:</label>
 <input type="password" id="mdp_utilisateur" value=""/>
 <br />
 
@@ -74,9 +74,3 @@
     
         </form>
 </div>
-    
-    
-    
-    
-    
-    

@@ -440,6 +440,7 @@ function Sauvegarde_utilisateur()
 	var no_telephone= document.getElementById("no_telephone").value;	
 	var email_utilisateur= document.getElementById("email_utilisateur").value;	
 	var mdp_utilisateur= document.getElementById("mdp_utilisateur").value;	
+	var verif_mdp_utilsateur = document.getElementById("verif_mdp_utilisateur").value;
 	var droit_utilisateur="";
 	var nb_droits=0;
 	for(i=0 ; i<document.getElementsByName("droit").length; i++){
@@ -448,8 +449,13 @@ function Sauvegarde_utilisateur()
 			nb_droits+=1;	
 		}
 	}
-
 	
+	if(mdp_utilisateur != verif_mdp_utilisateur){
+		alert("Le mot de passe et sa vérification sont différents");
+		document.getElementById("mdp_utilisateur").value = "";
+		document.getElementById("verif_mdp_utilisateur").value = "";
+		return;
+	}
 	if(id_utilisateur.length==0 || nom_utilisateur.length==0 || prenom_utilisateur.length==0 || service_utilisateur.length==0 || no_telephone.length==0 || email_utilisateur.length==0){
 		alert("Un ou plusieurs champs sont vides");
 		return;
@@ -468,6 +474,18 @@ function Sauvegarde_utilisateur()
 
 	
 	alert("L'utilisateur n° "+id_utilisateur+" a bien été modifié");
+}
+
+function verif_mdp(mdp){
+	
+	if(mdp.length != 0){
+		if(confirm("Etes vous sur de vouloir changer le mot de passe de l'utilisateur?")){	
+			document.getElementById("verif_mdp_utilisateur_modif").style.display = "inline";
+		}
+		else{
+			document.getElementById("mdp_utilisateur").value = "";
+		}
+	}
 }
 ///////////////////////Suppression//////////////////////////////////////////////
 function suppression_utilisateur(id_utilisateur){
@@ -490,4 +508,25 @@ function suppression_utilisateur(id_utilisateur){
 		xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xmlhttp.send("id="+id_utilisateur);
 	}
+}
+
+//fonction de vérification de validité d'email
+function isEmail(){
+	
+	var mail_utilisateur = document.getElementById("mail_utilisateur").value;
+	
+	var reg = new RegExp('^[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*@[a-z0-9]+([_|\.|-]{1}[a-z0-9]+)*[\.]{1}[a-z]{2,6}$', 'i');
+
+	if(reg.test(mail_utilisateur))
+	{
+		document.getELementById("mail_utilisateur").style.backgroundColor = "#4DFF00";
+		return(true);
+	}
+	else
+	{
+		alert("Le mail renseigné n'est pas valide");
+		document.getElementById("mail_utilisateur").style.backgroundColor = "red";
+		return(false);
+	}
+        
 }

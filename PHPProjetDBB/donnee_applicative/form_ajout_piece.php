@@ -9,7 +9,7 @@
 	<label id="label" for="reference_piece">Reference Pi&egrave;ce</label>
         <input type="text" id="reference_piece" onchange="verifierRef('reference_piece');" value=""/>
 
-        <label id="label" for="designation_piece">libell&eacute; pi&egrave;ce</label>
+        <label id="label" for="designation_piece">Libell&eacute; pi&egrave;ce</label>
         <input type="text" id="designation_piece" value=""/>
 
         
