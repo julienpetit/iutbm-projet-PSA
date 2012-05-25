@@ -1,4 +1,4 @@
-<?php header_html("Ajout d'une commande de masse", array("web/style.css", "web/styleListeRevisions.css"), array("web/script.js", "web/scriptModification.js"))?>
+<?php header_html("Ajout d'une commande de masse", array("web/style.css", "web/styleListeRevisions.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='section'>
 				<h2>Commande de masse</h2>
 				
