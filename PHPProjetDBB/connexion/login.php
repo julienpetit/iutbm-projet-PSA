@@ -6,20 +6,22 @@ mysql_query("SET NAMES UTF8");
 
 $loginOK = false; 
 
-
-if ( isset($_POST) && (!empty($_POST['login'])) || (!empty($_POST['password'])) ) {
+if (isset($_POST['login']) && isset($_POST['password']))
+{
+if (!empty($_POST['login'])) || (!empty($_POST['password'])) {
 
   $sql = "SELECT id_utilisateur FROM UTILISATEUR WHERE id_utilisateur = '".$_POST['login']."'";
   $req = mysql_query($sql) or die('Erreur SQL : <br />'.$sql);
 
   if (mysql_num_rows($req) == 0) {
-     header('Location: page.php');
+     header("Location: page.php?err=Login");
    }
   $sql = "SELECT u.id_utilisateur, u.prenom_utilisateur, u.nom_utilisateur, u.service_utilisateur, u.no_telephone, u.mdp_utilisateur
           FROM UTILISATEUR u WHERE u.id_utilisateur = '".$_POST['login']."';";
   $req = mysql_query($sql) or die('Erreur SQL : <br />'.$sql);
 
-  if (mysql_num_rows($req) > 0) {
+  if (mysql_num_rows($req) > 0) 
+  {
   
      $data = mysql_fetch_array($req);
     // On v�rifie que son mot de passe est correct
@@ -27,9 +29,12 @@ if ( isset($_POST) && (!empty($_POST['login'])) || (!empty($_POST['password'])) 
     if (md5($_POST['password'])== $data['mdp_utilisateur']) {
       $loginOK = true;
     }
+    else{
+    	header("Location: page.php?err=mdp");
+    	}
   }
 }
-
+}
 
   $sql1 = "SELECT no_droit FROM POSSEDE WHERE id_utilisateur = '".$_POST['login']."';";
   $req1 = mysql_query($sql1) or die('Erreur SQL : <br />'.$sql);
@@ -55,10 +60,8 @@ if ($loginOK) {
   else{
   $droit[0]=15;
   $_SESSION['no_droit']=$droit;
-  echo "bonjour";
   }
-  header("Refresh: 1;URL=../commande/accueil.php");
-  echo"Bonjour ".$data['prenom_utilisateur'].", ".$data['nom_utilisateur']."";
+   header("Location: ../commande/accueil.php");
 
 }
 
