@@ -64,7 +64,8 @@ label {
 #pieces_fournies,#pieces_fournie p {
 	width: 300px;
 	height: 100px;
-	display : 0 auto;
+	display: block;
+	margin: 20px auto;
 	border-color: Black;
 	border-width: medium;
 	border-style: solid;
