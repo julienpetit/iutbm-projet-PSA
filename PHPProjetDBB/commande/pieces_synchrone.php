@@ -164,21 +164,6 @@ else{
 </div>
 </form>
 
-<!-- 
---  Message d'erreur si tous les champs n'ont pas été remplis
---  Affiche un pop-up
--->
-<?php
-    if( isset($_GET['erreur']) && ($_GET['erreur'] == 1) )
-    { 
-?>
-        <script language="Javascript">
-            alert( "Erreur : Tous les champs ne sont pas remplis." );
-        </script>
-<?php
-    }
-?>
-
 <?php 
 footer_html();
 ?>
