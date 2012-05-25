@@ -149,9 +149,10 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
  * Modification - Soumission du formulaire
  */
 if (isset($_GET['historique']) && $_GET['historique'] != ""){
-	echo "TO DO";
+	$noCommande = html($_GET['historique']);
+	$commandes = $modeleCommandeHistorique->getList(" no_commande = " . $noCommande . " ORDER BY no_historique DESC");
 	
-	
+	//print_r_html($commandes);
 	include "view/listeRevisions.html.php";
 	exit();
 }
@@ -170,12 +171,12 @@ if (isset($_GET['voir']) && $_GET['voir'] != "" && isset($_GET['no_historique'])
 
 
 	$commande = $modeleCommandeHistorique->getCommande($noCommande, $noHistorique);
-	print_r_html($commande);
+	//print_r_html($commande);
 
-	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
+	$pieces = $modelePiece->getPieceByCommandeId($noHistorique);
 
 	$method = 'modif';
-	include "view/formulaireModification.html.php";
+	include "view/viewRevision.html.php";
 
 	
 	exit();

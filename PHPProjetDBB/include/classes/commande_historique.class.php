@@ -17,6 +17,7 @@ class CommandeHistorique
 
 	function getList($where = "", $min=0, $max=0)
 	{
+		$modelePiece = new Piece($this->link);
 	
 		// Sélection des infos des Commandes et de leurs iut.
 		$sql = "SELECT * FROM COMMANDE_HISTORIQUE";
@@ -37,7 +38,7 @@ class CommandeHistorique
 		// Création de une liste de Commandes
 		$Commandes = array();
 		while ($row = mysqli_fetch_row($resultat)){
-
+			$pieces = $modelePiece->getPieceByCommandeId($row[0]);
 			$Commandes[] = array(
 						'no_historique'						=> $row[0],
 					    'no_commande'						=> $row[1],
@@ -61,7 +62,9 @@ class CommandeHistorique
 						'id_utilisateur_passe'  			=> $row[19],
 						'id_utilisateur_annule'  			=> $row[20],
 						'id_utilisateur_ferme'  			=> $row[21],
-						'code_type_commande' 				=> $row[22]
+						'code_type_commande' 				=> $row[22],
+						'pieces_principales'				=> $pieces['principales'],
+						'pieces-environnement'				=> $pieces['environnement']
 							 );
 		}
 		return $Commandes;
