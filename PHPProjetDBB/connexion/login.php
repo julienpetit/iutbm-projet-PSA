@@ -55,7 +55,6 @@ if ($loginOK) {
   else{
   $droit[0]=15;
   $_SESSION['no_droit']=$droit;
-  echo "bonjour";
   }
   header("Refresh: 1;URL=../commande/accueil.php");
   echo"Bonjour ".$data['prenom_utilisateur'].", ".$data['nom_utilisateur']."";
