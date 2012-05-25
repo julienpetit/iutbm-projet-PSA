@@ -8,7 +8,7 @@ $loginOK = false;
 
 if (isset($_POST['login']) && isset($_POST['password']))
 {
-if (!empty($_POST['login'])) || (!empty($_POST['password'])) {
+if (!empty($_POST['login'])) && (!empty($_POST['password'])) {
 
   $sql = "SELECT id_utilisateur FROM UTILISATEUR WHERE id_utilisateur = '".$_POST['login']."'";
   $req = mysql_query($sql) or die('Erreur SQL : <br />'.$sql);
