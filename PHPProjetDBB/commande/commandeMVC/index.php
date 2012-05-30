@@ -3,7 +3,6 @@ include "../../include/library/bd.inc.php";
 include "../../include/library/library.inc.php";
 include "../../include/library/constantes.inc.php";
 include "../../include/classes/commande.class.php";
-include "../../include/classes/commande_historique.class.php";
 include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
 include "../../include/classes/utilisateur.class.php";
@@ -26,7 +25,6 @@ $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
 $modeleCadence = new Cadence($link);
-$modeleCommandeHistorique = new CommandeHistorique($link);
 
 $date = date("Y-m-d");
 $heure = date("H:i");
