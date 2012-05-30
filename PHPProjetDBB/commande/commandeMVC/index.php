@@ -70,7 +70,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
  * Ajout d'une nouvelle commande
  */
 if (isset($_GET['ajout'])){
-	
+	$noCommande = noCommandeMysqli($link);
 	$method = 'ajout';
 	include "view/formulaireAjout.html.php";
 	exit();
@@ -80,7 +80,7 @@ if (isset($_GET['ajout'])){
 * Ajout - Soumission du formulaire
 */
 if (isset($_GET['action']) && $_GET['action'] == "ajout"){
-	$noCommande = noCommandeMysqli($link);
+	$noCommande = html($_POST['no_commande']);
 	// récupération des infos de la commande
 	$infosCommande = array('no_commande' 			=> $noCommande,
 						   'date_commande'			=> html($_POST['date_commande']),

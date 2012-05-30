@@ -2,7 +2,6 @@
 			
 			
 			<div id='section'>
-				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
 					
 					<!-- Affichage de la section Commande -->
@@ -10,6 +9,10 @@
 						<legend>Commande</legend> <br />
 						
 						<table>
+							<tr>
+								<td><label>Commande n° : </label></td>
+								<td><?php printHtml($noCommande); ?></td>
+							</tr>
 							<tr>
 								<td><label>Effectuée le : </label></td>
 								<td><?php echo "Le " . convertDate_Amj_string($date) . " à " . $heure; ?></td>
@@ -103,12 +106,14 @@
 					</fieldset>	
 					
 					<!-- Champs cachés -->
+					<input type='hidden' id='no_commande' name='no_commande' value='<?php echo html($noCommande); ?>' />
 					<input type='hidden' id='id_user' name='id_user' value='<?php echo html($user['id_utilisateur']); ?>' />
 					<input type='hidden' id='date_commande' name='date_commande' value='<?php echo html($date); ?>' />
 					<input type='hidden' id='heure_commande' name='heure_commande' value='<?php echo html($heure); ?>' />
 					
 					<!-- Boutons de soumission du formulaire -->
 					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
+					<a href='../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>

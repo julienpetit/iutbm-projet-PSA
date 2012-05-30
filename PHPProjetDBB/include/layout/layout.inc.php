@@ -23,8 +23,10 @@
 <body>
 	<div id='main'>
 		<div id='header'>
+
 		</div>
 		<div id='wrap'>
+			<h1><?php echo html($title); ?></h1>
 <?php } 
 
 function footer_html() { ?>
