@@ -75,10 +75,10 @@ else if($choix_rech=="date_creation"){
 
 		 	echo"	<br/>	
 				<label id=\"label\">Date min création </label>
-        		<input type=\"text\" onchange=\"verifierDate('date1');\" id=\"date1\" value=\"aaaa-mm-jj\"/>
+        		<input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date1\" value=\"aaaa-mm-jj\"/>
         		<br/> 
         		<label id=\"label\">Date max création</label>
-        		<input type=\"text\" onchange=\"verifierDate('date2');\" id=\"date2\" value=\"aaaa-mm-jj\"/>
+        		<input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date2\" value=\"aaaa-mm-jj\"/>
         		<br/><br/>
         		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('date_creation')\"/>";
 
