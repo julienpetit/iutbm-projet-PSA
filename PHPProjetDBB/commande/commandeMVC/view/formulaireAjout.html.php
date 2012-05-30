@@ -113,7 +113,7 @@
 					
 					<!-- Boutons de soumission du formulaire -->
 					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
-					<a href='../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
+					<a href='../../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>
