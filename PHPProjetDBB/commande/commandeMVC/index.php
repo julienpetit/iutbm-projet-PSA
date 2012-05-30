@@ -157,4 +157,23 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 }
 
 
+
+/**
+ * Visualisation d'une commande
+ */
+if (isset($_GET['visualiser']) && $_GET['visualiser'] != ""){
+	$noCommande = html($_GET['visualiser']);
+
+
+	$commande = $modeleCommande->getCommande($noCommande);
+
+	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
+
+	$method = 'modif';
+	include "view/visualisation.html.php";
+
+	$commande = $modeleCommande->getCommande($noCommande);
+	exit();
+}
+
 ?>
