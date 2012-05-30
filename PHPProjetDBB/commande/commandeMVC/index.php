@@ -6,24 +6,33 @@ include "../../include/classes/commande.class.php";
 include "../../include/classes/commande_historique.class.php";
 include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
+include "../../include/classes/utilisateur.class.php";
 include "../../include/classes/cadence.class.php";
 include "../../include/layout/layout.inc.php";
 
 // Vérification de l'identité de l'utilisateur
 session_start();
-// include('../../connexion/_connexion.php');
-// mysql_query("SET NAMES UTF8");
-// require_once("../../fonctionhtml.php");
-// require_once("../../connexion/verification_connexion.php");
+include('../../connexion/_connexion.php');
+mysql_query("SET NAMES UTF8");
+require_once("../../fonctionhtml.php");
+require_once("../../connexion/verification_connexion.php");
 
-// check_log_user($_SESSION['no_droit'],2,NULL); //vérifie si l'utilisateur a bien le droit d'accèder a cette page.
+check_log_user($_SESSION['no_droit'],2,NULL); //vérifie si l'utilisateur a bien le droit d'accèder a cette page.
 
+$modeleUtilisateur = new Utilisateur($link);
+$user = $modeleUtilisateur->getUtilisateur(html($_SESSION['id']));
 
 $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
 $modeleCadence = new Cadence($link);
 $modeleCommandeHistorique = new CommandeHistorique($link);
+
+$date = date("Y-m-d");
+$heure = date("H:i");
+
+
+//print_r_html($user);
 
 /**
  * Ajax --> Widget Pièces - Recherche de pièces
@@ -63,8 +72,7 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
  * Ajout d'une nouvelle commande
  */
 if (isset($_GET['ajout'])){
-
-
+	
 	$method = 'ajout';
 	include "view/formulaireAjout.html.php";
 	exit();
@@ -77,10 +85,14 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 	$noCommande = noCommandeMysqli($link);
 	// récupération des infos de la commande
 	$infosCommande = array('no_commande' 			=> $noCommande,
+						   'date_commande'			=> html($_POST['date_commande']),
+						   'heure_commande'			=> html($_POST['heure_commande']),
 						   'libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
 						   'code_imputation' 		=> html($_POST['EntiteCM']),
 						   'no_chantier'			=> html($_POST['noDossier']),
-						   'code_type_commande' 	=> 'M');
+						   'code_type_commande' 	=> 'M',
+						   'id_utilisateur_passe' 	=> html($_POST['id_user']) 
+			);
 	
 	// récupération des pièces de la commande
 	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
@@ -127,18 +139,14 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	// récupération du no de la commande
 	$noCommande = html($_POST['noCommande']);
 
-	$modeleCommandeHistorique->transfertCommande($noCommande);
-
-	
 	// récupération des infos de la commande
-	$infosCommande = array('date_commande' 			=> date("Y-m-d"),
-						   'heure_commande' 		=> date("H:i:s"),
-						   'libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
+	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
 						   'code_imputation' 		=> html($_POST['EntiteCM']),
 						   'no_chantier'			=> html($_POST['noDossier']),
 						   'code_type_commande' 	=> 'M');
 
 	// récupération des pièces de la commande
+	echo $noCommande;
 	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
 	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
 
@@ -148,47 +156,7 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
 	print_r_html($_POST);
 	exit();
-	
-	
-	exit();
 }
 
-
-/**
- * Modification - Soumission du formulaire
- */
-if (isset($_GET['historique']) && $_GET['historique'] != ""){
-	$noCommande = html($_GET['historique']);
-	$commandes = $modeleCommandeHistorique->getList(" no_commande = " . $noCommande . " ORDER BY no_historique DESC");
-	
-	//print_r_html($commandes);
-	include "view/listeRevisions.html.php";
-	exit();
-}
-
-
-
-/**
- * Affichage - Une commande de l'historique
- */
-/**
- * Modification d'une commande
- */
-if (isset($_GET['voir']) && $_GET['voir'] != "" && isset($_GET['no_historique']) && $_GET['no_historique'] != ""){
-	$noCommande = html($_GET['voir']);
-	$noHistorique = html($_GET['no_historique']);
-
-
-	$commande = $modeleCommandeHistorique->getCommande($noCommande, $noHistorique);
-	//print_r_html($commande);
-
-	$pieces = $modelePiece->getPieceByCommandeId($noHistorique);
-
-	$method = 'modif';
-	include "view/viewRevision.html.php";
-
-	
-	exit();
-}
 
 ?>
