@@ -1,6 +1,6 @@
 function box(){
 	document.getElementById('commande').style.display="block";          // ces deux fonctions permettent d'afficher ou non le champ de numéro de commande dans l'accueil
-}
+}  
 
 function nobox(){
 	document.getElementById('commande').style.display="none";
