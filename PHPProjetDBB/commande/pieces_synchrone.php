@@ -1,9 +1,8 @@
 <?php  
-
 session_start(); 
-include('../connexion/_connexion.php');
-include ('../include/layout/layout.inc.php');
-include('../include/library/library.inc.php');
+include_once('../connexion/_connexion.php');
+include_once('../include/layout/layout.inc.php');
+include_once('../include/library/library.inc.php');
 
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");

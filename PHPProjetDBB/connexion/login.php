@@ -28,11 +28,13 @@ if ( isset($_POST) && (!empty($_POST['login'])) || (!empty($_POST['password'])) 
       $loginOK = true;
     }
   }
+  
+  $sql1 = "SELECT no_droit FROM POSSEDE WHERE id_utilisateur = '".$_POST['login']."';";
+  $req1 = mysql_query($sql1) or die('Erreur SQL : <br />'.$sql);
 }
 
 
-  $sql1 = "SELECT no_droit FROM POSSEDE WHERE id_utilisateur = '".$_POST['login']."';";
-  $req1 = mysql_query($sql1) or die('Erreur SQL : <br />'.$sql);
+
 // Si le login a �t� valid� on met les donn�es en sessions
 if ($loginOK) {
 	

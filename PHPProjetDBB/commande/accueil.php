@@ -1,15 +1,19 @@
 <?php  
-
+//include_once("../connexion/login.php");
 session_start();
 include('../connexion/_connexion.php');
 mysql_query("SET NAMES UTF8");
 require_once("../fonctionhtml.php");
+
+require_once("../include/library/bd.inc.php");
+require_once("../include/library/library.inc.php");
+require_once("../include/layout/layout.inc.php");
+
+
 $droit=$_SESSION['no_droit'];
-html_entete_fichier("accueil","../Style.css","accueil.js");
-
+//html_entete_fichier("accueil","../Style.css","accueil.js");
+header_html("Gestion des commandes",array("../Style.css"),array("accueil.js"));
 echo("<body>");
-
-echo("<h1 id=\"titreprincipal\">Gestion des commandes</h1>");
 
 echo("<form id=\"accueil\" name=\"accueil\" action=\"\" method=\"post\">");
 
@@ -117,13 +121,13 @@ echo("</fieldset>
 		<label>N°Commande concernée? </label><input type='text' id='num_commande' value=''/>
 		</div>
 		<div id=\"sub\">
-		<input type=\"submit\" id=\"val\" onclick=\"choix_action1(num_commande.value);\" value=\"Valider la demande\"/>
+		<input type=\"submit\" class=\"small blue nice button radius\"onclick=\"choix_action1(num_commande.value);\" value=\"Valider la demande\"/>
 		</div>
 
 		</form>
-		<form method=\"post\" action=\"../connexion/deconnexion.php\">
-		<input type=\"submit\" id=\"anu\" value=\"Quitter l'application\"/>
-		</form>
+
+		<a href='../connexion/deconnexion.php' class=\"small green nice button radius\" >Quitter l'application</a>
+
 		");
 ?>
 </body>

@@ -1,10 +1,9 @@
 /**
 * # Init de la feuille de style
 */
-h1, h2, h3, h4, h5, h6 {
+body, h1, h2, h3, h4, h5, h6 {
 	margin: 0;
 	padding: 0;
-
 }
 
 .loader {
@@ -46,4 +45,81 @@ div#wrap {
 	line-height: 18px;
 	text-align: left;
 	font-size: 15px;
+}
+
+div#wrap > h1 {
+	margin: 20px 0;
+}
+
+/*
+ * @style bandeau de connexion
+ */
+div#bandeau_connexion {
+	width: 100%;
+	background-color: #2D2D2D;
+	margin: 0;
+	height: 22px;
+	padding: 8px;
+}
+
+div#info_content {
+	margin: 0 auto;
+	width: 960px;
+	height: 100%;
+	color: white;
+	font-family: "Helvetica Neue", "HelveticaNeue", Helvetica, Arial, "Lucida Grande", sans-serif;
+	font-size: 18px;
+}
+
+
+div#info_content > ul#menu {
+	float: left;
+}
+
+div#info_content > ul#infos {
+	float: right;
+}
+
+div#info_content > ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+div#info_content > ul >li {
+	display: inline-block;
+	margin : 0 20px;
+    transition: color; /*for the future*/
+    transition-duration: 4000ms;
+    -webkit-transition: color; /*http://www.w3.org/TR/css3-transitions/*/
+    -webkit-transition-duration: 4000ms;
+    -moz-transition: color; /*https://developer.mozilla.org/en/CSS/-moz-transition*/
+    -moz-transition-duration: 4000ms;
+    -o-transition: color; /*http://dev.opera.com/articles/view/css3-transitions-and-2d-transforms/*/
+    -o-transition-duration: 4000ms;
+}
+	
+div#info_content > ul > li:hover {
+	cursor:pointer;
+	color: #D45232;
+	transition: color;
+	transition-duration: 400ms;
+	-webkit-transition: color;
+	-webkit-transition-duration: 400ms;
+	-moz-transition: color;
+	-moz-transition-duration: 400ms;
+	-o-transition: color;
+	-o-transition-duration: 400ms;
+}
+
+div#info_content > ul > li:active {
+	color: #E80C7A;
+}
+
+
+
+/* PROVISOIRE */
+form#accueil > fieldset {
+	background-color: #CCC;
+	width: 96%;
 }
