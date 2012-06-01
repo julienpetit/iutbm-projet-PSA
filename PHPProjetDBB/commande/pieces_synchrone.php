@@ -65,8 +65,8 @@ echo("<body>");
    	   			<tr> 
 	        		<td><label id="titre" class="select">Fournisseurs</label></td>
 	        		<td>
-                		<select name="four" onchange="mode_ref_vehicule(this.value); pieces_fournies(this.value);">
-                    		<option>Choisissez un fournisseur</option>
+                		<select name="four" id='four' onchange="mode_ref_vehicule(this.value); pieces_fournies(this.value);">
+                    		<option value='0' >Choisissez un fournisseur</option>
 			                    <?php
 			$sql = "SELECT nom_fournisseur, id_fournisseur FROM FOURNISSEUR";
 			$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
@@ -77,31 +77,28 @@ echo("<body>");
 			               ?>     
                 		</select> 
             		</td>
-            		<td></td>
-            		<td></td>
             	</tr>
         		<tr> 
 	        		<td><label id="titre">R&eacute;f&eacute;rence</label></td>
 	        		<td><input type="text" name="ref" id="ref" value="" onchange="verifierRef('ref')"/></td>
+	        	</tr>
+	        	<tr>
 	        		<td>
 <?php 
 if(in_array(11,$droit))
 {
-	echo "<label>Quantit&eacute;</label> <input type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
+	echo "<label>Quantit&eacute;</label></td><td><input type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
 }
 else
 {
-	echo "<label>Quantit&eacute;</label> <input readonly type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
+	echo "<label>Quantit&eacute;</label></td><td><input readonly type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
 }
 ?>
 					</td>
-					<td></td>
         		</tr>
         		<tr>
 	        		<td><label id="titre">D&eacute;signation</label></td>
 	        		<td><input type="text" id="des" name="des" value=""/></td>
-	        		<td></td>
-	        		<td></td>
         		</tr>
     		</table>
     	</fieldset>

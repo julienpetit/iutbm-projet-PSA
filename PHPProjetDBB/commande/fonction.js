@@ -181,4 +181,65 @@ function toMenu(msg){
 	document.location.href="../accueil.php";	
 }
 
+/*
+ * Gestion des erreur de formulaire
+ * 
+ */
 
+$(document).ready(function() {
+
+	
+	/**
+	 * Soumission du formulaire
+	 */
+	$("#formulaire").submit(function(e){
+		var valide = true; 
+
+		if(!verifieDesignation()) { valide = false; }
+		if(!verifieFournisseur()) { valide = false; }
+//		if(!verifieNoDossier()) { valide = false; }
+		if(!valide) return false;
+	});
+	
+	
+	/* TEST CHAMPS DE TEXTE
+	 * Vérifie que le champs désignation est rempli et est un nombre. return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieDesignation(){
+		champs = $("input#des");
+		if(isNaN(champs.val()) || champs.val() == "") {
+			if(champs.parent().find(".error-form").length == 0){
+				champs.parent().append("<span class='error-form'>Veuillez entrez un numéro de désignation</span>");
+			}
+			return false;
+		}
+		else {
+			if(champs.parent().find(".error-form").length > 0){
+				champs.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
+	/* TEST CHAMPS DE LISTE DEROULANTE
+	 * Vérifie que le champs désignation est rempli et est un nombre. return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieFournisseur(){
+		selectEntite = $("#four");
+
+		if(selectEntite.val() == "0"){
+			if(selectEntite.parent().find(".error-form").length == 0){
+				selectEntite.parent().append("<span class='error-form'>Veuillez choisir un fournisseur</span>");
+			}
+			return false;
+		}
+		else {
+			if(selectEntite.parent().find(".error-form").length > 0){
+				selectEntite.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+});
