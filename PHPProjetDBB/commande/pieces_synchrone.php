@@ -33,23 +33,23 @@ echo("<body>");
 			<table>
 				<tr>
 					<td><label>Num&eacute;ro</label></td>
-					<td><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[id]\"/></td>
+					<td><input disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[id]\"/></td>
 				</tr>
 				<tr>
 					<td><label>Nom</label></td>
-					<td><input readonly disabled=\"disabled\" type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\"/></td>
+					<td><input disabled=\"disabled\" type=\"text\" name=\"EmetteurCM\" id=\"emetteurCM\" value=\"$_SESSION[nom]\"/></td>
 				</tr>
 				<tr>	
 					<td><label>Pr&eacute;nom</label>
-					<td><input readonly disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\"/></td>
+					<td><input disabled=\"disabled\" type=\"text\" name=\"Utilisateur\" id=\"utilisateur\" value=\"$_SESSION[prenom]\"/></td>
 				</tr></td>
 				<tr>	
 					<td><label>Affectation</label></td>
-					<td><input readonly disabled=\"disabled\" type=\"text\" name=\"Sigle\" id=\"sigle\" value=\"$_SESSION[service]\"/></td>
+					<td><input disabled=\"disabled\" type=\"text\" name=\"Sigle\" id=\"sigle\" value=\"$_SESSION[sigle]\"/></td>
 				</tr>
 				<tr>
 					<td><label>N&deg; de T&eacute;l&eacute;phone</label></td>
-					<td><input readonly disabled=\"disabled\" type=\"text\" name=\"Tel\" id=\"tel\" value=\"$_SESSION[telephone]\"/></td>
+					<td><input disabled=\"disabled\" type=\"text\" name=\"Tel\" id=\"tel\" value=\"$_SESSION[telephone]\"/></td>
 				</tr>
 			</table>
 			");
@@ -127,7 +127,7 @@ while($data = mysql_fetch_assoc($req))
 		        </tr>
 		        <tr>
 		             <td><label id="titre">Code silhouette</label></td>
-		             <td><div id="resultat1"><input readonly value="" /></div></td>
+		             <td><div id="resultat1"><input type='text' readonly id='codesil' name='codesil' value="" /></div></td>
 		        </tr>
 		        <tr>
 		        	<td><label id="titre" class="select">Description d&eacute;faut</label></td>
@@ -157,7 +157,7 @@ while($data = mysql_fetch_assoc($req))
 		        
 				<tr> 
 		            <td><label id="titre">CA imput&eacute;</label></td>
-		            <td><div id="resultat"><input readonly value="" /></div></td>
+		            <td><div id="resultat"><input type='text'  readonly  id='numCA' name='numCA' value="" /></div></td>
 		        </tr>
 		    </table>
 		</fieldset>

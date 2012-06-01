@@ -171,8 +171,6 @@ if (isset($_GET['visualiser']) && $_GET['visualiser'] != ""){
 
 	$method = 'modif';
 	include "view/visualisation.html.php";
-
-	$commande = $modeleCommande->getCommande($noCommande);
 	exit();
 }
 

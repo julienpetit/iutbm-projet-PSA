@@ -10,7 +10,7 @@ if($num_commande!=NULL){
 $commande=$num_commande;
 }
 
-if($_SESSION['id'] && $_SESSION['nom'])
+if($_SESSION['pseudo'] && $_SESSION['nom'])
 {
 
 	if($page==1)

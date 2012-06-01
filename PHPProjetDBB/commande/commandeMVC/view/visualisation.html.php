@@ -81,7 +81,6 @@
 						<div id='piecesEnvironnementHidden'></div>
 					</fieldset>
 					
-					
 					<!-- Affichage de la section Responsable -->
 					<fieldset id='responsable'>
 						<legend>Responsable</legend>
