@@ -225,7 +225,11 @@ class Piece implements iPiece
 
 	
 
+	
+	
+	
 	/**
+	 * #################### Widget Pieces ######################
 	 * Affiche un widget qui permet de choisir une pièce dans un tableau en html(non-PHPdoc)
 	 * @see iPiece::displayWidgetPiece()
 	 */
@@ -252,20 +256,30 @@ class Piece implements iPiece
 	}
 	
 	/**
-	 * Affiche seulement les lignes d'un tableau html de pièces (non-PHPdoc)
+	 * Affiche les lignes d'un tableau html de pièces (non-PHPdoc)
 	 * @see iPiece::displayListePieces()
 	 */
 	public function displayListePieces($where = ""){
-		
 		foreach($this->getList($where) as $piece){
 			echo "<tr class='piece' >\n";
 			echo "<td>".$piece['reference']."</td>\n";
 			echo "<td>".$piece['libelle']."</td>\n";
 			echo "</tr>\n";
 		}
-		
 	}
 	
+	/*
+	 * ###################### Fin widget Pieces ######################
+	 */
+	
+
+	
+	/** 
+	 * ###################### Ligne des tableaux de pieces ######################
+	 * Affiche une ligne d'un tableau de piece principale éditables
+	 * Ajout d'une commande de masse
+	 * Modification d'une commande de masse
+	 */
 	public function displayRowPrincipale($piece){
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
@@ -276,6 +290,11 @@ class Piece implements iPiece
 		echo "</tr>\n";
 	}
 		
+	/**
+	 * Affiche une ligne d'un tableau de pieces d'environnement éditable
+	 * Ajout d'une commande de masse
+	 * Modification d'une commande de masse
+	 */
 	public function displayRowEnvironnement($piece){
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
@@ -284,6 +303,38 @@ class Piece implements iPiece
 		echo "<td class='clickable removable principale'></td>\n";
 		echo "</tr>\n";
 	}
+	
+	/**
+	 * Affiche une ligne d'un tableau de piece principale non éditable
+	 * Visualisation d'une commande de masse
+	 */
+	public function displayRowPrincipaleDisabled($piece){
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td>".$piece['quantite']."</td\n>";
+		echo "<td>".$piece['potentiel']."</td>\n";
+		if(isset($piece['reste_a_livrer']))
+			echo "<td>".$piece['reste_a_livrer']."</td>";
+		echo "</tr>\n";
+	}
+	
+	/**
+	 * Affiche une ligne d'un tableau de piece d'environnement non éditable
+	 * Visualisation d'une commande de masse
+	 */
+	public function displayRowEnvironnementDisabled($piece, $resteALivrer = false){
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td>".$piece['quantite']."</td\n>";
+		echo "</tr>\n";
+	}
+	/**
+	 * ###################### Fin ligne de tableau de pieces ######################
+	 */
+	
+	
 	
 	/*
 	 * Retourne un tableau de pièce au format no--quantite--potentiel/jour  => array associatif
@@ -303,7 +354,10 @@ class Piece implements iPiece
  	}
  	
  	
- 	//formulaire d'ajout d'une nouvelle piece
+ 	/**
+ 	 * Affiche un formulaire pour pouvoir ajputer une nouvelle piece (non-PHPdoc)
+ 	 * @see iPiece::displayAjoutPieces()
+ 	 */
  	public function displayAjoutPieces()
  	{
  		echo "<div id='confirmOverlay'>\n";

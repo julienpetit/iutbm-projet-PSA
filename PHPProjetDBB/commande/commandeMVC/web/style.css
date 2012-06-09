@@ -1,5 +1,17 @@
+.red { background-color: #990000; }
+span#banniereCommande {
+	display: block;
+	width: 101px;
+	padding: 5px;
+	border: solid 1px gray;
+	font-size: 2px 10px;
+	color: #fff;
+	text-align: center;
+}
+
 /* ###### Formulaire global ###### */
 form#formulaire {
+	display: block;
 	margin: 20px 0;
 	background-color: #DDD;
 	width: 100%;
@@ -176,3 +188,4 @@ div#confirmButtons {
 }
 
 /* ###### Section Responsable ###### */
+

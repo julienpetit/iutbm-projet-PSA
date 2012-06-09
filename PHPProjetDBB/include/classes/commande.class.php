@@ -205,5 +205,16 @@ class Commande
 		echo "</div>\n";
 	}
 
+	
+	public function verifieFermetureAnnulation($commande)
+	{
+		// Test de l'annulation de commande
+// 		if ($commande['id_utilisateur_annule'])
+// 		{
+			echo "<span id='banniereCommande' class='red' >Annulée</span>";
+// 		}
+		
+		
+	}
 }
 ?>

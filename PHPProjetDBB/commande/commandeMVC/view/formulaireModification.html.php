@@ -17,7 +17,7 @@
 							</tr>
 							<tr>
 								<td><label>Emetteur : </label></td>
-								<td>Jean-Pascal <?php printHtml($commande['id_utilisateur_passe']); ?></td>
+								<td><?php echo $userCommande['nom_utilisateur'] . " " . $userCommande['prenom_utilisateur'] . " - " . $userCommande['id_utilisateur']; ?></td>
 							</tr>
 							<tr>
 								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>

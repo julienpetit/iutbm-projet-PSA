@@ -31,7 +31,9 @@ $heure = date("H:i");
 
 
 //print_r_html($user);
-
+/**
+ * ################################ Requetes Ajax #######################################
+ */
 /**
  * Ajax --> Widget Pièces - Recherche de pièces
  */
@@ -65,9 +67,20 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
 	exit();
 }
 
+/**
+ * ################################ Fin Requetes Ajax #######################################
+ */
+
+
+
+
+
+
+
+
 
 /**
- * Ajout d'une nouvelle commande
+ * ################################ Ajout d'une nouvelle commande ################################
  */
 if (isset($_GET['ajout'])){
 	$noCommande = noCommandeMysqli($link);
@@ -100,20 +113,26 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
 	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
 	print_r_html($_POST);
-}
-
- /* Ajout - Soumission du formulaire
- */
-if (isset($_GET['action']) && $_GET['action'] == "ajout"){
-
-	print_r_html($_POST);
 	exit();
 }
+
+/**
+ * ################################ Fin Ajout d'une nouvelle commande ################################
+ */
+
+
+
+
+
+
+
+
+
 
 
 
 /**
- * Modification d'une commande
+ * ################################ Modification d'une commande ################################
  */
 if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 	$noCommande = html($_GET['modifier']);
@@ -121,6 +140,9 @@ if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 
 	$commande = $modeleCommande->getCommande($noCommande);
 
+	// Récupération de l'utilisateur qui à passé la commande
+	$userCommande = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
+	
 	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
 
 	$method = 'modif';
@@ -136,7 +158,7 @@ if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	// récupération du no de la commande
 	$noCommande = html($_POST['noCommande']);
-
+	
 	// récupération des infos de la commande
 	$infosCommande = array('libelle_type_chantier'  => html($_POST['ReferenceDossierCommandeMasse']),
 						   'code_imputation' 		=> html($_POST['EntiteCM']),
@@ -155,23 +177,73 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 	print_r_html($_POST);
 	exit();
 }
+/**
+ * ################################ Fin modification d'une commande ################################
+ */
+
+
+
+
+
+
 
 
 
 /**
- * Visualisation d'une commande
+ * ################################ Visualisation d'une commande ################################ 
  */
 if (isset($_GET['visualiser']) && $_GET['visualiser'] != ""){
+	// Récupération du numéro de commande
 	$noCommande = html($_GET['visualiser']);
-
-
+	
+	// Récupération de la commande
 	$commande = $modeleCommande->getCommande($noCommande);
+	
+	// Récupération de l'utilisateur qui à passé la commande 
+	$userCommande = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
 
+	// Récupération des pièces de la commande
 	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
 
 	$method = 'modif';
 	include "view/visualisation.html.php";
 	exit();
 }
+/**
+ * ################################ Fin Visualisation d'une commande ################################
+ */
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * ################################  Détails - Livraisons d'une commande ################################ 
+ */
+if (isset($_GET['details']) && $_GET['details'] != ""){
+	$noCommande = html($_GET['details']);
+
+
+	$commande = $modeleCommande->getCommande($noCommande);
+	
+	// Récupération de l'utilisateur qui à passé la commande
+	$userCommande = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
+
+	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
+
+	$method = 'modif';
+	include "view/details.html.php";
+	exit();
+}
+
+/**
+ * ################################  Fin détails - Livraisons d'une commande ################################
+ */
 
 ?>

@@ -17,7 +17,7 @@
 							</tr>
 							<tr>
 								<td><label>Emetteur : </label></td>
-								<td>Jean-Pascal <?php printHtml($commande['id_utilisateur_passe']); ?></td>
+								<td><?php echo $userCommande['nom_utilisateur'] . " " . $userCommande['prenom_utilisateur'] . " - " . $userCommande['id_utilisateur']; ?></td>
 							</tr>
 							<tr>
 								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>
@@ -48,11 +48,10 @@
 										<th>libellé</th>
 										<th>quantité</th>
 										<th>potentiel / jours</th>
-										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipale($piece); ?>
+									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabled($piece); ?>
 								</tbody>
 							</table>
 							
@@ -66,11 +65,10 @@
 										<th>référence</th>
 										<th>libellé</th>
 										<th>quantité</th>
-										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnement($piece); ?>
+									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnementDisabled($piece); ?>
 								</tbody>
 							</table>
 							
@@ -97,7 +95,7 @@
 					
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
-					<input type='submit' class="small blue nice button radius" id='etat_livraisons' name='etat_livraisons' value='Etat des livraisons' />
+					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Etat des livraisons</a>
 					<a href='../../commande/accueil.php' class="small green nice button radius" >Retour à l'accueil</a>
 				</form>
 			</div>
