@@ -5,7 +5,7 @@ include('../connexion/_connexion.php');
 mysql_query("SET NAMES UTF8");
 require_once("../fonctionhtml.php");  
 
-html_entete_fichier("accueil","../Style.css","fonction.js"); 
+html_entete_fichier("accueil","../Style.css","fonction.js","./commandeMVC/web/script.js"); 
 
 $num_commande=$_GET['num_commande'];
 $choix=$_GET['choix'];
@@ -185,24 +185,21 @@ while($data = mysql_fetch_assoc($req)){
         
         <?php   }
 	  if ($choix==2)
-	  { ?>  
-		<input type="submit" id="val" action="" value="Détail commande">
-        <input type="reset" id="anu" value="Remettre a zero">
-        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php' "/> 
-        </div>
-	  <?php   }
+	  {
+	  	echo "
+	  	<a class=\"small blue nice button radius\" href=\"./masses_details_visualisation.php?num_commande=".$num_commande."&choix=2\">Détail</a>
+	  	<a class=\"small red nice button radius\" href=\"./accueil.php\">Accueil</a>";
+	  }
       else if ($choix==4)
 	  {	
-        echo"<a href=\"./masses_details_visualisation.php?num_commande=".$num_commande." \">Détail commande</a>
-        <a href=\"./traitement/annuler_commande.php?num_commande=".$num_commande." \">Annuler</a>";
-       ?>
-        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php'"/> 
-        </div>
-		
-	 <?php } ?>	
+        echo "
+	  	<a class=\"small blue nice button radius\" href=\"./masses_details_visualisation.php?num_commande=".$num_commande."&choix=4\">Détail</a>
+	  	<a class=\"small red nice button radius\" href=\"./traitement/annuler_commande.php?num_commande=".$num_commande."\">Annuler la commande</a>
+	  	<a class=\"small red nice button radius\" href=\"./accueil.php\">Accueil</a>";
+		} ?>	
         
-    </form>
-    <div id="etat">
+
+	<div id="etat">
     
     
     </div>

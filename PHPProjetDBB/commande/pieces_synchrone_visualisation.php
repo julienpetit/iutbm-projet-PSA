@@ -5,7 +5,7 @@ session_start();
 include('../connexion/_connexion.php');
 require_once("../fonctionhtml.php");  
 mysql_query("SET NAMES UTF8");
-html_entete_fichier("accueil","../Style.css","fonction.js"); 
+html_entete_fichier("accueil","../Style.css","fonction.js","./commandeMVC/web/script.js"); 
 $num_commande=$_GET['num_commande'];
 $choix=$_GET['choix'];
 
@@ -152,7 +152,7 @@ while($data = mysql_fetch_assoc($req)){
              </td>
         </tr>
 		<tr> 
-            <td><label id="titre">à </label><?php echo("<input readonly value=".$data['heure_reception'].">"); ?></td>
+            <td><label id="titre">ï¿½ </label><?php echo("<input readonly value=".$data['heure_reception'].">"); ?></td>
         </tr>
 		
     </table>
@@ -161,21 +161,17 @@ while($data = mysql_fetch_assoc($req)){
     <br />
    <?php   }
 	  if ($choix==2)
-	  { ?>  
-        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php' "/> 
-        </div>
-	  <?php   }
+	  {  	
+	  	echo "<a class=\"small red nice button radius\" href=\"./accueil.php\">Accueil</a>";
+	  }
       else if ($choix==4)
 	  {	
-        echo"<a href=\"./traitement/annuler_commande.php?num_commande=".$num_commande." \">Annuler</a>";
-       ?>
-        <input type="reset" id="anu" value="Accueil" onclick="document.location.href='accueil.php'"/> 
-        </div>
-		
-	 <?php } ?>	
+        echo "
+	  	<a class=\"small red nice button radius\" href=\"./traitement/annuler_commande.php?num_commande=".$num_commande."\">Annuler la commande</a>
+	  	<a class=\"small red nice button radius\" href=\"./accueil.php\">Accueil</a>";
+		} ?>	
   
-</div>	
-</form>
+
 <div id="test">
 <div id="etat" class="etat_synch">
     
@@ -188,7 +184,7 @@ while($data = mysql_fetch_assoc($req)){
 $sql = "SELECT t.libelle_type_piece_2 FROM TYPE_PIECE2 t, APPROVISIONNE a, FOURNISSEUR f WHERE a.id_fournisseur=f.id_fournisseur AND a.libelle_type_piece_2=t.libelle_type_piece_2 AND a.id_fournisseur='$id_fournisseur';";
 $req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 while($data = mysql_fetch_assoc($req)){
-echo("<p>Pièces fournies:<br/>".$data['libelle_type_piece_2']."</p>");
+echo("<p>Piï¿½ces fournies:<br/>".$data['libelle_type_piece_2']."</p>");
 }
 ?>
    

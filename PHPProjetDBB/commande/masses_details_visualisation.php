@@ -3,12 +3,12 @@
 require_once("../fonctionhtml.php");  
 mysql_query("SET NAMES UTF8");
 html_entete_fichier("accueil","../Style.css","fonction.js"); 
+$choix=$_GET['choix'];
+$num_commande=$_GET['num_commande'];
 
 	echo("<body>");
     
-    $num_commande=$_GET['num_commande'];
-
-    echo("<div id=\"titreprincipal\">Détails de commande de masse</div><br/>" );
+   	echo("<div id=\"titreprincipal\">Détails de commande de masse</div><br/>" );
     
     echo("<form method=\"post\" action=\"accueil.php\">
             <div id=\"contenu\">
@@ -165,14 +165,14 @@ html_entete_fichier("accueil","../Style.css","fonction.js");
          echo("<td><input type=\"hidden\" name=\"choix_case_reference_environnement_$j1\" value=".$j1.">");
         }
          
-  ?>
+  		?>
             </table><br />
-		<input type="submit" id="anu" value="Retour accueil" />
-		<?php
-		echo "<a href=\"./commande_de_masse_visualisation.php?num_commande=".$num_commande."&choix=4\">Retour commande</a>"
-      ?>
-            </div>
             
-        </form>
+        <?php
+		echo "
+		<a class=\"small blue nice button radius\" href=\"./commande_de_masse_visualisation.php?num_commande=".$num_commande."&choix=".$choix."\">Retour</a>
+	  	<a class=\"small red nice button radius\" href=\"./accueil.php\">Accueil</a>";
+      	?>
+            
     </body>
 </html>
