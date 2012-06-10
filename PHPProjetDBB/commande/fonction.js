@@ -197,6 +197,10 @@ $(document).ready(function() {
 
 		if(!verifieDesignation()) { valide = false; }
 		if(!verifieFournisseur()) { valide = false; }
+		if(!verifieRef()) { valide = false; }
+		if(!verifieQuantite()) { valide = false; }
+		if(!verifieSilhouette()) { valide = false; }
+		if(!verifieEntite()) { valide = false; }
 //		if(!verifieNoDossier()) { valide = false; }
 		if(!valide) return false;
 	});
@@ -211,6 +215,46 @@ $(document).ready(function() {
 		if(isNaN(champs.val()) || champs.val() == "") {
 			if(champs.parent().find(".error-form").length == 0){
 				champs.parent().append("<span class='error-form'>Veuillez entrez un numéro de désignation</span>");
+			}
+			return false;
+		}
+		else {
+			if(champs.parent().find(".error-form").length > 0){
+				champs.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
+	/* TEST CHAMPS DE TEXTE
+	 * Vérifie que le champs référence est rempli et est une suite de 10 caractères alphanumériques. return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieRef(){
+		champs = $("input#ref");
+		if(champs.val() == "" || champs.val().length != 10) {
+			if(champs.parent().find(".error-form").length == 0){
+				champs.parent().append("<span class='error-form'>Veuillez entrez une suite de 10 caracteres alphanumériques</span>");
+			}
+			return false;
+		}
+		else {
+			if(champs.parent().find(".error-form").length > 0){
+				champs.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
+	/* TEST CHAMPS DE TEXTE
+	 * Vérifie que le champs quantité est rempli et est un nombre. return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieQuantite(){
+		champs = $("input#quant");
+		if(isNaN(champs.val()) || champs.val() == "") {
+			if(champs.parent().find(".error-form").length == 0){
+				champs.parent().append("<span class='error-form'>Veuillez entrer un entier pour la quantité </span>");
 			}
 			return false;
 		}
@@ -242,4 +286,47 @@ $(document).ready(function() {
 			return true;
 		}
 	}
+	
+	/* TEST CHAMPS DE LISTE DEROULANTE
+	 * return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieSilhouette(){
+		selectEntite = $("#vehicule");
+
+		if(selectEntite.val() == "0"){
+			if(selectEntite.parent().find(".error-form").length == 0){
+				selectEntite.parent().append("<span class='error-form'>Veuillez choisir une silhouette</span>");
+			}
+			return false;
+		}
+		else {
+			if(selectEntite.parent().find(".error-form").length > 0){
+				selectEntite.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
+	/* TEST CHAMPS DE LISTE DEROULANTE
+	 * return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieEntite(){
+		selectEntite = $("#nomca");
+
+		if(selectEntite.val() == "0"){
+			if(selectEntite.parent().find(".error-form").length == 0){
+				selectEntite.parent().append("<span class='error-form'>Veuillez choisir une entite</span>");
+			}
+			return false;
+		}
+		else {
+			if(selectEntite.parent().find(".error-form").length > 0){
+				selectEntite.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
 });

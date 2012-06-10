@@ -80,18 +80,18 @@ echo("<body>");
             	</tr>
         		<tr> 
 	        		<td><label id="titre">R&eacute;f&eacute;rence</label></td>
-	        		<td><input type="text" name="ref" id="ref" value="" onchange="verifierRef('ref')"/></td>
+	        		<td><input type="text" name="ref" id="ref" value=""/></td>
 	        	</tr>
 	        	<tr>
 	        		<td>
 <?php 
 if(in_array(11,$droit))
 {
-	echo "<label>Quantit&eacute;</label></td><td><input type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
+	echo "<label>Quantit&eacute;</label></td><td><input type=\"text\" name=\"quant\" id=\"quant\" value=\"1\"/>";
 }
 else
 {
-	echo "<label>Quantit&eacute;</label></td><td><input readonly type=\"text\" name=\"quant\" id=\"quant\" value=\"1\" onkeyup=\"verifierQuant('quant')\" onchange=\"alertQuant('quant')\" />";
+	echo "<label>Quantit&eacute;</label></td><td><input readonly type=\"text\" name=\"quant\" id=\"quant\" value=\"1\"/>";
 }
 ?>
 					</td>
@@ -138,7 +138,7 @@ while($data = mysql_fetch_assoc($req))
 				<tr> 
 		             <td><label id="titre" class="select">Entit&eacute;</label></td>
 		             <td>
-		                <select name="nomca" onchange="Change(this.value);">
+		                <select name="nomca" id="nomca" onchange="Change(this.value);">
 		                    <option>Choisissez votre entit&eacute;</option>
 		                    <?php
 		$sql = "SELECT * FROM ENTITE";
