@@ -2,7 +2,7 @@
 
 session_start(); 
 
-include('../connexion/_connexion.php');
+include_once('../connexion/_connexion.php');
 require_once("../fonctionhtml.php");  
 mysql_query("SET NAMES UTF8");
 html_entete_fichier("accueil","../Style.css","fonction.js","./commandeMVC/web/script.js"); 

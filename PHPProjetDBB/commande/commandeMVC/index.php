@@ -67,6 +67,20 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
 	exit();
 }
 
+
+if (isset($_GET['ajax']) && $_GET['ajax'] == "EnregistreAjoutPiece"){
+	
+	$reference=html($_POST["reference"]);
+	$libelle=html($_POST["libelle"]);
+	
+	$modelePiece->addPiece($reference ,$libelle);
+	
+	exit();
+}
+
+
+
+
 /**
  * ################################ Fin Requetes Ajax #######################################
  */

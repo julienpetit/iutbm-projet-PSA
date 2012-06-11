@@ -225,17 +225,29 @@ $(document).ready(function() {
 	$("#ajoutNouvellePiece").live('click', function(e){
 		var reference=$("#newReference").val();
 		var libelle=$("#newLibelle").val();
+		var valide = true; 
+		if(!verifieReferencePiece()) { valide = false; }
+		if(!verifieLibellePiece()) { valide = false; }
+		if(!valide) return false;
+		
 
+		params = {};
+		params['reference'] = reference;
+		params['libelle']   = libelle;
+		
 		$.ajax({
 			type: 'post',
-			url: 'index.php?ajax=affichageFormulaireAjoutPiece',
+			data: params,
+			url: 'index.php?ajax=EnregistreAjoutPiece',
 			complete: function(x){
 				$('body').append(x.responseText);
-				$("#confirmOverlay").hide().fadeIn('slow');
+				$("#confirmOverlay").remove();
+				majRechercheWidgetPiecesDispo("");
+				
+				addClassSelectedPiecesDispo();
 			}
 		});
 
-		
 		
 		e.preventDefault();
 	});
@@ -411,4 +423,49 @@ function verifieNoDossier(){
 		return true;
 	}
 }
+
+/*
+ * Vérifie que le champs reference est rempli. return true si valide.
+ * Dans le cas contraire, affichage d'un message + return false
+ */
+function verifieReferencePiece(){
+	champs = $("input#newReference");
+	if (champs.val() == "") {
+		if(champs.parent().find(".error-form").length == 0){
+			champs.parent().append("<span class='error-form'>Veuillez entrez la reference de la piece</span>");
+		}
+		return false;
+	}
+	else {
+		if(champs.parent().find(".error-form").length > 0){
+			champs.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+}
+function verifieLibellePiece(){
+	champs = $("input#newLibelle");
+	if (champs.val() == "") {
+		if(champs.parent().find(".error-form").length == 0){
+			champs.parent().append("<span class='error-form'>Veuillez entrez le libelle de la piece</span>");
+		}
+		return false;
+	}
+	else {
+		if(champs.parent().find(".error-form").length > 0){
+			champs.parent().find(".error-form").remove();		
+		}
+		return true;
+	}
+}
+
+
+
+
+
+
+
+
+
+
 });

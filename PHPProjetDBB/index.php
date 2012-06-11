@@ -1,11 +1,15 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" 
-	  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" > 
-  <head> 
-    <title>PSA Application - Page d'accueil</title> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
-    <link rel="stylesheet" href="include/css/page.css" />  
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+<?php
+session_start(); 
+include_once('connexion/_connexion.php');
+include_once('include/layout/layout.inc.php');
+include_once('include/library/library.inc.php');
+
+require_once("fonctionhtml.php");  
+require_once("connexion/verification_connexion.php");
+header_html("GESTION DES COMMANDES",array("include/framework/foundation.css"),array(), true); 
+mysql_query("SET NAMES UTF8");
+check_log_user($_SESSION['no_droit'],1,NULL);
+?>
     <script>
       $(document).ready(function(){
          $("TABLE td").mouseover(function(e){
@@ -18,29 +22,7 @@
          }); 
       });
     </script>
-  </head> 
-  
-  
-  
-  
-  <body> 
-    
-
-    <div id="header">
-      <img src="img/logo.png" width="900px" height="138px" /><br />
-      <h1>GESTION DES COMMANDES</h1>
-    </div>
-      
-
-    <div id="wrap">
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-      <center>
+    <center>
 	<TABLE cellspacing="10px">
 	  <tr>
 	    <td texte="Passer une commande de pièces en flux synchrone"><a href=""><img class="onebutton" src="include/css/img/cmd_pieces.jpg" width="80" height="80" border="0" /></a></td>
@@ -66,26 +48,10 @@
 	</TABLE>
       </center>
 
-      <br />
 
       <div id="divtxt">
 	<p id="txt"></p>
       </div>
 
-      <br />
-      <br />
-
     </div>
-           
-  
-    <div id="footer">
-      <hr />
-      Site web réalisé par la superbe équipe de S3bisA2 - DUT INFO - IUT BM<br />
-      We rock !
-    </div>
-
-
-  </body>
-
-
-</html> 
+<?php footer_html(); ?>
