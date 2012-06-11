@@ -218,6 +218,30 @@ $(document).ready(function() {
 		$("#confirmOverlay").remove();
 		e.preventDefault();
 	});
+	
+	/**
+	 * Click sur ajouter la pièce sur le formulaire précédent
+	 */
+	$("#ajoutNouvellePiece").live('click', function(e){
+		var reference=$("#newReference").val();
+		var libelle=$("#newLibelle").val();
+
+		$.ajax({
+			type: 'post',
+			url: 'index.php?ajax=affichageFormulaireAjoutPiece',
+			complete: function(x){
+				$('body').append(x.responseText);
+				$("#confirmOverlay").hide().fadeIn('slow');
+			}
+		});
+
+		
+		
+		e.preventDefault();
+	});
+	
+	
+	
 /*
  * Global functions   ----------------------------------------------------------
  */
