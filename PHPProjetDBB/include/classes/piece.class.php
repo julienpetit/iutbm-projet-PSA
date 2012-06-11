@@ -367,12 +367,12 @@ class Piece implements iPiece
  		echo "<form id=formPiece name=formulairePiece />\n";
  		echo "<tr>\n";
  		echo "<td>Reference : </td>\n";
- 		echo "<td><input type='text' id='reference' name='reference' /></td>";
+ 		echo "<td><input type='text' id='newReference' name='reference' /></td>";
  		echo "</tr>\n";
  		echo "</br>";
  		echo "<tr>\n";
  		echo "<td>Libelle : </td>\n";
- 		echo "<td><input type='text' id='libelle' name='libelle' /></td>";
+ 		echo "<td><input type='text' id='newLibelle' name='libelle' /></td>";
  		echo "</tr>\n";
  		echo "</form>\n";
  		echo "</table>\n";
