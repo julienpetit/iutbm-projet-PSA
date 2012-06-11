@@ -39,10 +39,10 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 	</div>
 	<div id='main'>
 		<div id='header'>
-
+			<img src="/img/logo.png" width="900px" height="138px" />
 		</div>
 		<div id='wrap'>
-			<h1><?php echo html($title); ?></h1>
+			<h1><?php echo isset($title) ? html($title) : "GESTION DES COMMANDES"; ?></h1>
 <?php } 
 
 function footer_html() { ?>
