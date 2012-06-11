@@ -91,7 +91,7 @@ if(in_array(11,$droit))
 }
 else
 {
-	echo "<label>Quantit&eacute;</label></td><td><input readonly type=\"text\" name=\"quant\" id=\"quant\" value=\"1\"/>";
+	echo "<label>Quantit&eacute;</label></td><td><input type=\"text\" name=\"quant\" id=\"quant\" value=\"1\"/>";
 }
 ?>
 					</td>
