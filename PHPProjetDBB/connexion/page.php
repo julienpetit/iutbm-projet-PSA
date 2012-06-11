@@ -42,10 +42,10 @@ html_entete_fichier("accueil","../Style.css","fonction.js","verifier.js");
    <script src="verifier.js" language="javascript" type="text/javascript"></script>
  </form>
  <?php
-if(isset($_GET["err"]) && $_GET["err"] == Login) {
+if(isset($_GET["err"]) && $_GET["err"] == "Login") {
 	echo "<p class='error'>Login erroné.</p>";   
 }
-if(isset($_GET["err"]) && $_GET["err"] == mdp) {
+if(isset($_GET["err"]) && $_GET["err"] == "mdp") {
 	echo "<p class='error'>Mot de passe erroné.</p>";   
 }
 ?>
