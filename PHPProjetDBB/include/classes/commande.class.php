@@ -216,5 +216,12 @@ class Commande
 		
 		
 	}
+	
+	
+	public function annulerCommande($noCommande)
+	{
+		$commande = $this->getCommande($noCommande);
+		
+	}
 }
 ?>
