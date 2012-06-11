@@ -1,4 +1,5 @@
 <?php
+header("Location: /connexion/page.php");
 session_start(); 
 include_once('connexion/_connexion.php');
 include_once('include/layout/layout.inc.php');

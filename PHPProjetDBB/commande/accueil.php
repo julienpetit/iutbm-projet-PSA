@@ -4,11 +4,15 @@ session_start();
 include('../connexion/_connexion.php');
 mysql_query("SET NAMES UTF8");
 require_once("../fonctionhtml.php");
+require_once("../connexion/verification_connexion.php");
+require_once("./nocommande.php");
 
 require_once("../include/library/bd.inc.php");
 require_once("../include/library/library.inc.php");
 require_once("../include/layout/layout.inc.php");
 
+
+check_log_user(1,NULL);
 
 $droit=$_SESSION['no_droit'];
 //html_entete_fichier("accueil","../Style.css","accueil.js");

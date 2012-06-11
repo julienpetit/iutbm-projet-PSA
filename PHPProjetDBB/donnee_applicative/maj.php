@@ -13,7 +13,7 @@ header_html("Affichage des tables",array("../Style.css", "../include/css/global.
 
 // html_entete_fichier("accueil","../Style.css","script.js");
 mysql_query("SET NAMES UTF8");
-check_log_user($_SESSION['no_droit'],12,NULL);
+check_log_user(12,NULL);
 
 echo("<body>");
 ?>

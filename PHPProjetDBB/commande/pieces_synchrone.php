@@ -7,9 +7,10 @@ include_once('../include/library/library.inc.php');
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");
 require_once("./nocommande.php");
+check_log_user(1,NULL);
 header_html("Commande unitaire de pièces synchrones",array("commandeMVC/web/style.css", "../include/css/global.css", "../include/framework/foundation.css"),array("fonction.js","../controle/controle.js")); 
 mysql_query("SET NAMES UTF8");
-check_log_user($_SESSION['no_droit'],1,NULL);
+
 echo("<body>");
 ?>
 <form id="formulaire" method="post" action="send_mail_four_synch.php">

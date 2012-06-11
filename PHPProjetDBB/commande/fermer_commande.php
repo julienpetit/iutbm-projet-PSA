@@ -8,7 +8,7 @@ require_once("../connexion/verification_connexion.php");      // page permettant
 $num_commande=$_GET['num_commande'];
 $date= date("y-m-d");
 $heure= date("h:i:s");
-check_log_user($_SESSION['no_droit'],8,$num_commande);
+check_log_user(8,$num_commande);
 echo("<body>");
 
 

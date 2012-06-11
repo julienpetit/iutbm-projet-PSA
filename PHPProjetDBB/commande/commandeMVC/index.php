@@ -16,7 +16,7 @@ mysql_query("SET NAMES UTF8");
 require_once("../../fonctionhtml.php");
 require_once("../../connexion/verification_connexion.php");
 
-check_log_user($_SESSION['no_droit'],2,NULL); //vérifie si l'utilisateur a bien le droit d'accèder a cette page.
+check_log_user(2,NULL); //vérifie si l'utilisateur a bien le droit d'accèder a cette page.
 
 $modeleUtilisateur = new Utilisateur($link);
 $user = $modeleUtilisateur->getUtilisateur(html($_SESSION['id']));

@@ -6,7 +6,7 @@ html_entete_fichier("accueil","../Style.css","fonction.js");
 require_once("../connexion/verification_connexion.php");
 
 
-check_log_user($_SESSION['no_droit'],7,NULL);
+check_log_user(7,NULL);
 	echo("<body>");
     
     $num_commande=$_GET['num_commande'];

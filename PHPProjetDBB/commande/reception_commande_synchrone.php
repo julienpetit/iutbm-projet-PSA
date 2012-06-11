@@ -5,7 +5,7 @@ session_start();
 include('../connexion/_connexion.php');
 require_once("../connexion/verification_connexion.php");
 require_once("../fonctionhtml.php");  
-check_log_user($_SESSION['no_droit'],6,NULL);
+check_log_user(6,NULL);
 mysql_query("SET NAMES UTF8");
 html_entete_fichier("accueil","../Style.css","fonction.js"); 
     $num_commande=$_GET['num_commande'];

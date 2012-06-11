@@ -6,7 +6,7 @@ mysql_query("SET NAMES UTF8");
 require_once("../../fonctionhtml.php");  
 require_once("../../connexion/verification_connexion.php");
 html_entete_fichier("","../../Style.css","../fonction.js"); 
-check_log_user($_SESSION['no_droit'],5,NULL);//fonction permettant de savoir si l'utilisateur peut annuler une commande ou non.
+check_log_user(5,NULL);//fonction permettant de savoir si l'utilisateur peut annuler une commande ou non.
 
 if (isset($_GET['num_commande'])){//si on a bien un numéro de commande transmis
 

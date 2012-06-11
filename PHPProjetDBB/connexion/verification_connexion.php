@@ -1,166 +1,155 @@
 <?php
 
 mysql_query("SET NAMES UTF8");
-function check_log_user($droit_user,$num_page,$num_commande)
+function check_log_user($num_page,$num_commande)
 {
-
-$droit=$droit_user;
-$page=$num_page;
-if($num_commande!=NULL){
-$commande=$num_commande;
-}
-
-if($_SESSION['pseudo'] && $_SESSION['nom'])
-{
-
-	if($page==1)
-	{
-		if(!in_array(1,$droit))
-		{
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
-		}
+	if(!isset($_SESSION['no_droit'])) {
+		header("Location: /connexion/page.php"); 
+		exit();
+	}	
 	
+	$droit=$_SESSION['no_droit'];
+	$page=$num_page;
+	if($num_commande!=NULL){
+		$commande=$num_commande;
 	}
 
-	if($page==2)
+	if(isset($_SESSION['pseudo']) && isset($_SESSION['nom']))
 	{
-		if(!in_array(2,$droit))
+
+		if($page==1)
 		{
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
+			if(!in_array(1,$droit))
+			{
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
 		}
-	
-	}
 
-	
-
-
-	if($page==4)
-	{
-		if(!in_array(2,$droit))
+		if($page==2)
 		{
-			
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
+			if(!in_array(2,$droit))
+			{
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
 		}
-		
-	}
-	   
-        if($page==5)
-	    {
-        $sql1="SELECT code_type_commande FROM COMMANDE WHERE no_commande = '".$num_commande."'";
-        $result1 = mysql_query($sql1);
-        $row1 = mysql_fetch_array($result1);
-        	
-        	if($row1['code_type_commande'])
-        	{
-       		    if($row['code_type_commande']=='S')
-        	    {
-        	    	
-		            if(!in_array(3,$droit))
-		                {
-			            echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			            echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			            exit();
-		                }
-	
-	            }
-        	    else if($row['code_type_commande']=='M')
-        	    {
-
-		                    if(!in_array(4,$droit))
-		                    {
-			                echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			                echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			                exit();
-		                    }
-	                
-        	     }
-        	  }
-        }
-        
-        if($page==6)
-	    {
-		    if(!in_array(5,$droit))
-		    {
-			
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
-		    }
-		
-	    }
 
 
-	    if($page==7)
-	    {
-		    if(!in_array(6,$droit))
-		    {
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
-		    }
-	
-	    }
+		if($page==4)
+		{
+			if(!in_array(2,$droit))
+			{
+					
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
 
-        if($page==8)
-	    {
-        $sql1="SELECT code_type_commande FROM COMMANDE WHERE no_commande = '".$num_commande."'";
-        $result1 = mysql_query($sql1);
-        $row1 = mysql_fetch_array($result1);
-        	
-        	if($row1['code_type_commande'])
-        	{
-       		    if($row1['code_type_commande']=='M')
-        	    {
-        	   
-		            if(!in_array(7,$droit))
-		                {
+		}
+
+		if($page==5)
+		{
+			$sql1="SELECT code_type_commande FROM COMMANDE WHERE no_commande = '".$num_commande."'";
+			$result1 = mysql_query($sql1);
+			$row1 = mysql_fetch_array($result1);
 			 
-			            echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			            echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			            exit();
-		                }
-	
-	            }
-        
-        	 }
-        }
-	
-	    if($page==9)
-	    {
-		    if(!in_array(8,$droit))
-		    {
-			    echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			    echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			    exit();
-		    }	
-	    }
-        if($page==12)
-	    {
-		    if(!in_array(9,$droit) && !in_array(10,$droit))
-		    {
-			
-			echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-			echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-			exit();
-		    }
-		
-	    }
-	
+			if($row1['code_type_commande'])
+			{
+				if($row['code_type_commande']=='S')
+				{
 
-}
-else
-{
+					if(!in_array(3,$droit))
+					{
+						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+						exit();
+					}
 
-			echo "vous devez d'abord vous connectez<br/>";
-			echo "<a href=\"http://www-etu.iut-bm.univ-fcomte.fr/bdd3b1/rendu_projet/connexion/page.php\">Se connecter</a>";
+				}
+				else if($row['code_type_commande']=='M')
+				{
 
-}
+					if(!in_array(4,$droit))
+					{
+						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+						exit();
+					}
+					 
+				}
+			}
+		}
 
+		if($page==6)
+		{
+			if(!in_array(5,$droit))
+			{
+					
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
+
+		}
+
+
+		if($page==7)
+		{
+			if(!in_array(6,$droit))
+			{
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
+
+		}
+
+		if($page==8)
+		{
+			$sql1="SELECT code_type_commande FROM COMMANDE WHERE no_commande = '".$num_commande."'";
+			$result1 = mysql_query($sql1);
+			$row1 = mysql_fetch_array($result1);
+			 
+			if($row1['code_type_commande'])
+			{
+				if($row1['code_type_commande']=='M')
+				{
+
+					if(!in_array(7,$droit))
+					{
+
+						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+						exit();
+					}
+
+				}
+
+			}
+		}
+
+		if($page==9)
+		{
+			if(!in_array(8,$droit))
+			{
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
+		}
+		if($page==12)
+		{
+			if(!in_array(9,$droit) && !in_array(10,$droit))
+			{
+					
+				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
+				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
+				exit();
+			}
+		}
+	}
 }
 ?>
