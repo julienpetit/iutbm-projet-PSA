@@ -13,7 +13,7 @@ echo("<body>");
       <div id="page">
 		<form>
 			<fieldset>
-				<label> Choix de la recherche </label>
+				<label> Critère de recherche </label>
 				<select name="table" onchange="critere(this.value)">
 					<option select="selected">Selectionner un critère de recherche</option>
 					<option value="fournisseur">Fournisseur</option>
