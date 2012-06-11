@@ -97,6 +97,13 @@
 					<!-- Boutons de soumission du formulaire -->
 					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Etat des livraisons</a>
 					<a href='../../commande/accueil.php' class="small green nice button radius" >Retour à l'accueil</a>
+					<?php 
+						if($modeleCommande->isCanceled($commande['no_commande'])) 
+							echo "<a href='/commande/commandeMVC/?annuler=".$commande['no_commande']."' id='annulerCommande' class='small black nice button radius' >Annuler la commande</a>";
+						if($modeleCommande->isClosed($commande['no_commande']))
+							echo "<a href='/commande/commandeMVC/?fermer=".$commande['no_commande']."' id='fermerCommande' class='small black nice button radius' >Fermer la commande</a>";
+						
+					?>
 				</form>
 			</div>
 <?php footer_html(); ?>

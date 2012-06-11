@@ -8,7 +8,6 @@
 					<!-- Affichage de la section Commande -->
 					<fieldset id='commande'>
 						<legend>Commande</legend> <br />
-						<?php $modeleCommande->verifieFermetureAnnulation($commande); ?>
 						<table>
 							<tr>
 								<td><label>Commande n° : </label></td>

@@ -168,7 +168,7 @@ div#confirmOverlay {
 	position: absolute;
 	padding: 20px;
 	background-color: white;
-	width: 400px;
+	width: 500px;
 	height: 230px;
 	left: 50%;
 	margin-left: -200px;
@@ -185,6 +185,10 @@ div#confirmOverlay h2 {
 
 div#confirmButtons {
 	margin-top: 40px;
+}
+
+div#confirmOverlay table td, div#confirmOverlay table th {
+	text-align: left;
 }
 
 /* ###### Section Responsable ###### */

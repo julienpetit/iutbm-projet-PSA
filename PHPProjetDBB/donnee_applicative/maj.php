@@ -32,7 +32,7 @@ echo("<body>");
 		</form>
 	</div>	
 	<br/><br/>	
-	<div><button id="anu" onclick="document.location.href='../commande/accueil.php';">Accueil</button><br/></div>
+	<div><a href='/' class='small green nice button radius' >Accueil</a></div>
 	<div id="page1"></div>	
    </body>
 </html>

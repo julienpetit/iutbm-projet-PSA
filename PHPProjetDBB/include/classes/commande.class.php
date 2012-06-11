@@ -205,18 +205,21 @@ class Commande
 		echo "</div>\n";
 	}
 
+	public function isClosed($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['date_fermeture'] != null)
+			return true;
+		else
+			return false;
+	}	
 	
-	public function verifieFermetureAnnulation($commande)
-	{
-		// Test de l'annulation de commande
-// 		if ($commande['id_utilisateur_annule'])
-// 		{
-			echo "<span id='banniereCommande' class='red' >Annulée</span>";
-// 		}
-		
-		
+	public function isCanceled($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['date_annulation'] != null)
+			return true;
+		else 
+			return false;
 	}
-	
 	
 	public function annulerCommande($noCommande)
 	{
