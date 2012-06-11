@@ -226,12 +226,20 @@ $(document).ready(function() {
 		var reference=$("#newReference").val();
 		var libelle=$("#newLibelle").val();
 
+		params = {};
+		params['reference'] = reference;
+		params['libelle']   = libelle;
+		
 		$.ajax({
 			type: 'post',
-			url: 'index.php?ajax=affichageFormulaireAjoutPiece',
+			data: params,
+			url: 'index.php?ajax=EnregistreAjoutPiece',
 			complete: function(x){
 				$('body').append(x.responseText);
-				$("#confirmOverlay").hide().fadeIn('slow');
+				$("#confirmOverlay").remove();
+				majRechercheWidgetPiecesDispo("");
+				
+				addClassSelectedPiecesDispo();
 			}
 		});
 
