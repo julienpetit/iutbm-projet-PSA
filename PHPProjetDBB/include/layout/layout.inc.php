@@ -10,12 +10,15 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 <!-- Styles -->
 <link href='/include/css/global.css' rel='stylesheet' type='text/css'>
 <link href='/include/framework/foundation.css' rel='stylesheet' type='text/css'>
+<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
 <?php foreach ($styles as $css) {
 	echo "<link href='$css' rel='stylesheet' type='text/css'>\n";
 }?>
 
 <!-- Scripts -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
 <?php foreach ($scripts as $js) {
 	echo "<script src='$js' type='text/javascript'></script>\n";
 }?>
