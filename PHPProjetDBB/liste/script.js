@@ -19,12 +19,44 @@ function critere(crit){
 			xmlhttp.onreadystatechange=function(){
 				if(xmlhttp.readyState==4 && xmlhttp.status==200){
 					document.getElementById("date").innerHTML=xmlhttp.responseText;
+					document.getElementById("page2").style.display = "inline";
 				}
 			}
 			xmlhttp.open("POST","dates.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			xmlhttp.send("choix_rech="+crit);
 			
+}
+
+function critere2(crit){
+
+	xmlhttp = new XMLHttpRequest();
+				
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			document.getElementById("date2").innerHTML=xmlhttp.responseText;
+			document.getElementById("page3").style.display = "inline";
+		}
+	}
+	xmlhttp.open("POST","dates.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("choix_rech="+crit);
+	
+}
+
+function critere3(crit){
+
+	xmlhttp = new XMLHttpRequest();
+				
+	xmlhttp.onreadystatechange=function(){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			document.getElementById("date3").innerHTML=xmlhttp.responseText;
+		}
+	}
+	xmlhttp.open("POST","dates.php",true);
+	xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+	xmlhttp.send("choix_rech="+crit);
+	
 }
 
 function choix_(choix){

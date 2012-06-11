@@ -353,3 +353,12 @@ body div#page1 {
 #verif_mdp_utilisateur_modif{
 	display: none;
 }
+
+/******************** lister les commandes *******************/
+#page2{
+	display: none;
+}
+
+#page3{
+	display: none;	
+}
