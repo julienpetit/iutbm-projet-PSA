@@ -1,5 +1,5 @@
 <?php 
-$link = mysqli_connect('localhost', 'root', 'root', 'acsi_bdd');
+$link = mysqli_connect('localhost', 'root', 'root', 'projetBdd');
 if (!$link)
 {
 	$erreur = 'Impossible de se connecter au serveur MySQL?';
