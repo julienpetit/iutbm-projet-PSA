@@ -12,7 +12,7 @@ require_once("../include/layout/layout.inc.php");
 
 $droit=$_SESSION['no_droit'];
 //html_entete_fichier("accueil","../Style.css","accueil.js");
-header_html("Gestion des commandes",array("../Style.css"),array("accueil.js"));
+header_html("Gestion des commandes",array("../Style.css", "../include/css/global.css", "../include/framework/foundation.css"),array("accueil.js"));
 echo("<body>");
 
 echo("<form id=\"accueil\" name=\"accueil\" action=\"\" method=\"post\">");
