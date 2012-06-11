@@ -28,7 +28,7 @@ $modeleCadence = new Cadence($link);
 
 $date = date("Y-m-d");
 $heure = date("H:i");
-
+ 
 
 //print_r_html($user);
 /**
