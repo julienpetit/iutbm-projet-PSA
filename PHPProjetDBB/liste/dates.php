@@ -5,18 +5,20 @@ $choix_rech=$_POST['choix_rech'];
         
 if($choix_rech=="fournisseur"){
 
-		 	echo"	<br/>	
+		 	echo"	
+		 		<br/>	
 				<tr>
 				<th>Code fournisseur :</th>
         		<th><input type=\"text\" id=\"noFournisseur\" value=\"\"/></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('fournisseur')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('fournisseur')\"/>";
 
 } 
 else if($choix_rech=="piece"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<tr>
 				<th>N° piece</th> 
         		<td><input type=\"text\" id=\"noPiece\" value=\"\" onchange=\"verifierRef('noPiece');\" /></td>
@@ -27,7 +29,8 @@ else if($choix_rech=="piece"){
 } 
 else if($choix_rech=="silhouette"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<tr>
 					<th>N° silhouette </th>
         			<td><input type=\"text\" id=\"noSilhouette\" value=\"\"/></td>
@@ -38,7 +41,8 @@ else if($choix_rech=="silhouette"){
 } 
 else if($choix_rech=="noCommande"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<tr>
 				<th>N° commande </th>
         		<td><input type=\"text\" id=\"noCommande\" value=\"\"/></td>
@@ -49,7 +53,8 @@ else if($choix_rech=="noCommande"){
 } 
 else if($choix_rech=="typeCommande"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<tr>
 					<th>Type commande :</th>
 					<br/>
@@ -62,7 +67,8 @@ else if($choix_rech=="typeCommande"){
 } 
 else if($choix_rech=="etatCommande"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<tr>
 					<th>Etat commande :</th>
 					<br/>
@@ -75,7 +81,8 @@ else if($choix_rech=="etatCommande"){
 } 
 else if($choix_rech=="date_creation"){
 
-		 	echo"	<br/>
+		 	echo"
+		 		<br/>
 		 		<table>
 		 			<tr>	
 						<td><label id=\"label\">Date min création </label></td>
@@ -91,7 +98,8 @@ else if($choix_rech=="date_creation"){
 } 
 else if($choix_rech=="date_reception"){
 
-		 	echo"	<br/>	
+		 	echo"
+		 		<br/>	
 				<label id=\"label\">Date min reception </label>
         		<input type=\"text\" onchange=\"verifierDate('date1');\" id=\"date1\" value=\"aaaa-mm-jj\"/>
         		<br/> 
