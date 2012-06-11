@@ -1,6 +1,6 @@
 <?php 
 
-function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = array()) { ?>
+function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = array(), $accueil = false) { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +20,7 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 	echo "<script src='$js' type='text/javascript'></script>\n";
 }?>
 
+<?php if($accueil) echo "<style>div#wrap { background: none; } </style>"?>
 </head>
 <body>
 	<div id='bandeau_connexion'>
@@ -39,15 +40,19 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 	</div>
 	<div id='main'>
 		<div id='header'>
-			<img src="/img/logo.png" width="900px" height="138px" />
+			<img src="/include/css/img/logo.png" width="900px" height="138px" />
+			<h1><?php echo $accueil ? "GESTION DES COMMANDES" : ""; ?></h1>
 		</div>
 		<div id='wrap'>
-			<h1><?php echo isset($title) ? html($title) : "GESTION DES COMMANDES"; ?></h1>
+			<h1><?php echo !$accueil ? html($title) : ""; ?></h1>
 <?php } 
 
 function footer_html() { ?>
 		</div>
 		<div id='footer'>
+		      <hr />
+		      Site web réalisé par la superbe équipe de S3bisA2 - DUT INFO - IUT BM<br />
+		      We rock !
 		</div>
 	</div>
 </body>

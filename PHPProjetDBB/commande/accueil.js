@@ -29,7 +29,7 @@ function choix_action1(str){ // fonction qui permet d'envoyer les bon paramètre
         }
 
     else if(document.getElementById('accueil').option[2].checked==true){
-        document.forms["accueil"].action="traitement/choix_page.php?choix=2&num_commande="+str;
+        document.forms["accueil"].action="commandeMVC/?visualiser="+str;
         }
 
     else if(document.getElementById('accueil').option[3].checked==true){
