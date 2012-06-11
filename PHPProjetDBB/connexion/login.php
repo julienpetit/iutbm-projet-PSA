@@ -49,6 +49,7 @@ if (!empty($_POST['login']) && (!empty($_POST['password'])) )
 if ($loginOK) {
 
   $_SESSION['pseudo'] = $data['id_utilisateur'];
+  $_SESSION['id'] = $data['id_utilisateur'];
   $_SESSION['prenom'] = $data['prenom_utilisateur'];
   $_SESSION['nom'] = $data['nom_utilisateur'];
   $_SESSION['sigle'] = $data['service_utilisateur'];
