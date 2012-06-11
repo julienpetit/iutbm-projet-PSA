@@ -313,7 +313,6 @@ function ajoutChampsCachesSoumission(){
 		
 		var value = reference + "--" + quantite + "--" + potentiel; 
 		$('#piecesPrincipalesHidden').append("<input type='hidden' class='piecesPrinc' name='piecesPrinc[]' value='" + value + "' />");
-
 	});
 	
 };

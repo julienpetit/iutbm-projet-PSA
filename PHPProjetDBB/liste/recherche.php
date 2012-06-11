@@ -75,25 +75,25 @@ echo( "<div id=\"tab\"><table id=\"tableau\"  >\n" );
         echo( "<thead><tr> ");
         
 	
-        echo("<th>no_commande</th>");
+        echo("<th>Numéro Commande</th>");
 	
 	
-		echo("<th>Date_commande</th>");
+		echo("<th>Date Commande</th>");
 	        
         
         echo ("<th>Fournisseur</th>");
         
         
-        echo ("<th>Date_Fermeture</th>");
+        echo ("<th>Date Fermeture</th>");
         
         
-        echo ("<th>Motif_fermeture</th>");
+        echo ("<th>Motif Fermeture</th>");
         
         
-        echo ("<th>Id demandeur</th>");
+        echo ("<th>Identifiant Demandeur</th>");
 
 
-        echo ("<th>Type_commande</th>");
+        echo ("<th>Type Commande</th>");
 
 
 	echo("</tr></thead>" );

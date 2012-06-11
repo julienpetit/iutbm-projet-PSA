@@ -1,6 +1,5 @@
 <?php header_html("Ajout d'une commande de masse", array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='section'>
-				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
 					
 					<!-- Affichage de la section Commande -->
@@ -18,7 +17,7 @@
 							</tr>
 							<tr>
 								<td><label>Emetteur : </label></td>
-								<td>Jean-Pascal <?php printHtml($commande['id_utilisateur_passe']); ?></td>
+								<td><?php echo $userCommande['nom_utilisateur'] . " " . $userCommande['prenom_utilisateur'] . " - " . $userCommande['id_utilisateur']; ?></td>
 							</tr>
 							<tr>
 								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>
@@ -36,8 +35,6 @@
 							</tr>
 
 						</table>	
-						
-						<div id='boxHistory'><?php echo $modeleCommandeHistorique->displayBoxHistory("0111121785"); ?></div>
 							
 					</fieldset>
 					
@@ -111,6 +108,7 @@
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
 					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
+					<a href='../../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
 					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
 				</form>
 			</div>

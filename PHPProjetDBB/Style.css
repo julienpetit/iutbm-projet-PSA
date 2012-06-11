@@ -28,7 +28,7 @@ font-size : 30px;
 }
 
 #accueil,#accueil fieldset input,#contenu input,label,#sous-titre {
-	margin-left: 50px;
+	margin-left: 0px;
 }
 
 #type_piece {
@@ -122,10 +122,7 @@ table label#export {
 }
 
 /*****************accueil*********************/
-#accueil {
-	margin-left: 200px;
-	width: 700px;
-}
+
 
 fieldset {
 	width: 750px;
@@ -220,19 +217,16 @@ table#derniere th #sous-titre {
 
 /***************tableaux de données********************/
 #tab {
-	position: absolute;
 	height: 500px;
-	width: 100%;
-	margin-left: 10px;
 	margin-top: 10px;
 	text-align: center;
-	overflow: scroll;
 }
 
 #tableau {
-	font-size: 20px;
+	font-size: 13px;
 	border-collapse: collapse;
-	width: 1500px;
+	width: 960px;
+
 }
 
 #tableau th {
@@ -253,7 +247,7 @@ table#derniere th #sous-titre {
 }
 
 #tableau tr td {
-	font-size: 16px;
+	font-size: 12px;
 	text-align: center;
 }
 
@@ -276,7 +270,7 @@ table#derniere th #sous-titre {
 }
 
 body div#page1 {
-	width: 900px;
+
 }
 
 #myform {

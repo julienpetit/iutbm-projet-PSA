@@ -1,6 +1,5 @@
-<?php header_html("Ajout d'une commande de masse", array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
+<?php header_html("Visualisation d'une commande de masse", array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='section'>
-				<h2>Commande de masse</h2>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
 					
 					<!-- Affichage de la section Commande -->
@@ -18,20 +17,18 @@
 							</tr>
 							<tr>
 								<td><label>Emetteur : </label></td>
-								<td>Jean-Pascal <?php printHtml($commande['id_utilisateur_passe']); ?></td>
+								<td><?php echo $userCommande['nom_utilisateur'] . " " . $userCommande['prenom_utilisateur'] . " - " . $userCommande['id_utilisateur']; ?></td>
 							</tr>
 							<tr>
 								<td><label for="ReferenceDossierCommandeMasse">Motif du dossier : </label></td>
-								<td><?php printHtml($commande['libelle_type_chantier']); ?></td>
+								<td><?php echo html($commande['libelle_type_chantier']); ?></td>
 							</tr>
 							<tr>
 								<td>N° du dossier</td>
-								<td><input type='text' id='noDossier' name='noDossier' value='<?php printHtml($commande['no_chantier']); ?>'/></td>
+								<td><?php printHtml($commande['no_chantier']); ?></td>
 							</tr>
 
 						</table>	
-						
-						<div id='boxHistory'><?php echo $modeleCommandeHistorique->displayBoxHistory("0111121785"); ?></div>
 							
 					</fieldset>
 					
@@ -51,11 +48,10 @@
 										<th>libellé</th>
 										<th>quantité</th>
 										<th>potentiel / jours</th>
-										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipale($piece); ?>
+									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabled($piece); ?>
 								</tbody>
 							</table>
 							
@@ -69,11 +65,10 @@
 										<th>référence</th>
 										<th>libellé</th>
 										<th>quantité</th>
-										<th>supprimer</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnement($piece); ?>
+									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnementDisabled($piece); ?>
 								</tbody>
 							</table>
 							
@@ -84,22 +79,24 @@
 						<div id='piecesEnvironnementHidden'></div>
 					</fieldset>
 					
-					
 					<!-- Affichage de la section Responsable -->
 					<fieldset id='responsable'>
 						<legend>Responsable</legend>
 						
 						<table>
 							<tr>
-								<td>Entité</td>
+								<td>Entité : </td>
 								<td>
-								<?php $modeleEntite->displaySelect("EntiteCM", html($commande['code_imputation'])); ?>
+								<?php $modeleEntite->displayEntite(html($commande['code_imputation'])); ?>
 								</td>
 							</tr>
 						</table>
 					</fieldset>	
 					
+					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
+					<!-- Boutons de soumission du formulaire -->
+					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Etat des livraisons</a>
+					<a href='../../commande/accueil.php' class="small green nice button radius" >Retour à l'accueil</a>
 				</form>
 			</div>
-
 <?php footer_html(); ?>

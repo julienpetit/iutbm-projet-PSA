@@ -134,6 +134,15 @@ class Entite implements iEntite
 		echo "</select>\n";
 	}
 
+	public function displayEntite($defautValue)
+	{
+		foreach ($this->getList() as $entite) {
+			$no 	 = $entite['no'];
+			$libelle = $entite['libelle'];
+			if($no == $defautValue) echo "$libelle";
+		}
+
+	}
 	
 
 }

@@ -4,7 +4,14 @@ include('../connexion/_connexion.php');
 
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");
-html_entete_fichier("accueil","../Style.css","script.js");
+
+require_once("../include/library/bd.inc.php");
+require_once("../include/library/library.inc.php");
+require_once("../include/layout/layout.inc.php");
+
+header_html("Affichage des tables",array("../Style.css"),array("script.js"));
+
+// html_entete_fichier("accueil","../Style.css","script.js");
 mysql_query("SET NAMES UTF8");
 check_log_user($_SESSION['no_droit'],12,NULL);
 
@@ -29,4 +36,4 @@ echo("<body>");
 	<div id="page1"></div>	
    </body>
 </html>
-
+<?php footer_html(); ?>

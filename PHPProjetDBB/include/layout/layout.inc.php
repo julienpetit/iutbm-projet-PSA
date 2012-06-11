@@ -1,4 +1,6 @@
-<?php function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = array()) { ?>
+<?php 
+
+function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = array()) { ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,12 +21,28 @@
 }?>
 
 </head>
-
 <body>
+	<div id='bandeau_connexion'>
+		<div id="info_content">
+			<ul id='menu'>
+				<li><a href='/commande/accueil.php' >Accueil</a></li>
+			</ul>
+			
+			<ul id='infos'>
+				
+				<?php if(isset($_SESSION['id'])) 
+					echo "<li>".html($_SESSION['id'])."</li>";
+					echo "<li><a href='/connexion/deconnexion.php' >Se déconnecter</a></li>"; 
+				?>
+			</ul>
+		</div>
+	</div>
 	<div id='main'>
 		<div id='header'>
+
 		</div>
 		<div id='wrap'>
+			<h1><?php echo html($title); ?></h1>
 <?php } 
 
 function footer_html() { ?>

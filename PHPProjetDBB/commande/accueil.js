@@ -1,6 +1,6 @@
 function box(){
 	document.getElementById('commande').style.display="block";          // ces deux fonctions permettent d'afficher ou non le champ de numéro de commande dans l'accueil
-}
+}  
 
 function nobox(){
 	document.getElementById('commande').style.display="none";
@@ -25,7 +25,7 @@ function choix_action1(str){ // fonction qui permet d'envoyer les bon paramètre
              document.forms["accueil"].action="pieces_synchrone.php";
         }
     else if(document.getElementById('accueil').option[1].checked==true){
-		document.forms["accueil"].action="commande_de_masse_passage.php";
+		document.forms["accueil"].action="commandeMVC/?ajout";
         }
 
     else if(document.getElementById('accueil').option[2].checked==true){
@@ -33,7 +33,7 @@ function choix_action1(str){ // fonction qui permet d'envoyer les bon paramètre
         }
 
     else if(document.getElementById('accueil').option[3].checked==true){
-        document.forms["accueil"].action="traitement/choix_page.php?choix=3&num_commande="+str;
+        document.forms["accueil"].action="commandeMVC/?modifier="+str;
         }
 
     else if(document.getElementById('accueil').option[4].checked==true){
