@@ -107,4 +107,7 @@ else if(choix == 'date_reception'){
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 			xmlhttp.send("choix_rech="+choix+param);
 }
-
+/*
+function ajout(){
+	
+}*/
