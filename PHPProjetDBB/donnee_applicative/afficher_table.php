@@ -3,8 +3,12 @@ session_start();
 include('../connexion/_connexion.php');
 
 require_once("../fonctionhtml.php");  
+require_once("../include/layout/layout.inc.php");
 
-html_entete_fichier("accueil","../Style.css","script.js","../controle/controle.js");
+require_once("../include/library/bd.inc.php");
+require_once("../include/library/library.inc.php");
+require_once("../include/layout/layout.inc.php");
+
 mysql_query("SET NAMES UTF8");
 echo("<body>");
 ?>
@@ -13,6 +17,7 @@ echo("<body>");
 $list_value = $_POST['list_value'];
 if ($list_value=="piece"){
 	echo("
+		<script src='../controle/controle.js' ></script>
 		<input type='button' id='add_piece' value='Ajouter pièce' onclick='Form_ajout_piece()'/><br/><br/>
 		<div id=\"tab\">
 		<table  id=\"tableau\" >\n
