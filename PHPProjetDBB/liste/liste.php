@@ -17,9 +17,9 @@ echo("<body>");
 	<form>      
       	<div id="page">
 			<fieldset>
-				<label> Critère de recherche :</label>
+				<label> Critère de recherche 1:</label>
 				<select name="table" id="param1" onchange="critere(this.value)">
-					<option select="selected">Selectionner un critère de recherche</option>
+					<option select="selected" value="" >Selectionner un critère de recherche</option>
 					<option value="fournisseur">Fournisseur</option>
 					<option value="piece">Piece</option>
 					<option value="silhouette">Silhouette</option>
@@ -40,7 +40,7 @@ echo("<body>");
 			<fieldset>
 				<label> Critère de recherche 2 :</label>
 				<select name="table" id="param2" onchange="critere2(this.value)">
-					<option select="selected">Selectionner un critère de recherche : </option>
+					<option select="selected" value="" >Selectionner un critère de recherche : </option>
 					<option value="fournisseur">Fournisseur</option>
 					<option value="piece">Piece</option>
 					<option value="silhouette">Silhouette</option>
@@ -61,7 +61,7 @@ echo("<body>");
 			<fieldset>
 				<label> Critère de recherche 3 :</label>
 				<select name="table" id="param3" onchange="critere3(this.value)">
-					<option select="selected">Selectionner un critère de recherche : </option>
+					<option select="selected" value="" >Selectionner un critère de recherche : </option>
 					<option value="fournisseur">Fournisseur</option>
 					<option value="piece">Piece</option>
 					<option value="silhouette">Silhouette</option>
@@ -80,7 +80,7 @@ echo("<body>");
 		</div>
 	</form>
 			
-		<input type="button" name="Recherche" value="Recherche" onclick="ajout('envoi')" />
+		<input type="button" name="Recherche" id="envoi" value="Recherche" onclick="ajout('envoi')" />
         <div id="content">
           
 <?php
