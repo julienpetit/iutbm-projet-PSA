@@ -22,6 +22,8 @@
 					width: 70px;
 				}
 			</style>
+			
+			<div id='message'><p><?php afficheMessage(); ?></p></div>
 			<div id='section'>
 			
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>

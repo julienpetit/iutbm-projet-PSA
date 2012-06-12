@@ -1,6 +1,6 @@
 <?php header_html("Ajout d'une commande de masse", array("web/style.css", "../../include/css/global.css", "../../include/framework/foundation.css"), array("web/script.js"))?>
 			
-			
+			<div id='message'><p><?php afficheMessage(); ?></p></div>
 			<div id='section'>
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
 					
