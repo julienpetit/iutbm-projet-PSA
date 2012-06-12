@@ -1,15 +1,23 @@
 <?php
 
 session_start(); 
-include('../connexion/_connexion.php');
+include_once('../connexion/_connexion.php');
 require_once("../fonctionhtml.php");  
 require_once("../connexion/verification_connexion.php");
-check_log_user($_SESSION['no_droit'],9,NULL);
+check_log_user(9,NULL);
+
+include_once "../include/library/library.inc.php";
+include_once "../include/layout/layout.inc.php";
+
+mysql_query("SET NAMES UTF8");
+require_once("../fonctionhtml.php");
+require_once("../connexion/verification_connexion.php");
+
+
 mysql_query("SET NAMES UTF8");
 $droit=$_SESSION['no_droit'];
-html_entete_fichier("accueil","../Style.css","accueil.js"); 
-echo("<h1 id=\"titreprincipal\">Exportation de tables</h1>
-<fieldset id=\"fieldexp\"><legend>S&eacute;l&eacute;ction des Tables</legend>");
+header_html("Exportation des données",array(), array("accueil.js")); 
+echo("<fieldset id=\"fieldexp\"><legend>S&eacute;l&eacute;ction des Tables</legend>");
 echo("<form id=\"export\" name=\"export\" action=\"export_save.php\" method=\"post\">
 <table id =\"tablexp\" border=\"0\"> 
 <tr><td class=\"chek\">
@@ -78,4 +86,6 @@ echo("<form id=\"export\" name=\"export\" action=\"export_save.php\" method=\"po
 </body>
 </html>
 ");
+
+footer_html();
 ?>
