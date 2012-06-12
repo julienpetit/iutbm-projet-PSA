@@ -65,7 +65,6 @@
 									</tr>
 								</thead>
 								<tbody>
-									
 									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabledLivraisons($piece, $commande['no_commande']); ?>
 								</tbody>
 							</table>
