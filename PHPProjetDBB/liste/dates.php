@@ -12,7 +12,7 @@ if($choix_rech=="fournisseur"){
         		<th><input type=\"text\" id=\"noFournisseur\" value=\"\"/></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('fournisseur')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout(document.getElementById('noFournisseur').value)\"/>";
 
 } 
 else if($choix_rech=="piece"){
@@ -24,7 +24,7 @@ else if($choix_rech=="piece"){
         		<td><input type=\"text\" id=\"noPiece\" value=\"\" onchange=\"verifierRef('noPiece');\" /></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\"  onclick=\"choix_('piece')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\"  onclick=\"ajout(document.getElementById('noPiece').value)\"/>";
 
 } 
 else if($choix_rech=="silhouette"){
@@ -36,7 +36,7 @@ else if($choix_rech=="silhouette"){
         			<td><input type=\"text\" id=\"noSilhouette\" value=\"\"/></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('silhouette')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout(document.getElementById('noSilhouette').value)\"/>";
 
 } 
 else if($choix_rech=="noCommande"){
@@ -48,7 +48,7 @@ else if($choix_rech=="noCommande"){
         		<td><input type=\"text\" id=\"noCommande\" value=\"\"/></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('noCommande')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout(document.getElementById('noCommande').value)\"/>";
 
 } 
 else if($choix_rech=="typeCommande"){
@@ -62,7 +62,7 @@ else if($choix_rech=="typeCommande"){
         			<td><input type='radio' name='type' id='masse' />Commande de masse<br></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('typeCommande')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('typeCommande')\"/>";
 
 } 
 else if($choix_rech=="etatCommande"){
@@ -72,11 +72,11 @@ else if($choix_rech=="etatCommande"){
 				<tr>
 					<th>Etat commande :</th>
 					<br/>
-        			<td><input type='radio' name='type' id='open' />Ouverte<br></td>
-        			<td><input type='radio' name='type' id='close' />Fermée<br></td>
+        			<td><input type='radio' name='etat' id='open' />Ouverte<br></td>
+        			<td><input type='radio' name='etat' id='close' />Fermée<br></td>
         		</tr>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('etatCommande')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('etatCommande')\"/>";
 
 } 
 else if($choix_rech=="date_creation"){
@@ -86,27 +86,27 @@ else if($choix_rech=="date_creation"){
 		 		<table>
 		 			<tr>	
 						<td><label id=\"label\">Date min création </label></td>
-        				<td><input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date1\" value=\"aaaa-mm-jj\"/></td>
+        				<td><input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date1_crea\" value=\"aaaa-mm-jj\"/></td>
         			</tr>
         			<tr>
         				<td><label id=\"label\">Date max création</label></td>
-        				<td><input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date2\" value=\"aaaa-mm-jj\"/></td>
+        				<td><input type=\"text\" onchange=\"verifierDate(this.value);\" id=\"date2_crea\" value=\"aaaa-mm-jj\"/></td>
         			</tr>
         			<br/>
         		</table>
-		 		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('date_creation')\"/>";
+		 		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('date_creation')\"/>";
 } 
 else if($choix_rech=="date_reception"){
 
 		 	echo"
 		 		<br/>	
 				<label id=\"label\">Date min reception </label>
-        		<input type=\"text\" onchange=\"verifierDate('date1');\" id=\"date1\" value=\"aaaa-mm-jj\"/>
+        		<input type=\"text\" onchange=\"verifierDate('date1');\" id=\"date1_recep\" value=\"aaaa-mm-jj\"/>
         		<br/> 
         		<label id=\"label\">Date max reception</label>
-        		<input type=\"text\" onchange=\"verifierDate('date2');\" id=\"date2\" value=\"aaaa-mm-jj\"/>
+        		<input type=\"text\" onchange=\"verifierDate('date2');\" id=\"date2_recep\" value=\"aaaa-mm-jj\"/>
         		<br/>
-        		<input type=\"button\" id=\"Rechercher\" value=\"Rechercher\" onclick=\"choix_('date_reception')\"/>";
+        		<input type=\"button\" id=\"Ajouter\" value=\"Ajouter\" onclick=\"ajout('date_reception')\"/>";
 
 } 
 
