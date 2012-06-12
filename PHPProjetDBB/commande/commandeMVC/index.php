@@ -258,28 +258,19 @@ if (isset($_GET['details']) && $_GET['details'] != ""){
 	include "view/details.html.php";
 	exit();
 }
-
 /**
  * ################################  Fin détails - Livraisons d'une commande ################################
  */
-
-
-
 
 /**
  * ################################ Annulation d'une commande ################################
  */
 if(isset($_GET['annuler']) && $_GET['annuler'] != ""){
-	
 	$noCommande = html($_GET['annuler']);
-	
 	$modeleCommande->annulerCommande($noCommande);
-	print_r_html($commande);
-// 	include "view/visualisation";
-	header("Location: ./visualiser=".$noCommande);
+	header("Location: ./?visualiser=".$noCommande);
 	exit();
 }
-
 /**
  * ################################ Fin annulation d'une commande ################################
  */

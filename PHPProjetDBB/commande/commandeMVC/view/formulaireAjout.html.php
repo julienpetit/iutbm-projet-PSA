@@ -112,9 +112,9 @@
 					<input type='hidden' id='heure_commande' name='heure_commande' value='<?php echo html($heure); ?>' />
 					
 					<!-- Boutons de soumission du formulaire -->
-					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='enregistrer' />
+					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='Enregistrer' />
 					<a href='../../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
-					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='effacer' />
+					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='Effacer' />
 				</form>
 			</div>
 <?php footer_html(); ?>
