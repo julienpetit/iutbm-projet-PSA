@@ -9,6 +9,11 @@ function printHtml($texte)
 	echo html($texte);
 }
 
+function afficheMessage()
+{
+	echo isset($_POST['message']) ? html($_POST['message']) : "";
+}
+
 // Conversion date : AAAA-MM-JJ -> jeudi 10 novembre 2011
 function convertDate_Amj_string($date) 
 {

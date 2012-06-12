@@ -22,6 +22,8 @@
 					width: 70px;
 				}
 			</style>
+			
+			<div id='message'><p><?php afficheMessage(); ?></p></div>
 			<div id='section'>
 			
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
@@ -65,7 +67,6 @@
 									</tr>
 								</thead>
 								<tbody>
-									
 									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabledLivraisons($piece, $commande['no_commande']); ?>
 								</tbody>
 							</table>
