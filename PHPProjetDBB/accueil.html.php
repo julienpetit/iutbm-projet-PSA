@@ -40,7 +40,7 @@
 </script>
 
 <div id='content_search'>
-	<input type='text' id='search_commande' name='search_commande' placeholder='rechercher une commmande' />
+	<input type='text' id='search_commande' name='search_commande' placeholder='Rechercher une commmande' />
 </div>
 <center>
 	<TABLE cellspacing="10px">

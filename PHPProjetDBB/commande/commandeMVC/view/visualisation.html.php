@@ -99,9 +99,8 @@
 					<?php 
 						if(!$modeleCommande->isCanceled($commande['no_commande'])) 
 							echo "<a href='/commande/commandeMVC/?annuler=".$commande['no_commande']."' id='annulerCommande' class='small black nice button radius' >Annuler la commande</a>";
-						if(!$modeleCommande->isClosed($commande['no_commande']))
-							echo "<a href='/commande/commandeMVC/?fermer=".$commande['no_commande']."' id='fermerCommande' class='small black nice button radius' >Fermer la commande</a>";
-						
+							if(!$modeleCommande->isClosed($commande['no_commande']))
+								echo "<a href='/commande/commandeMVC/?fermer=".$commande['no_commande']."' id='fermerCommande' class='small black nice button radius' >Fermer la commande</a>";
 					?>
 				</form>
 			</div>

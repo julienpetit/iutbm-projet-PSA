@@ -37,7 +37,7 @@ function choix_action1(str){ // fonction qui permet d'envoyer les bon paramètre
         }
 
     else if(document.getElementById('accueil').option[4].checked==true){
-        document.forms["accueil"].action="traitement/choix_page.php?choix=4&num_commande="+str;
+    	document.forms["accueil"].action="commandeMVC/?visualiser="+str;
         }
 
     else if(document.getElementById('accueil').option[5].checked==true){
@@ -49,7 +49,7 @@ function choix_action1(str){ // fonction qui permet d'envoyer les bon paramètre
         }
 
     else if(document.getElementById('accueil').option[7].checked==true){
-        document.forms["accueil"].action="traitement/choix_page.php?choix=7&num_commande="+str;
+    	document.forms["accueil"].action="commandeMVC/?visualiser="+str;
         }
 
     else if(document.getElementById('accueil').option[8].checked==true){

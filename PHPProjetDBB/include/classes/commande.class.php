@@ -230,10 +230,10 @@ class Commande
 			$infoCommande = array('date_annulation' => $jour, 
 								  'heure_annulation' => $heure);
 			$this->updateCommande($noCommande, $infoCommande);
-			echo "La commande a été annulée";
+			$_POST['message'] = "La commande a été annulée";
 		}
 		else
-			echo "La commande n'a pas été annulée";
+			$_POST['message'] = "La commande n'a pas été annulée";
 	}
 	
 }
