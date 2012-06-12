@@ -46,9 +46,9 @@
 	<TABLE cellspacing="10px">
 		<tr>
 			<td texte="Passer une commande de pièces en flux synchrone"><a
-				href=""><img class="onebutton" src="include/css/img/cmd_pieces.jpg"
+				href="/commande/pieces_synchrone.php"><img class="onebutton" src="include/css/img/cmd_pieces.jpg"
 					width="80" height="80" border="0" /> </a></td>
-			<td texte="Passer une commande de masse"><a href=""><img
+			<td texte="Passer une commande de masse"><a href="/commande/commandeMVC/?ajout"><img
 					class="onebutton" src="include/css/img/cmd_masse.jpg" width="80"
 					height="80" border="0" /> </a></td>
 			<td texte="Visualiser une commande"><a href=""><img class="onebutton"
@@ -80,13 +80,13 @@
 					border="0" /> </a></td>
 		</tr>
 		<tr>
-			<td texte="Mise à jour des données applicatives"><a href=""><img
+			<td texte="Mise à jour des données applicatives"><a href="/donnee_applicative/maj.php"><img
 					class="onebutton" src="include/css/img/maj_donnees_app.jpg"
 					width="80" height="80" border="0" /> </a></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td texte="Quitter"><a href=""><img class="onebutton"
+			<td texte="Quitter"><a href="/connexion/deconnexion.php"><img class="onebutton"
 					src="include/css/img/quitter.jpg" width="80" height="80" border="0" />
 			</a></td>
 		</tr>

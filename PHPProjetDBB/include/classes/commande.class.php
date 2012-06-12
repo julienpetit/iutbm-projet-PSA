@@ -91,7 +91,7 @@ class Commande
 		
 		}
 		
-		echo $sql;
+		//echo $sql;
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();

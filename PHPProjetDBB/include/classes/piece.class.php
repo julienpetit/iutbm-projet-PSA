@@ -99,7 +99,7 @@ class Piece implements iPiece
 	{
 		// Supression d'éventuelles pièce dans la table COMPREND
 		$sql = "DELETE FROM COMPREND WHERE no_commande = '$noCommande'";
-		echo "<br/>$sql<br>";
+		
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur suppression des pièces de la commande $noCommande";
 			exit();
@@ -338,7 +338,7 @@ class Piece implements iPiece
 	 */
 	public function displayRowPrincipaleDisabledLivraisons($piece, $noCommande){
 		
-		print_r_html($this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
+		print_r_html($livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
 		
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
@@ -350,21 +350,16 @@ class Piece implements iPiece
 		echo "<tr>";
 		echo "<td colspan='5'>";
 		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
+		for ($i = 0; $i < 10; $i++) 
+		{	
+			echo $i%2 ==0 ? "<span class='content_date_quantite'>" : "";
+			
+			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['date_livraison']) : ""; echo "'>";
+			echo "<input type='text' class='quantite' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['quantite_livree']) : ""; echo "'>";
+			
+			echo $i%2 == 0 ? "<br />" : "";
+			echo $i%2 == 1 ? "</span>" : "";
+		}
 
 		echo "</td>";
 		echo "</tr>";
@@ -374,7 +369,9 @@ class Piece implements iPiece
 	 * Affiche une ligne d'un tableau de piece d'environnement non éditable
 	 * Détails et livraisons d'une commande de masse
 	 */
-	public function displayRowEnvironnementDisabledLivraisons($piece, $resteALivrer = false){
+	public function displayRowEnvironnementDisabledLivraisons($piece, $noCommande){
+		
+		print_r_html($livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
@@ -384,21 +381,16 @@ class Piece implements iPiece
 		echo "<tr>";
 		echo "<td colspan='5'>";
 		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
-		echo "<span class='content_date_quantite'>";
-		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
-		echo "</span>";
+		for ($i = 0; $i < 10; $i++) 
+		{	
+			echo $i%2 ==0 ? "<span class='content_date_quantite'>" : "";
+			
+			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['date_livraison']) : ""; echo "'>";
+			echo "<input type='text' class='quantite' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['quantite_livree']) : ""; echo "'>";
+			
+			echo $i%2 == 0 ? "<br />" : "";
+			echo $i%2 == 1 ? "</span>" : "";
+		}
 
 		echo "</td>";
 		echo "</tr>";
