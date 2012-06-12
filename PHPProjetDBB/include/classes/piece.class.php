@@ -25,9 +25,12 @@ class Piece implements iPiece
 {
 
 	public $link;
+	public $modeleLivraison;
 	
-	
-	public function __construct($link) { $this->link = $link; }
+	public function __construct($link) { 
+		$this->link = $link; 
+		$this->modeleLivraison = new Livraison($link);
+	}
 
 	/**
 	 * Retourne un tableau de pièces (non-PHPdoc)
@@ -134,7 +137,7 @@ class Piece implements iPiece
 		}
 	}
 	
-	
+
 	/**
 	 * Retourne un tableau de pièce de la commande dont le no est passé en paramètre. (non-PHPdoc)
 	 * @see iPiece::getPieceByCommandeId()
@@ -314,8 +317,6 @@ class Piece implements iPiece
 		echo "<td>".$piece['libelle']."</td>\n";
 		echo "<td>".$piece['quantite']."</td\n>";
 		echo "<td>".$piece['potentiel']."</td>\n";
-		if(isset($piece['reste_a_livrer']))
-			echo "<td>".$piece['reste_a_livrer']."</td>";
 		echo "</tr>\n";
 	}
 	
@@ -323,12 +324,84 @@ class Piece implements iPiece
 	 * Affiche une ligne d'un tableau de piece d'environnement non éditable
 	 * Visualisation d'une commande de masse
 	 */
-	public function displayRowEnvironnementDisabled($piece, $resteALivrer = false){
+	public function displayRowEnvironnementDisabled($piece){
 		echo "<tr>\n";
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
 		echo "<td>".$piece['quantite']."</td\n>";
 		echo "</tr>\n";
+	}
+	
+	/**
+	 * Affiche une ligne d'un tableau de piece principale non éditable
+	 * Détails et livraisons d'une commande de masse
+	 */
+	public function displayRowPrincipaleDisabledLivraisons($piece, $noCommande){
+		
+		print_r_html($this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
+		
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td>".$piece['quantite']."</td\n>";
+		echo "<td>".$piece['potentiel']."</td>\n";
+		echo "<td></td>";
+		echo "</tr>\n";
+		echo "<tr>";
+		echo "<td colspan='5'>";
+		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+
+		echo "</td>";
+		echo "</tr>";
+	}
+	
+	/**
+	 * Affiche une ligne d'un tableau de piece d'environnement non éditable
+	 * Détails et livraisons d'une commande de masse
+	 */
+	public function displayRowEnvironnementDisabledLivraisons($piece, $resteALivrer = false){
+		echo "<tr>\n";
+		echo "<td>".$piece['reference']."</td>\n";
+		echo "<td>".$piece['libelle']."</td>\n";
+		echo "<td>".$piece['quantite']."</td\n>";
+		echo "<td></td>";
+		echo "</tr>\n";
+		echo "<tr>";
+		echo "<td colspan='5'>";
+		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+		echo "<span class='content_date_quantite'>";
+		echo "<input type='text' class='date' ><input type='text' class='quantite' ><br><input type='text' class='date'><input class='quantite'>";
+		echo "</span>";
+
+		echo "</td>";
+		echo "</tr>";
 	}
 	/**
 	 * ###################### Fin ligne de tableau de pieces ######################

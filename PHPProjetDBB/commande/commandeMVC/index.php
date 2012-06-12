@@ -7,6 +7,7 @@ include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
 include "../../include/classes/utilisateur.class.php";
 include "../../include/classes/cadence.class.php";
+include "../../include/classes/livraison.class.php";
 include "../../include/layout/layout.inc.php";
 
 // Vérification de l'identité de l'utilisateur
@@ -250,7 +251,7 @@ if (isset($_GET['details']) && $_GET['details'] != ""){
 	$userCommande = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
 
 	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
-
+	
 	$method = 'modif';
 	include "view/details.html.php";
 	exit();
