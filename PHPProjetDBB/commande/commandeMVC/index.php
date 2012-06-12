@@ -7,6 +7,7 @@ include "../../include/classes/entite.class.php";
 include "../../include/classes/piece.class.php";
 include "../../include/classes/utilisateur.class.php";
 include "../../include/classes/cadence.class.php";
+include "../../include/classes/livraison.class.php";
 include "../../include/layout/layout.inc.php";
 
 // Vérification de l'identité de l'utilisateur
@@ -120,13 +121,15 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 			);
 	
 	// récupération des pièces de la commande
-	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
-	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
+	$piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array());
+	$piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array());
 	
 	$modeleCommande->addCommande($infosCommande);
 	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
 	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
-	print_r_html($_POST);
+	//print_r_html($_POST);
+	
+	header("Location: /commande/commandeMVC/?visualiser=".$noCommande);
 	exit();
 }
 
@@ -250,7 +253,7 @@ if (isset($_GET['details']) && $_GET['details'] != ""){
 	$userCommande = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
 
 	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
-
+	
 	$method = 'modif';
 	include "view/details.html.php";
 	exit();

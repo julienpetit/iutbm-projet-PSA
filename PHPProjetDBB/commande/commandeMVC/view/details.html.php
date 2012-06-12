@@ -1,6 +1,27 @@
 <?php header_html("Détails des livraisons d'une commande de masse", array("web/style.css", "../../include/css/global.css", "../../include/framework/foundation.css"), array("web/scriptDetails.js"))?>
 			
-			
+			<style>
+				table#piecePrincipales, table#pieceEnvironnement {
+					width: 900px !important;
+				}
+				table td > span {
+					display: inline-block;
+					vertical-align: top;
+					margin: 0 10px;
+				}
+				
+				table#piecePrincipales th, table#pieceEnvironnement th, table#piecePrincipales td, table#pieceEnvironnement td {
+					width: auto !important;
+				}
+				
+				input.quantite {
+					width: 30px;
+				}
+				
+				input.date {
+					width: 70px;
+				}
+			</style>
 			<div id='section'>
 			
 				<form id='formulaire' action='./?action=<?php printHtml($method); ?>' method='post'>
@@ -44,7 +65,8 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabled($piece); ?>
+									
+									<?php foreach($pieces['principales'] as $piece) $modelePiece->displayRowPrincipaleDisabledLivraisons($piece, $commande['no_commande']); ?>
 								</tbody>
 							</table>
 			
@@ -62,7 +84,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnementDisabled($piece); ?>
+									<?php foreach($pieces['environnement'] as $piece) $modelePiece->displayRowEnvironnementDisabledLivraisons($piece, $commande['no_commande']); ?>
 								</tbody>
 							</table>
 			

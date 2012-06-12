@@ -31,7 +31,7 @@ class cadence
 							reference_piece  = '$ReferencePiece',
 							potentiel_jour   = '$PotentielJour';";
 
-		echo $sql . "<br>";
+		//echo $sql . "<br>";
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de d'insertion de la cadence";
 			echo $sql;

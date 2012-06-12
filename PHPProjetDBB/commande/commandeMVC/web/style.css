@@ -75,7 +75,7 @@ form#formulaire div#piecesAjoutee table th {
 }
 
 form#formulaire div#piecesAjoutee table td,form#formulaire div#piecesAjoutee table th
-	{
+{
 	border: solid 1px black;
 	width: 160px;
 	padding: 4px;

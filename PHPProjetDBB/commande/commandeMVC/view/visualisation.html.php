@@ -27,7 +27,6 @@
 								<td>N° du dossier</td>
 								<td><?php printHtml($commande['no_chantier']); ?></td>
 							</tr>
-
 						</table>	
 							
 					</fieldset>
