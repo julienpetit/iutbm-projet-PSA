@@ -221,10 +221,20 @@ class Commande
 			return false;
 	}
 	
-	public function annulerCommande($noCommande)
-	{
-		$commande = $this->getCommande($noCommande);
-		
+	public function annulerCommande($noCommande){
+		if(!$this->isCanceled($noCommande))
+		{
+			$commande = $this->getCommande($noCommande);
+			$jour = date("Y-m-j");
+			$heure = date("G:i:s");
+			$infoCommande = array('date_annulation' => $jour, 
+								  'heure_annulation' => $heure);
+			$this->updateCommande($noCommande, $infosCommande);
+			echo "La commande a été annulée";
+		}
+		else
+			echo "La commande n'a pas été annulée";
 	}
+	
 }
 ?>

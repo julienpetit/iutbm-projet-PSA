@@ -269,13 +269,10 @@ if (isset($_GET['details']) && $_GET['details'] != ""){
 /**
  * ################################ Annulation d'une commande ################################
  */
+
 if(isset($_GET['annuler']) && $_GET['annuler'] != ""){
-	
 	$noCommande = html($_GET['annuler']);
-	
 	$modeleCommande->annulerCommande($noCommande);
-	print_r_html($commande);
-// 	include "view/visualisation";
 	header("Location: ./visualiser=".$noCommande);
 	exit();
 }
