@@ -26,7 +26,7 @@ header_html("Connexion",array("", "../include/css/global.css", "../include/frame
 		</div>
 		<div>
 			<input type="hidden" name="action" value="connexion">	
-			<input type="submit" class='big blue nice button radius' value="connexion">				
+			<input type="submit" class='big blue nice button radius' value="Connexion">				
 		</div>
 
 	</form>
