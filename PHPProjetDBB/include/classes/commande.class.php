@@ -229,7 +229,7 @@ class Commande
 			$heure = date("G:i:s");
 			$infoCommande = array('date_annulation' => $jour, 
 								  'heure_annulation' => $heure);
-			$this->updateCommande($noCommande, $infosCommande);
+			$this->updateCommande($noCommande, $infoCommande);
 			echo "La commande a été annulée";
 		}
 		else
