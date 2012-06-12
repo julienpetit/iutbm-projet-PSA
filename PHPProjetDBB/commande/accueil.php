@@ -127,9 +127,7 @@ echo("</fieldset>
 		<div id=\"sub\">
 		<input type=\"submit\" class=\"small blue nice button radius\"onclick=\"choix_action1(num_commande.value);\" value=\"Valider la demande\"/>
 		</div>
-
 		</form>
-
 		<a href='../connexion/deconnexion.php' class=\"small green nice button radius\" >Quitter l'application</a>
 
 		");
