@@ -72,7 +72,7 @@
 			<td texte="Fermer une commande"><a href=""><img class="onebutton"
 					src="include/css/img/fermer_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
-			<td texte="Lister des commandes"><a href=""><img class="onebutton"
+			<td texte="Lister des commandes"><a href="/liste/liste.php"><img class="onebutton"
 					src="include/css/img/lister_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 			<td texte="Extraire des données"><a href=""><img class="onebutton"
