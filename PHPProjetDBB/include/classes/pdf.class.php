@@ -1,22 +1,23 @@
 <?php
 
-require ("/include/classes/fpdf.php");
-
 class PDF extends FPDF
 {
-	static function Header()
+
+	
+	function Header()
 	{
 		$date = date("d/m/Y");
 		$heure = date("h:i:s");
-		$this->Image("psa-peugeot-citroen-logo.jpg",205,10,85,10);
+		$this->Image($_SERVER['DOCUMENT_ROOT']."/include/css/img/psa-peugeot-citroen-logo.jpg",205,10,85,10);
 		$this->SetFont('Arial','B',10);
 		$this->Ln(5);
 		$this->Cell(0,18," Ville, Le : $date a $heure",0,0,'R');
 	}
-	static function Footer()
+	function Footer()
 	{
 		// Positionnement à 1,5 cm du bas
-		$this->SetY(-30);
+		$this->SetY(-15);
+		$this->SetAutoPageBreak(true);
 		// Police Arial italique 8
 		$this->SetFont('Arial','I',8);
 		$this->Cell(0,5,utf8_decode('Route de Chalampé CD 39 Le Napoléon 68100 Mulhouse France Téléphone 33 3 89 09 09 09 - fax 33 3 89 09 29 39'),0,1,'C');
@@ -26,9 +27,5 @@ class PDF extends FPDF
 		$this->Cell(0,5,utf8_decode('Société Anonyme au capital de 294 816 500 €, 542 065 479 RCS Versailles, Siret 542 065 479 000 991, APE 341 Z'),0,1,'C');
 	}
 	
-	
-	static function genererPDFCommandeDeMasse($noCommande)
-	{
-		
-	}
+
 }

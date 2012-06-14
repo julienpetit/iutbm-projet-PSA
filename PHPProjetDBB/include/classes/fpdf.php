@@ -112,6 +112,7 @@ class FPDF
 		$this->fontpath = dirname(__FILE__).'/font/';
 		else
 			$this->fontpath = '';
+		$this->fontpath = $_SERVER['DOCUMENT_ROOT']."/commande/font/";
 		// Core fonts
 		$this->CoreFonts = array('courier', 'helvetica', 'times', 'symbol', 'zapfdingbats');
 		// Scale factor

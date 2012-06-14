@@ -52,6 +52,7 @@ class Entite implements iEntite
 			exit();
 		}
 		
+		
 		// Création d'une liste d'Entites
 		$Entites = array();
 		while ($row = mysqli_fetch_row($resultat)){
@@ -64,7 +65,7 @@ class Entite implements iEntite
 	}
 
 	public function getEntite($noEntite){
-		$tabEntite = $this->getList(" AND code_imputation = '$CodeImputation'", 0, 1);
+		$tabEntite = $this->getList(" WHERE code_imputation = '$noEntite'", 0, 1);
 
 		return $tabEntite[0];
 	}

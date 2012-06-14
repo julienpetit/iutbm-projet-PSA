@@ -8,6 +8,8 @@ include "../../include/classes/piece.class.php";
 include "../../include/classes/utilisateur.class.php";
 include "../../include/classes/cadence.class.php";
 include "../../include/classes/livraison.class.php";
+include "../../include/classes/fpdf.php";
+include "../../include/classes/pdf.class.php";
 include "../../include/layout/layout.inc.php";
 
 // Vérification de l'identité de l'utilisateur
@@ -27,6 +29,9 @@ $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
 $modeleCadence = new Cadence($link);
 $modeleLivraison = new Livraison($link);
+
+
+// $pdf = new PDF($link);
 
 $date = date("Y-m-d");
 $heure = date("H:i");
@@ -334,7 +339,105 @@ if(isset($_GET['fermer']) && $_GET['fermer'] != ""){
  * ################################ Fin Fermeture d'une commande ################################
  */
 
+/**
+ * Generation du pdf
+ */
+if(isset($_GET['genererPdf']) && $_GET['genererPdf'] != ""){
+	$noCommande = html($_GET['genererPdf']);
+	
+	$pdf = new PDF();
+	
+	$commande = $modeleCommande->getCommande($noCommande);
+	$entite = $modeleEntite->getEntite($commande['code_imputation']);
+	$user = $modeleUtilisateur->getUtilisateur($commande['id_utilisateur_passe']);
+	
+	$pieces = $modelePiece->getPieceByCommandeId($noCommande);
+	
+	// Instanciation de la classe dérivée
+	$pdf->AliasNbPages();
+	$pdf->AddPage('L');
+	// Titre
+	//Corps de la page
+	
+	// Décalage à droite
+	//$pdf->Cell(20);
+	
+	//num commande
+	$pdf->SetFont('Times','B',30);
+	$pdf->Ln(30);
+	$pdf->Cell(175,15,utf8_decode('Commande de masse N°'.$noCommande),0,0,'L');
+	$pdf->SetFont('Times','',12);
+	$pdf->Cell(60,10,$commande['libelle_type_chantier']." ".$commande['no_chantier'],0,0,'C');
+	$pdf->MultiCell(30,5,utf8_decode($entite['libelle'])."\n\nSur CA:  ".$entite['no'],0,'L',0);
+	$pdf->Rect(245,44,35,8);
+	$pdf->Rect(245,52,35,8);
+	
+	
+	
+	//Début feuille de commande masse
+	
+	//Demandeur
+	$pdf->Ln(20);
+	$pdf->SetFont('Arial','B',10);
+	$pdf->Cell(40,8,'Demandeur ',0,0,'L');
+	
+	$pdf->MultiCell(120,8,$user['nom_utilisateur']." ".$user['prenom_utilisateur']."\n".$user['service_utilisateur'],0,'L',0);
+	$pdf->SetFont('Arial','',10);
+	$pdf->Cell(120,-8,utf8_decode("Tél. ".$user['no_telephone']),0,0,'R');
+	$pdf->SetFont('Arial','B',10);
+	$pdf->Ln(20);
+	
+	//tableau commande
+	//faire le découpage de chaque cellule avec multicelle pour aligner le tout et border que haut et bas
+	
+	$pdf->Cell(40,10,"Type piece",1,0,'C');
+	$pdf->Cell(40,10,"Reference",1,0,'C');
+	$pdf->Cell(120,10,"Designation",1,0,'C');
+	$pdf->Cell(30,10,"Quantite",1,0,'C');
+	$pdf->Cell(40,10,"Potentiel/j",1,1,'C');
+	$pdf->SetFont('Arial','',10);
+	
+	foreach($pieces['principales'] as $piece)
+	{
+		$pdf->Cell(40,10,"Principale",1,0,'L');
+		$pdf->Cell(40,10,$piece['reference'],1,0,'L');
+		$pdf->Cell(120,10,utf8_decode($piece['libelle']),1,0,'L');
+		$pdf->Cell(30,10,$piece['quantite'],1,0,'L');
+		$pdf->Cell(40,10,$piece['potentiel'],1,1,'L');
+	}
 
+	
+	foreach($pieces['principales'] as $piece)
+	{
+		$pdf->Cell(40,10,"Secondaire",1,0,'L');
+		$pdf->Cell(40,10,utf8_decode($piece['reference']),1,0,'L');
+		$pdf->Cell(120,10,$piece['quantite'],1,0,'L');
+		$pdf->Cell(30,10,$piece['potentiel'],1,1,'L');
+	}
+	
+	$pdf->SetFont('Arial','',8);
+	
+
+	
+	$file_name = "../Historique_commande/commande_masse/commande_".$noCommande."_".microtime().".pdf";
+	if (file_exists($file_name))
+	{
+		$file_type = filetype($file_name);
+		$file_size = filesize($file_name);
+	
+		$handle = fopen($file_name, 'r') or die('File '.$file_name.'can t be open');
+		$content = fread($handle, $file_size);
+		$content = chunk_split(base64_encode($content));
+		$f = fclose($handle);
+	
+	}
+	
+	$pdf->Output($file_name, "F");
+	
+	
+	header("Location: $file_name");
+	exit();
+}
 
 
 
