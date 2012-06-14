@@ -22,9 +22,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(1,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 		}
 
@@ -33,9 +30,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(2,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 		}
 
@@ -45,9 +39,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(2,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 
 		}
@@ -66,9 +57,6 @@ function check_log_user($num_page,$num_commande)
 					if(!in_array(3,$droit))
 					{
 						header("Location: /connexion/erreur.html.php");
-						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-						exit();
 					}
 
 				}
@@ -78,9 +66,6 @@ function check_log_user($num_page,$num_commande)
 					if(!in_array(4,$droit))
 					{
 						header("Location: /connexion/erreur.html.php");
-						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-						exit();
 					}
 					 
 				}
@@ -92,9 +77,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(5,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 
 		}
@@ -105,9 +87,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(6,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 
 		}
@@ -126,9 +105,6 @@ function check_log_user($num_page,$num_commande)
 					if(!in_array(7,$droit))
 					{
 						header("Location: /connexion/erreur.html.php");
-						echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-						echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-						exit();
 					}
 
 				}
@@ -141,9 +117,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(8,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 		}
 		if($page==12)
@@ -151,9 +124,6 @@ function check_log_user($num_page,$num_commande)
 			if(!in_array(9,$droit) && !in_array(10,$droit))
 			{
 				header("Location: /connexion/erreur.html.php");
-				echo "vous ne possèdez pas les droits pour executer cette action <br/>";
-				echo "<a href=\"../commande/accueil.php\">Accueil</a>";
-				exit();
 			}
 		}
 	}
