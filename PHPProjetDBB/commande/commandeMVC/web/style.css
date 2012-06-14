@@ -1,4 +1,28 @@
 .red { background-color: #990000; }
+
+div#commandeCanceled {
+	background-color: #AA0000;
+	padding: 10px;
+	font-weight: bold;
+	color: white;
+	border: solid 1px black;
+	float: right;
+	margin-right: 40px;
+	margin-top: 10px;
+}
+
+div#commandeClosed {
+	background-color: #000066;
+	padding: 10px;
+	font-weight: bold;
+	color: white;
+	border: solid 1px black;
+	float: right;
+	margin-right: 40px;
+	margin-top: 10px;
+}
+
+
 span#banniereCommande {
 	display: block;
 	width: 101px;

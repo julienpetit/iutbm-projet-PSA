@@ -87,6 +87,13 @@ $(document).ready(function() {
 	 * Pièce principale / environnement
 	 */
 	$("div#listePieces > table tr.piece").live('click', function(e){
+		
+		if($(this).find("td+td").hasClass("selected"))
+		{
+			alert("Vous avez déjà selectionné cette pièce.");
+			return;
+		}
+		
 		var reference = $(this).find("td:first-child").html();
 		var libelle = $(this).find("td:last-child").html();
 
@@ -197,7 +204,6 @@ $(document).ready(function() {
 	 * Ajout d'une pièce globale  -------------------------------YOHAN--------------------------------
 	 */	
 	$("div#listePieces > h3 > span > a").live('click',function(e){
-
 		$.ajax({
 			type: 'post',
 			url: 'index.php?ajax=affichageFormulaireAjoutPiece',

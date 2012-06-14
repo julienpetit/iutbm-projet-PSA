@@ -32,7 +32,6 @@ $date = date("Y-m-d");
 $heure = date("H:i");
  
 
-//print_r_html($user);
 /**
  * ################################ Requetes Ajax #######################################
  */
@@ -176,6 +175,16 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 	$noCommande = html($_GET['modifier']);
 
+	if($modeleCommande->isCanceled($noCommande))
+	{
+		$_SESSION['message'] = "La commande $noCommande est annulée, vous ne pouvez plus la modifier.";
+		header("Location: ./?visualiser=$noCommande"); 
+	}
+	if($modeleCommande->isClosed($noCommande))
+	{
+		$_SESSION['message'] = "La commande $noCommande est fermée, vous ne pouvez plus la modifier.";
+		header("Location: ./?visualiser=$noCommande");
+	}
 
 	$commande = $modeleCommande->getCommande($noCommande);
 
@@ -284,18 +293,44 @@ if (isset($_GET['details']) && $_GET['details'] != ""){
  * ################################  Fin détails - Livraisons d'une commande ################################
  */
 
+
+
+
+
+
+
 /**
  * ################################ Annulation d'une commande ################################
  */
 if(isset($_GET['annuler']) && $_GET['annuler'] != ""){
 	$noCommande = html($_GET['annuler']);
-	$modeleCommande->annulerCommande($noCommande);
+	
+	$modeleCommande->annulerCommande($noCommande, $user['id_utilisateur']);
 	header("Location: ./?visualiser=".$noCommande);
 	exit();
 }
 /**
  * ################################ Fin annulation d'une commande ################################
  */
+
+
+
+
+
+/**
+ * ################################ Fermeture d'une commande ################################
+ */
+if(isset($_GET['fermer']) && $_GET['fermer'] != ""){
+	$noCommande = html($_GET['fermer']);
+	$modeleCommande->fermerCommande($noCommande);
+	header("Location: ./?visualiser=".$noCommande);
+	exit();
+}
+/**
+ * ################################ Fin Fermeture d'une commande ################################
+ */
+
+
 
 
 

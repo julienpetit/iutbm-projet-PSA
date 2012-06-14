@@ -110,8 +110,12 @@ while($data_rd = mysql_fetch_assoc($req_rd)){
 		<td></td>
 	</tr>
 	<?php
-	$sql = "SELECT p.reference_piece, p.designation_piece, c.quantite_piece FROM PIECE p, COMPREND c, COMMANDE co
-	WHERE co.no_commande=c.no_commande AND p.reference_piece=c.reference_piece AND co.no_commande=".$num_commande." AND c.libelle_type_piece='pieces environnement';";
+	$sql = "SELECT p.reference_piece, p.designation_piece, c.quantite_piece 
+				FROM PIECE p, COMPREND c, COMMANDE co
+				WHERE co.no_commande=c.no_commande 
+				AND p.reference_piece=c.reference_piece 
+				AND co.no_commande=".$num_commande." 
+				AND c.libelle_type_piece='pieces environnement';";
 	$req = mysql_query($sql) or die('Erreur SQL !<br>'.$sql.'<br>'.mysql_error());
 	$i1=0;
 	while($data = mysql_fetch_assoc($req)){

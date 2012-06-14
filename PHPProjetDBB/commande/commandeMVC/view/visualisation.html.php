@@ -31,6 +31,16 @@
 							</tr>
 						</table>	
 							
+						<?php
+						if($modeleCommande->isCanceled($commande['no_commande']))
+						{
+							echo "<div id='commandeCanceled' >Commande annulée</div>";
+						}
+						if($modeleCommande->isClosed($commande['no_commande']))
+						{
+							echo "<div id='commandeClosed' >Commande fermée</div>";
+						}
+					?>
 					</fieldset>
 					
 					
@@ -98,7 +108,7 @@
 					<!-- Boutons de soumission du formulaire -->
 					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small green nice button radius" >Etat des livraisons</a>
 					<a href='../../commande/accueil.php' class="small red nice button radius" >Retour à l'accueil</a>
-					<?php 
+					<?php
 						if(!$modeleCommande->isCanceled($commande['no_commande']))
 						{
 							echo "<a href='/commande/commandeMVC/?annuler=".$commande['no_commande']."' id='annulerCommande' class='small black nice button radius' >Annuler la commande</a>";
