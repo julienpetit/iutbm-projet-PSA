@@ -298,7 +298,7 @@ class Commande
 	
 	public function autocomplete($chaine)
 	{
-		$sql = "SELECT no_commande FROM COMMANDE WHERE code_type_commande = 'M' AND no_commande LIKE '%$chaine%'";
+		$sql = "SELECT no_commande FROM COMMANDE WHERE no_commande LIKE '%$chaine%'";
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "erreur";
 			echo " $sql";
