@@ -51,25 +51,25 @@
 			<td texte="Passer une commande de masse"><a href="/commande/commandeMVC/?ajout"><img
 					class="onebutton" src="include/css/img/cmd_masse.jpg" width="80"
 					height="80" border="0" /> </a></td>
-			<td texte="Visualiser une commande"><a href=""><img class="onebutton"
+			<td texte="Visualiser une commande"><a href="" class='link_clickable' ><img class="onebutton"
 					src="include/css/img/visu_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
-			<td texte="Modifier une commande"><a href=""><img class="onebutton"
+			<td texte="Modifier une commande"><a href="" class='link_clickable' ><img class="onebutton"
 					src="include/css/img/modif_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
-			<td texte="Annuler une commande"><a href=""><img class="onebutton"
+			<td texte="Annuler une commande"><a href="" class='link_clickable' ><img class="onebutton"
 					src="include/css/img/annul_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 		</tr>
 		<tr>
 			<td texte="Déclarer la réception d'une commande de pièce synchrone"><a
-				href=""><img class="onebutton"
+				href="" class='link_clickable'><img class="onebutton"
 					src="include/css/img/reception_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
-			<td texte="Déclarer des livraisons de pièces"><a href=""><img
+			<td texte="Déclarer des livraisons de pièces"><a href="" class='link_clickable'><img
 					class="onebutton" src="include/css/img/livraison_cmd.jpg"
 					width="80" height="80" border="0" /> </a></td>
-			<td texte="Fermer une commande"><a href=""><img class="onebutton"
+			<td texte="Fermer une commande"><a href="" class='link_clickable'><img class="onebutton"
 					src="include/css/img/fermer_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 			<td texte="Lister des commandes"><a href="/liste/liste.php"><img class="onebutton"
