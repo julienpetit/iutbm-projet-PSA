@@ -1,6 +1,6 @@
 div#content_search {
 
-
+	height : 120px;
 }
 
 input#search_commande  {
@@ -19,4 +19,10 @@ input#search_commande  {
 	font-weight: bold;
 	font-size: 15px;
 	
+}
+
+p.error-form {
+	text-align: center;
+	font-weight: bold;
+	font-size: 22px;
 }

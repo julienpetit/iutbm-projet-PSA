@@ -236,5 +236,17 @@ class Commande
 			$_POST['message'] = "La commande n'a pas été annulée";
 	}
 	
+	public function verifiePresenceCommande($noCommande)
+	{
+		$sql = "SELECT COUNT(*) FROM COMMANDE WHERE no_commande = '$noCommande'";
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur de comptage";
+			exit();
+		}
+		 
+		$row = mysqli_fetch_row($resultat);
+
+		return $row[0] > 0 ? true : false;
+	}
 }
 ?>
