@@ -240,7 +240,7 @@ echo("<body>");
 
 	</form>
 </div>	
-
+<!-- 
 	<div id="pieces_fournie">
    
 <?php
@@ -251,6 +251,7 @@ echo("<body>");
 	}
 ?>
 	</div>
+-->
 </body>
 </html>
 
