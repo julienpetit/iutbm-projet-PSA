@@ -4,7 +4,7 @@ jQuery().ready(function(){
 			"oLanguage":{
 				"sUrl":"../../include/js/development-bundle/dataTables.french.txt"
 			},
-			"aoColumns": [
+			/*"aoColumns": [
 			  			null,
 			  			{ "sType": "fr_date" },
 			  			null,
@@ -12,7 +12,7 @@ jQuery().ready(function(){
 			  			{ "sType": "fr_date" },
 			  			null,
 			  			null
-			],
+			],*/
 			"aaSorting": [[ 1, "desc" ]]
 		});
 	}
