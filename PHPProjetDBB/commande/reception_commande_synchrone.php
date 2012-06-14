@@ -175,16 +175,21 @@ echo("<body>");
 	<legend>Responsable d&eacute;faut</legend>
 		<table id="Responsable defaut">
         	<tr> 
-        	     <td><label id="titre">Entit&eacute;</label></td> 
-               	<?php 
-               		echo("<td><input readonly value=".$data['libelle_entite']."></td>");
-               	?>
+        	     <td>
+        	     	<label id="titre">Entit&eacute;</label>
+        	     </td> 
+               	 <td>
+               	 	<input readonly value="<?php echo $data['libelle_entite']; ?>"/>
+               	 </td>
+               	 	
            	</tr>
 			<tr> 
-            	<td><label id="titre">CA imput&eacute;</label></td>
-            	<?php 
-            		echo("<input readonly value=".$data['code_imputation']."></td>"); 
-            	?>
+            	<td>
+            		<label id="titre">CA imput&eacute;</label>
+            	</td>
+            	<td>
+            		<input readonly value="<?php echo $data['code_imputation']; ?>" />
+            	</td>
        		</tr>
 		
     	</table>

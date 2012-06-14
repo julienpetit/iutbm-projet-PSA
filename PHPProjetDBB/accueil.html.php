@@ -154,7 +154,7 @@ function verifierPresenceCommande()
 		</tr>
 		<tr>
 			<td texte="Déclarer la réception d'une commande de pièce synchrone"><a
-				href="/commande/traitement/choix_page.php?choix=5&num_commande=" class='link_clickable'><img class="onebutton"
+				href="/commande/reception_commande_synchrone.php?num_commande=" class='link_clickable'><img class="onebutton"
 					src="include/css/img/reception_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 			<td texte="Déclarer des livraisons de pièces"><a href="/commande/commandeMVC/?details=" class='link_clickable'><img
