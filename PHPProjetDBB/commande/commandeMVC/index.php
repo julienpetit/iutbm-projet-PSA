@@ -322,7 +322,11 @@ if(isset($_GET['annuler']) && $_GET['annuler'] != ""){
  */
 if(isset($_GET['fermer']) && $_GET['fermer'] != ""){
 	$noCommande = html($_GET['fermer']);
-	$modeleCommande->fermerCommande($noCommande, $user['id_utilisateur'], "annule");
+	
+	if(isset($_GET['motif'])) $motif = html($_GET['motif']);
+	else $motif = "";
+	
+	$modeleCommande->fermerCommande($noCommande, $user['id_utilisateur'], $motif);
 	header("Location: ./?visualiser=".$noCommande);
 	exit();
 }

@@ -41,6 +41,30 @@ function calculAllResteALivrer()
 	addColorResteALivrer();
 }
 
+function verifierNotNegatifRAL()
+{
+	valider = true;
+	return valider;
+}
+
+function verifierNotNegatifQuantite()
+{
+	valider = true;
+	$.each($("table .row_livraisons"), function(index, value){
+	
+		$.each($(value).find("input.quantite"), function(key, val){
+			var quantite = $(val).val();
+			
+			if(parseInt(quantite) < parseInt("0")) 
+			{
+				valider = false;
+			}
+		});
+	});
+	
+	if(!valider) alert("La quantité d'une livraisons ne peut être négative ou nulle.");
+	return valider;
+}
 
 function validerLesLivraisons()
 {
@@ -71,21 +95,26 @@ function validerLesLivraisons()
 
 	});
 	
-	console.log()
-	$.ajax({
-		type: 'post',
-		data: {
-			'noCommande': noCommande,
-			'livraisons': livraisons
-		},
-		url: 'index.php?ajax=ajoutLivraisons',
-		complete: function(x){
-			$('body').append(x.responseText);
-			console.log("complete");
-			calculAllResteALivrer()
-		}
-	});
+	if(verifierNotNegatifQuantite() && verifierNotNegatifRAL())
+	{
+		$.ajax({
+			type: 'post',
+			data: {
+				'noCommande': noCommande,
+				'livraisons': livraisons
+			},
+			url: 'index.php?ajax=ajoutLivraisons',
+			complete: function(x){
+				$('body').append(x.responseText);
+				console.log("complete");
+				calculAllResteALivrer();
+				alert("Les livraisons ont étés enregistrées.");
+			}
+		});
+	}
 }
+
+
 
 $(document).ready(function() {
 	$(function() {

@@ -99,7 +99,7 @@
 					<input type='hidden' id='id_user' name='id_user' value='<?php echo html($user['id_utilisateur']); ?>' />
 					
 					<!-- Boutons de soumission du formulaire -->	
-					<a href='../../commande/accueil.php' id='validerLivraisons' class="small green nice button radius" >Valider les livraisons</a>
+					<a href='' id='validerLivraisons' class="small green nice button radius" >Valider les livraisons</a>
 					<a href='./?visualiser=<?php printHtml($commande['no_commande']); ?>' class="small red nice button radius" >Retour à la commande</a>
 					
 				</form>

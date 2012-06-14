@@ -1,7 +1,23 @@
 <?php header_html("GESTION DES COMMANDES",array("include/framework/foundation.css", "accueil.css"),array(), true); ?>
 <script>
+function addFermerAnnuler(elem, link)
+{
+	if(elem.hasClass("fermer"))
+	{
 
+		var box = "";
+		box += "<div class='box_shadow absolute' id='confirmFermer' >";
+		box += "<h3>Fermeture de la commande</h3>";
+		box += "<p><label>Motif de la fermeture : <input id='motifFermeture' /></label></p>";
+		box += "<p><a href='"+link+"' id='fermerCommande' class='small green nice button radius' >Fermer la commande</a><a id='cancel' class='small red nice button radius' >Retour</a></p>";
+		box += "</div>"; 
+		$("body").append(box);
 
+		return true;
+	}
+
+	return false;
+}
 
 
 function verifierPresenceCommande()
@@ -66,8 +82,12 @@ function verifierPresenceCommande()
 			}
 		});
 
+		/*
+		 * Click sur une fonction nécessitant une commande
+		 */
 		$('a.link_clickable').click(function(e){
-			var champs = $("#search_commande");
+			
+			var champs = $("#search_commande"); // no de la commande
 			
 			if(!verifierPresenceCommande()) {
 				if(champs.parent().find(".error-form").length == 0){
@@ -80,13 +100,29 @@ function verifierPresenceCommande()
 				}
 
 				var link = $(this).attr("href")+champs.val();
+
+				if(addFermerAnnuler($(this), link))
+				{
+					e.preventDefault();
+					return;
+				}
 				
 				document.location.href=link;
 			}
 
-			
 			e.preventDefault();
 		});
+
+
+		$("#fermerCommande").live('click', function(e){
+
+			var motif = $("#motifFermeture").val();
+			var link = $(this).attr("href") + "&motif=" + motif;
+
+			document.location.href=link;
+			e.preventDefaut();
+		});
+		
 	});
 
 </script>
@@ -109,7 +145,7 @@ function verifierPresenceCommande()
 			<td texte="Modifier une commande"><a href="/commande/commandeMVC/?modifier=" class='link_clickable' ><img class="onebutton"
 					src="include/css/img/modif_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
-			<td texte="Annuler une commande"><a href="/commande/commandeMVC/?annuler=" class='link_clickable' ><img class="onebutton"
+			<td texte="Annuler une commande"><a href="/commande/commandeMVC/?annuler=" class='link_clickable annuler' ><img class="onebutton"
 					src="include/css/img/annul_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 		</tr>
@@ -121,7 +157,7 @@ function verifierPresenceCommande()
 			<td texte="Déclarer des livraisons de pièces"><a href="/commande/commandeMVC/?details=" class='link_clickable'><img
 					class="onebutton" src="include/css/img/livraison_cmd.jpg"
 					width="80" height="80" border="0" /> </a></td>
-			<td texte="Fermer une commande"><a href="/commande/commandeMVC/?fermer=" class='link_clickable'><img class="onebutton"
+			<td texte="Fermer une commande"><a href="/commande/commandeMVC/?fermer=" class='link_clickable fermer'><img class="onebutton"
 					src="include/css/img/fermer_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 			<td texte="Lister des commandes"><a href="/liste/liste.php"><img class="onebutton"
