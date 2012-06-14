@@ -58,12 +58,15 @@ function verifierPresenceCommande()
 		}); 
 
 
-		$('input#seach_commande').autocomplete ({
+		/*
+		 * Autocomplete
+ 		 */
+		$('input#search_commande').autocomplete ({
 			source : function(request, callback)
 			{
-				var data = { term : request.term, type : 'nom' };
+				var data = { 'term' : request.term };
 				$.ajax ({
-					type: "post",
+					type: "get",
 					url : "index.php?ajax=searchCommande",
 					data : data,
 					complete : function (xhr, result)
@@ -73,9 +76,9 @@ function verifierPresenceCommande()
 						var noms = [];
 
 						$(response).filter ("li").each(function ()
-								{
+						{
 							noms.push ($(this).text ());
-								});
+						});
 						callback (noms);
 					}
 				});
@@ -151,7 +154,7 @@ function verifierPresenceCommande()
 		</tr>
 		<tr>
 			<td texte="Déclarer la réception d'une commande de pièce synchrone"><a
-				href="" class='link_clickable'><img class="onebutton"
+				href="/commande/traitement/choix_page.php?choix=5&num_commande=" class='link_clickable'><img class="onebutton"
 					src="include/css/img/reception_cmd.jpg" width="80" height="80"
 					border="0" /> </a></td>
 			<td texte="Déclarer des livraisons de pièces"><a href="/commande/commandeMVC/?details=" class='link_clickable'><img

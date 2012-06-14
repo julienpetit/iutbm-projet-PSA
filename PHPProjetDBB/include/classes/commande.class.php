@@ -221,6 +221,23 @@ class Commande
 			return false;
 	}
 	
+	public function isCommandeDeMasse($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['code_type_commande'] == 'M')
+			return true;
+		else
+			return false;
+	}
+	
+	public function isCommandeSynchrone($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['code_type_commande'] == 'S')
+			return true;
+		else
+			return false;
+	}
+	
+	
 	public function annulerCommande($noCommande, $idUser, $motif = ""){
 		if(!$this->isCanceled($noCommande))
 		{
@@ -274,6 +291,22 @@ class Commande
 		$row = mysqli_fetch_row($resultat);
 
 		return $row[0] > 0 ? true : false;
+	}
+	
+	
+	public function autocomplete($chaine)
+	{
+		$sql = "SELECT no_commande FROM COMMANDE WHERE code_type_commande = 'M' AND no_commande LIKE '%$chaine%'";
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "erreur";
+			echo " $sql";
+			exit();
+		}
+		
+		while ($row = mysqli_fetch_row($resultat)){
+			echo "<li>".$row[0]."</li>";
+		}
+		
 	}
 }
 ?>
