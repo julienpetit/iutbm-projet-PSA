@@ -196,7 +196,7 @@ if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 	$method = 'modif';
 	include "view/formulaireModification.html.php";
 
-	print_r_html($commande = $modeleCommande->getCommande($noCommande));
+	
 	exit();
 }
 
@@ -214,15 +214,15 @@ if (isset($_GET['action']) && $_GET['action'] == "modif"){
 						   'code_type_commande' 	=> 'M');
 
 	// récupération des pièces de la commande
-	echo $noCommande;
-	print_r_html($piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array()));
-	print_r_html($piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array()));
+	$piecesPrincipales = $modelePiece->piecesParser(isset($_POST['piecesPrinc']) ? $_POST['piecesPrinc'] : array());
+	$piecesEnvironnement = $modelePiece->piecesParser(isset($_POST['piecesEnv']) ? $_POST['piecesEnv'] : array());
 
 	$modeleCommande->updateCommande($noCommande, $infosCommande);
 	$modelePiece->addPiecesToCommande($noCommande, $piecesPrincipales, $piecesEnvironnement);
 
 	$modeleCadence->addPieceToCadence($noCommande, $piecesPrincipales);
-	print_r_html($_POST);
+	
+	header("Location: ./?visualiser=$noCommande");
 	exit();
 }
 /**
