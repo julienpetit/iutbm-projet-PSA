@@ -1,4 +1,5 @@
 <?php  
+header("Location: /");
 //include_once("../connexion/login.php");
 session_start();
 include('../connexion/_connexion.php');

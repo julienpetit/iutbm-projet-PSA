@@ -130,6 +130,14 @@ function verifierPresenceCommande()
 
 </script>
 
+<style>
+	div#message {
+		text-align: center;
+		font-weight: bold;
+		font-size: 25px;
+	}
+</style>
+<div id='message'><p><?php afficheMessage(); ?></p></div>
 <div id='content_search'>
 	<input type='text' id='search_commande' name='search_commande' placeholder='Rechercher une commmande' />
 </div>

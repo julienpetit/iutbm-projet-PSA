@@ -93,13 +93,23 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "ajoutLivraisons"){
 
 	$noCommande = html($_POST['noCommande']);
 	
+	if($modeleCommande->isCanceled($noCommande))
+	{
+		echo "Vous ne pouvez pas modifier les livraisons car la commande à été annulée.";
+		exit();
+	}
+	if($modeleCommande->isClosed($noCommande))
+	{
+		echo "Vous ne pouvez pas modifier les livraisons car la commande à été fermée.";
+		exit();	
+	}
+	
 	$modeleLivraison->removeLivraisonsByCommande($noCommande);
 	
 	if(isset($_POST['livraisons']))
 	{
 		foreach($_POST['livraisons'] as $livraison)
 		{
-			print_r_html($livraison);
 			$modeleLivraison->addLivraisonToCommande($noCommande, html($livraison['numPiece']), convertDate_jmA_Amj(html($livraison['date'])), html($livraison['quantite']));
 		}
 	}
@@ -180,15 +190,23 @@ if (isset($_GET['action']) && $_GET['action'] == "ajout"){
 if (isset($_GET['modifier']) && $_GET['modifier'] != ""){
 	$noCommande = html($_GET['modifier']);
 
+	if(!$modeleCommande->isCommandeDeMasse($noCommande))
+	{
+		$_SESSION['message'] = "La commande n'est pas une commande de masse.";
+		header("Location: ../../"); 
+		exit();
+	}
 	if($modeleCommande->isCanceled($noCommande))
 	{
 		$_SESSION['message'] = "La commande $noCommande est annulée, vous ne pouvez plus la modifier.";
 		header("Location: ./?visualiser=$noCommande"); 
+		exit();
 	}
 	if($modeleCommande->isClosed($noCommande))
 	{
 		$_SESSION['message'] = "La commande $noCommande est fermée, vous ne pouvez plus la modifier.";
 		header("Location: ./?visualiser=$noCommande");
+		exit();
 	}
 
 	$commande = $modeleCommande->getCommande($noCommande);
@@ -249,6 +267,14 @@ if (isset($_GET['visualiser']) && $_GET['visualiser'] != ""){
 	// Récupération du numéro de commande
 	$noCommande = html($_GET['visualiser']);
 	
+	if(!$modeleCommande->isCommandeDeMasse($noCommande))
+	{
+		$_SESSION['message'] = "La commande n'est pas une commande de masse.";
+		header("Location: ../../");
+		exit();
+	}
+	
+	
 	// Récupération de la commande
 	$commande = $modeleCommande->getCommande($noCommande);
 	
@@ -282,7 +308,13 @@ if (isset($_GET['visualiser']) && $_GET['visualiser'] != ""){
 if (isset($_GET['details']) && $_GET['details'] != ""){
 	$noCommande = html($_GET['details']);
 
-
+	if(!$modeleCommande->isCommandeDeMasse($noCommande))
+	{
+		$_SESSION['message'] = "La commande n'est pas une commande de masse.";
+		header("Location: ../../");
+		exit();
+	}
+	
 	$commande = $modeleCommande->getCommande($noCommande);
 	
 	// Récupération de l'utilisateur qui à passé la commande

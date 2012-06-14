@@ -44,6 +44,16 @@ function calculAllResteALivrer()
 function verifierNotNegatifRAL()
 {
 	valider = true;
+	
+	$.each($("table tr.piece"), function(index, value){
+		var ral = $(value).find("td.resteALivrer").html();
+		console.log(ral);
+		if(parseInt(ral) < parseInt("0")) 
+		{
+			valider = false;
+		}
+	});
+	if(!valider) alert("Le montant restant à livrer d'une pièce ne peut être négative ou nulle.");
 	return valider;
 }
 
@@ -105,10 +115,16 @@ function validerLesLivraisons()
 			},
 			url: 'index.php?ajax=ajoutLivraisons',
 			complete: function(x){
-				$('body').append(x.responseText);
-				console.log("complete");
 				calculAllResteALivrer();
-				alert("Les livraisons ont étés enregistrées.");
+				if(x.responseText == "")
+				{
+					alert("Les livraisons ont étés enregistrées.");
+				}
+				else
+				{
+					alert(x.responseText);
+				}
+				
 			}
 		});
 	}
@@ -130,5 +146,11 @@ $(document).ready(function() {
 		validerLesLivraisons();
 		console.log("click");
 		e.preventDefault();
+	});
+	
+	$("input.quantite").change(function(e){
+		calculAllResteALivrer();
+		verifierNotNegatifQuantite();
+		verifierNotNegatifRAL();
 	});
 });
