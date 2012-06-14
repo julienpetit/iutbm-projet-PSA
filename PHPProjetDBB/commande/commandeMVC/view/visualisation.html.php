@@ -1,4 +1,4 @@
-<?php header_html("Visualisation d'une commande de masse", array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
+<?php header_html("Visualisation de la commande n°" . $commande['no_commande'], array("web/style.css", "../../include/global.css", "../../include/framework/foundation.css"), array("web/script.js", "web/scriptModification.js"))?>
 			<div id='message'><p><?php afficheMessage(); ?></p></div>
 			<div id='section'>
 				
@@ -96,8 +96,8 @@
 					
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
-					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Etat des livraisons</a>
-					<a href='../../commande/accueil.php' class="small green nice button radius" >Retour à l'accueil</a>
+					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small green nice button radius" >Etat des livraisons</a>
+					<a href='../../commande/accueil.php' class="small red nice button radius" >Retour à l'accueil</a>
 					<?php 
 						if(!$modeleCommande->isCanceled($commande['no_commande']))
 						{

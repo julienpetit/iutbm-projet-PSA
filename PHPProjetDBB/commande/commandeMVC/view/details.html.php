@@ -1,5 +1,10 @@
-<?php header_html("Détails des livraisons d'une commande de masse", array("web/style.css", "../../include/css/global.css", "../../include/framework/foundation.css"), array("web/scriptDetails.js"))?>
-			
+<?php header_html("Détails des livraisons de la commande n°" . $commande['no_commande'], array("web/style.css", "../../include/css/global.css", "../../include/framework/foundation.css"), array("web/scriptDetails.js"))?>
+
+			<script src="/include/js/development-bundle/jquery.min.js" type="text/javascript"></script>
+			<script src="/include/js/development-bundle/ui/jquery.ui.core.js" type="text/javascript"></script>
+			<script src="/include/js/development-bundle/ui/jquery.ui.widget.js" type="text/javascript"></script>
+			<script src="/include/js/development-bundle/ui/jquery.ui.datepicker.js" type="text/javascript"></script>
+			<script type='text/javascript' src='/include/js/development-bundle/jquery.dataTables.min.js'></script>	
 			<style>
 				table#piecePrincipales, table#pieceEnvironnement {
 					width: 900px !important;
@@ -34,7 +39,7 @@
 						<table>
 							<tr>
 								<td><label>Commande n° : </label></td>
-								<td><?php printHtml($noCommande); ?></td>
+								<td id='noCommande' ><?php printHtml($noCommande); ?></td>
 							</tr>
 							<tr>
 								<td><label>Effectuée le : </label></td>
@@ -71,9 +76,6 @@
 								</tbody>
 							</table>
 			
-			
-			
-			
 							<table id="pieceEnvironnement">
 								<caption>Pièces d'environnement</caption>
 								<thead>
@@ -90,16 +92,16 @@
 							</table>
 			
 						</div>
-					</fieldset>	
+					</fieldset>
 					
 					<!-- Champs cachés -->
 					<input type='hidden' id='no_commande' name='no_commande' value='<?php echo html($noCommande); ?>' />
 					<input type='hidden' id='id_user' name='id_user' value='<?php echo html($user['id_utilisateur']); ?>' />
 					
-					<!-- Boutons de soumission du formulaire -->
-					<a href='./?visualiser=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Retour à la commande</a>
-					<a href='../../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
-					<a href='./?fermerCommande=<?php printHtml($commande['no_commande']); ?>' class="small red nice button radius" >Fermer la commande</a>
+					<!-- Boutons de soumission du formulaire -->	
+					<a href='../../commande/accueil.php' id='validerLivraisons' class="small green nice button radius" >Valider la commande</a>
+					<a href='./?visualiser=<?php printHtml($commande['no_commande']); ?>' class="small red nice button radius" >Retour à la commande</a>
+					
 				</form>
 			</div>
 <?php footer_html(); 

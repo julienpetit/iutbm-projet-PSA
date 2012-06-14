@@ -18,7 +18,7 @@ class Livraison
 	
 		$sql = "SELECT * FROM LIVRAISON
 				 WHERE reference_piece = '$refPiece' AND no_commande = '$noCommande'";
-		echo $sql;
+		//echo $sql;
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de récupération des livraisons.";
 			exit();
@@ -35,5 +35,29 @@ class Livraison
 		return $livraisons;
 	}
 
+	function removeLivraisonsByCommande($noCommande)
+	{
+		$sql = "DELETE FROM LIVRAISON WHERE no_commande = '$noCommande'";
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur de suppression des livraisons.";
+			exit();
+		}
+		
+	}
+	
+	function addLivraisonToCommande($noCommande, $numPiece, $date, $quantite)
+	{
+		$sql = "INSERT INTO LIVRAISON SET
+					no_commande = '$noCommande',
+					reference_piece = '$numPiece',
+					date_livraison = '$date',
+					quantite_livree = $quantite";
+		
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo mysqli_error($this->link);
+			echo $sql;
+			exit();
+		}
+	}
 }
 ?>

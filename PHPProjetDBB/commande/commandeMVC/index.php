@@ -26,6 +26,7 @@ $modeleCommande = new Commande($link);
 $modelePiece = new Piece($link);
 $modeleEntite = new Entite($link);
 $modeleCadence = new Cadence($link);
+$modeleLivraison = new Livraison($link);
 
 $date = date("Y-m-d");
 $heure = date("H:i");
@@ -68,7 +69,9 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "affichageFormulaireAjoutPiece"){
 	exit();
 }
 
-
+/**
+ * Ajax --> Enregistrement ajout piece
+ */
 if (isset($_GET['ajax']) && $_GET['ajax'] == "EnregistreAjoutPiece"){
 	
 	$reference=html($_POST["reference"]);
@@ -79,6 +82,25 @@ if (isset($_GET['ajax']) && $_GET['ajax'] == "EnregistreAjoutPiece"){
 	exit();
 }
 
+/**
+ * Ajax --> Enregistrement d'es livraisons
+ */
+if (isset($_GET['ajax']) && $_GET['ajax'] == "ajoutLivraisons"){
+
+	$noCommande = html($_POST['noCommande']);
+	
+	$modeleLivraison->removeLivraisonsByCommande($noCommande);
+	
+	if(isset($_POST['livraisons']))
+	{
+		foreach($_POST['livraisons'] as $livraison)
+		{
+			print_r_html($livraison);
+			$modeleLivraison->addLivraisonToCommande($noCommande, html($livraison['numPiece']), convertDate_jmA_Amj(html($livraison['date'])), html($livraison['quantite']));
+		}
+	}
+	exit();
+}
 
 
 

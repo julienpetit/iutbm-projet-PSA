@@ -338,25 +338,25 @@ class Piece implements iPiece
 	 */
 	public function displayRowPrincipaleDisabledLivraisons($piece, $noCommande){
 		
-		print_r_html($livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
+		$livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande);
 		
-		echo "<tr>\n";
+		echo "<tr class='piece'>\n";
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
-		echo "<td>".$piece['quantite']."</td\n>";
-		echo "<td>".$piece['potentiel']."</td>\n";
-		echo "<td></td>";
+		echo "<td class='qte' >".$piece['quantite']."</td\n>";
+		echo "<td class='potentiel'>".$piece['potentiel']."</td>\n";
+		echo "<td class='resteALivrer' ></td>";
 		echo "</tr>\n";
-		echo "<tr>";
+		echo "<tr class='row_livraisons' >";
 		echo "<td colspan='5'>";
 		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
 		for ($i = 0; $i < 10; $i++) 
 		{	
-			echo $i%2 ==0 ? "<span class='content_date_quantite'>" : "";
-			
-			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['date_livraison']) : ""; echo "'>";
+			echo $i%2 == 0 ? "<span class='content_date_quantite'>" : "";
+			echo "<div class='date_quantite' >";
+			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? convertDate_Amj_jmA(html($livraisons[$i]['date_livraison'])) : ""; echo "'>";
 			echo "<input type='text' class='quantite' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['quantite_livree']) : ""; echo "'>";
-			
+			echo "</div>";
 			echo $i%2 == 0 ? "<br />" : "";
 			echo $i%2 == 1 ? "</span>" : "";
 		}
@@ -371,23 +371,23 @@ class Piece implements iPiece
 	 */
 	public function displayRowEnvironnementDisabledLivraisons($piece, $noCommande){
 		
-		print_r_html($livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande));
-		echo "<tr>\n";
+		$livraisons = $this->modeleLivraison->getLivraisonByPieceCommande($piece['reference'], $noCommande);
+		echo "<tr class='piece'>\n";
 		echo "<td>".$piece['reference']."</td>\n";
 		echo "<td>".$piece['libelle']."</td>\n";
-		echo "<td>".$piece['quantite']."</td\n>";
-		echo "<td></td>";
+		echo "<td class='qte' >".$piece['quantite']."</td\n>";
+		echo "<td class='resteALivrer' ></td>";
 		echo "</tr>\n";
-		echo "<tr>";
+		echo "<tr class='row_livraisons' >";
 		echo "<td colspan='5'>";
 		echo "<span class='headeTableDetails'>Livraisons <br>Date / Quantité</span>";
 		for ($i = 0; $i < 10; $i++) 
 		{	
-			echo $i%2 ==0 ? "<span class='content_date_quantite'>" : "";
-			
-			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['date_livraison']) : ""; echo "'>";
+			echo $i%2 == 0 ? "<span class='content_date_quantite'>" : "";
+			echo "<div class='date_quantite' >";
+			echo "<input type='text' class='date' value='"; echo isset($livraisons[$i]) ? convertDate_Amj_jmA(html($livraisons[$i]['date_livraison'])) : ""; echo "'>";
 			echo "<input type='text' class='quantite' value='"; echo isset($livraisons[$i]) ? html($livraisons[$i]['quantite_livree']) : ""; echo "'>";
-			
+			echo "</div>";
 			echo $i%2 == 0 ? "<br />" : "";
 			echo $i%2 == 1 ? "</span>" : "";
 		}

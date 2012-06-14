@@ -27,6 +27,10 @@ body, h1, h2, h3, h4, h5, h6 {
 	color: red;
 }
 
+.bc_green { background-color: green; }
+.bc_blue { background-color: blue; }
+.bc_red { background-color: red; }
+
 /* CONNEXION --------------------------------------------------- */
 div#content_connexion {
 	padding: 30px 25px 40px 40px ;
