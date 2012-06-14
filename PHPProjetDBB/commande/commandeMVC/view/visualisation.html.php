@@ -105,7 +105,6 @@
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
 					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small green nice button radius" >Etat des livraisons</a>
-					<a href='../../commande/accueil.php' class="small red nice button radius" >Retour à l'accueil</a>
 					<?php
 						if(!$modeleCommande->isCanceled($commande['no_commande']))
 						{

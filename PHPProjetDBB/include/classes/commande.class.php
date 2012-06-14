@@ -96,6 +96,8 @@ class Commande
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();
 		}		
+		
+		$_SESSION['message'] = "La commande a été correctement ajoutée.";
 
 		return true;
 	}
