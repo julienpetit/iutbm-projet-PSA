@@ -35,6 +35,18 @@ if(isset($_GET['ajax']) && $_GET['ajax'] == "verifierPresenceCommande")
 }
 
 
+/**
+ * Ajax --> autocomplétion
+ */
+if(isset($_GET['ajax']) && $_GET['ajax'] == "searchCommande")
+{
+	$chaine = html($_GET['term']);
+	
+	$modeleCommande->autocomplete($chaine);
+	exit();
+}
+
+
 
 include("accueil.html.php");
 ?>
