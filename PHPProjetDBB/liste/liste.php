@@ -12,10 +12,12 @@ header_html("Liste des commandes", array("style.css"), array("script.js", "../co
 
 mysql_query("SET NAMES UTF8");
 ?>
-<input type="reset" id="anu" value="Accueil" class='small green nice button radius' onclick="document.location.href='../commande/accueil.php';" /> 
-    
-   <div id="content">
-   		<div id="table">
+<div id="content_liste">
+   <br/>
+	<input type="reset" id="anu" value="Accueil" class='small green nice button radius' onclick="document.location.href='../commande/accueil.php';" /> 
+    <br/>
+    <br/>
+   	<div id="table_liste">
 		<table id="tableau_liste">
 		<thead>
 			<tr>
@@ -53,7 +55,8 @@ while($row = mysql_fetch_array($query)){
 }
 	?>
 		</tbody>
-		</table>        
+		</table>
+		<br/>     
 		</div>  	
 	</div>
 <?php footer_html();?>
