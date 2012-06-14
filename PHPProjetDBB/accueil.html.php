@@ -141,53 +141,94 @@ function verifierPresenceCommande()
 <div id='content_search'>
 	<input type='text' id='search_commande' name='search_commande' placeholder='Rechercher une commmande' />
 </div>
+
+<?php $droit = $_SESSION['no_droit']; ?>
 <center>
 	<TABLE cellspacing="10px">
 		<tr>
-			<td texte="Passer une commande de pièces en flux synchrone"><a
-				href="/commande/pieces_synchrone.php"><img class="onebutton" src="include/css/img/cmd_pieces.jpg"
-					width="80" height="80" border="0" /> </a></td>
-			<td texte="Passer une commande de masse"><a href="/commande/commandeMVC/?ajout"><img
-					class="onebutton" src="include/css/img/cmd_masse.jpg" width="80"
-					height="80" border="0" /> </a></td>
-			<td texte="Visualiser une commande"><a href="/commande/commandeMVC/?visualiser=" class='link_clickable' ><img class="onebutton"
-					src="include/css/img/visu_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
-			<td texte="Modifier une commande"><a href="/commande/commandeMVC/?modifier=" class='link_clickable' ><img class="onebutton"
-					src="include/css/img/modif_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
-			<td texte="Annuler une commande"><a href="/commande/commandeMVC/?annuler=" class='link_clickable annuler' ><img class="onebutton"
-					src="include/css/img/annul_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
+			<td texte="Passer une commande de pièces en flux synchrone">
+				<?php if(in_array(1, $droit)) {?>
+				<a href="/commande/pieces_synchrone.php">
+					<img class="onebutton" src="include/css/img/cmd_pieces.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php } ?>
+			</td>
+			<td texte="Passer une commande de masse">
+				<?php if(in_array(2, $droit)) {?>
+				<a href="/commande/commandeMVC/?ajout">
+					<img class="onebutton" src="include/css/img/cmd_masse.jpg" width="80" height="80" border="0" />
+				</a>
+				<?php }?>
+				</td>
+			<td texte="Visualiser une commande">
+				<a href="/commande/commandeMVC/?visualiser=" class='link_clickable' >
+					<img class="onebutton" src="include/css/img/visu_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+			</td>
+			<td texte="Modifier une commande">
+				<?php if(in_array(2, $droit)) {?>
+				<a href="/commande/commandeMVC/?modifier=" class='link_clickable' >
+					<img class="onebutton" src="include/css/img/modif_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php } ?>
+			</td>
+			<td texte="Annuler une commande">
+				<?php if(in_array(3, $droit) or in_array(4, $droit)) {?>
+				<a href="/commande/commandeMVC/?annuler=" class='link_clickable annuler' >
+					<img class="onebutton" src="include/css/img/annul_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php }?>
+			</td>
 		</tr>
 		<tr>
-			<td texte="Déclarer la réception d'une commande de pièce synchrone"><a
-				href="/commande/reception_commande_synchrone.php?num_commande=" class='link_clickable'><img class="onebutton"
-					src="include/css/img/reception_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
-			<td texte="Déclarer des livraisons de pièces"><a href="/commande/commandeMVC/?details=" class='link_clickable'><img
-					class="onebutton" src="include/css/img/livraison_cmd.jpg"
-					width="80" height="80" border="0" /> </a></td>
-			<td texte="Fermer une commande"><a href="/commande/commandeMVC/?fermer=" class='link_clickable fermer'><img class="onebutton"
-					src="include/css/img/fermer_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
-			<td texte="Lister des commandes"><a href="/liste/liste.php"><img class="onebutton"
-					src="include/css/img/lister_cmd.jpg" width="80" height="80"
-					border="0" /> </a></td>
-			<td texte="Extraire des données"><a href="/exportation/export.php"><img class="onebutton"
-					src="include/css/img/extraire_donnees.jpg" width="80" height="80"
-					border="0" /> </a></td>
+			<td texte="Déclarer la réception d'une commande de pièce synchrone">
+				<a href="/commande/reception_commande_synchrone.php?num_commande=" class='link_clickable'>
+					<img class="onebutton" src="include/css/img/reception_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+			</td>
+			<td texte="Déclarer des livraisons de pièces">
+				<?php if(in_array(6, $droit)) {?>
+				<a href="/commande/commandeMVC/?details=" class='link_clickable'>
+					<img class="onebutton" src="include/css/img/livraison_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php }?>
+			</td>
+			<td texte="Fermer une commande">
+				<?php if(in_array(7, $droit)) {?>
+				<a href="/commande/commandeMVC/?fermer=" class='link_clickable fermer'>
+					<img class="onebutton" src="include/css/img/fermer_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php } ?>
+			</td>
+			<td texte="Lister des commandes">
+				<a href="/liste/liste.php">
+					<img class="onebutton" src="include/css/img/lister_cmd.jpg" width="80" height="80" border="0" /> 
+				</a>
+			</td>
+			<td texte="Extraire des données">
+				<?php if(in_array(8, $droit)) {?>
+				<a href="/exportation/export.php">
+					<img class="onebutton" src="include/css/img/extraire_donnees.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php }?>
+			</td>
 		</tr>
 		<tr>
-			<td texte="Mise à jour des données applicatives"><a href="/donnee_applicative/maj.php"><img
-					class="onebutton" src="include/css/img/maj_donnees_app.jpg"
-					width="80" height="80" border="0" /> </a></td>
+			<td texte="Mise à jour des données applicatives">
+				<?php  if(in_array(9, $droit) or in_array(10, $droit)) { ?>
+				<a href="/donnee_applicative/maj.php">
+					<img class="onebutton" src="include/css/img/maj_donnees_app.jpg" width="80" height="80" border="0" /> 
+				</a>
+				<?php }?>
+			</td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td texte="Quitter"><a href="/connexion/deconnexion.php"><img class="onebutton"
-					src="include/css/img/quitter.jpg" width="80" height="80" border="0" />
-			</a></td>
+			<td texte="Quitter">
+				<a href="/connexion/deconnexion.php">
+					<img class="onebutton" src="include/css/img/quitter.jpg" width="80" height="80" border="0" />
+				</a>
+			</td>
 		</tr>
 	</TABLE>
 </center>

@@ -43,7 +43,7 @@ else
 {
 	echo("<input type=\"radio\"  id=\"masse\" name=\"option\" value=\"masse\" style=\"display:none;\" onclick=\"nobox();choix_action1()\" /><label for=\"masse\" style=\"display:none;\">Passer une commande de masse</label>");
 }
- 
+
 echo("<input type=\"radio\"  id=\"visualiser\" name=\"option\" value=\"visualiser\"  onclick=\"box();choix_action1();\"/><label for=\"visualiser\">Visualiser une commande</label>
 		<br/>");
 
@@ -66,7 +66,7 @@ else
 {
 	echo("<input type=\"radio\"  id=\"annuler\" name=\"option\" value=\"annuler\" style=\"display:none;\" onclick=\"box();choix_action1();\" /><label for=\"annuler\"style=\"display:none;\">Annuler une commande</label>");
 }
- 
+
 if(in_array(5, $droit))
 {
 	echo("<input type=\"radio\"  id=\"receptionner\" name=\"option\" value=\"receptionner\" onclick=\"box();choix_action1();\"/><label for=\"receptionner\">D&eacute;clarer la r&eacute;ception d'une commande de pi&egrave;ce synchrone</label>
@@ -76,7 +76,7 @@ else
 {
 	echo("<input type=\"radio\"  id=\"receptionner\" name=\"option\" value=\"receptionner\" onclick=\"box();choix_action1();\" style=\"display:none;\"/><label for=\"receptionner\" style=\"display:none;\">D&eacute;clarer la r&eacute;ception d'une commande de pi&egrave;ce synchrone</label>");
 }
- 
+
 if(in_array(6 , $droit))
 {
 	echo("<input type=\"radio\"  id=\"declarer\" name=\"option\" value=\"declarer\" onclick=\"box();choix_action1();\"/><label for=\"declarer\">D&eacute;clarer des livraisons de pi&egrave;ces</label>
@@ -86,7 +86,7 @@ else
 {
 	echo("<input type=\"radio\"  id=\"declarer\" name=\"option\" value=\"declarer\" onclick=\"box();choix_action1();\" style=\"display:none;\" /><label for=\"declarer\" style=\"display:none;\">D&eacute;clarer des livraisons de pi&egrave;ces</label>");
 }
- 
+
 if(in_array(7, $droit))
 {
 	echo("<input type=\"radio\"  id=\"fermer\" name=\"option\" value=\"fermer\" onclick=\"box();choix_action1();\" /><label for=\"fermer\">Fermer une commande</label>
@@ -96,7 +96,7 @@ else
 {
 	echo("<input type=\"radio\"  id=\"fermer\" name=\"option\" value=\"fermer\" onclick=\"box();choix_action1();\" style=\"display:none;\" /><label for=\"fermer\" style=\"display:none;\">Fermer une commande</label>");
 }
- 
+
 echo("<input type=\"radio\"  id=\"lister\" name=\"option\" value=\"lister\" onclick=\"nobox();choix_action1();\"/><label for=\"lister\">Lister des commandes</label><br />");
 
 
