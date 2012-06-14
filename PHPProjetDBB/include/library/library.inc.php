@@ -28,6 +28,14 @@ function convertDate_Amj_jmA($date)
 	return strftime("%d/%m/%Y", strtotime($date)); 
 }
 
+// Conversion date : JJ/MM/AAA -> AAAA-MM-JJ
+function convertDate_jmA_Amj($date)
+{
+	setlocale (LC_TIME, 'en_EN','en');
+	return strftime("%Y-%m-%d", strtotime($date));
+}
+
+
 // Conversion de 1 -> 01
 function nb2chiffres($nb){
 	return sprintf("%02d", $nb);

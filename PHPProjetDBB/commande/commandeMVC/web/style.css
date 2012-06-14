@@ -56,7 +56,7 @@ form#formulaire div#boxHistory {
 
 /* Tableau de pièces */
 form#formulaire div#piecesAjoutee table {
-	display: block;
+
 	width: 650px;
 	margin: 10px;
 	border-collapse: collapse;
