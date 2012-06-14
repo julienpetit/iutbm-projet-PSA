@@ -29,14 +29,20 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 	<div id='bandeau_connexion'>
 		<div id="info_content">
 			<ul id='menu'>
-				<li><a href='/commande/accueil.php' >Accueil</a></li>
+				<li><a href='/' >Accueil</a></li>
 			</ul>
 			
 			<ul id='infos'>
 				
 				<?php if(isset($_SESSION['id'])) 
-					echo "<li>".html($_SESSION['id'])."</li>";
-					echo "<li><a href='/connexion/deconnexion.php' >Se déconnecter</a></li>"; 
+					  {
+					  	print_r_html($_SESSION);
+					  	echo "<li>".html($_SESSION['id'])."</li>";
+					  	echo "<li><a href='/connexion/deconnexion.php' >Déconnexion</a></li>";
+					  }
+					  else {
+					  	echo "<li><a href='/connexion/page.php' >Connexion</a></li>";
+					  }
 				?>
 			</ul>
 		</div>
@@ -54,8 +60,7 @@ function footer_html() { ?>
 		</div>
 		<div id='footer'>
 		      <hr />
-		      Site web réalisé par la superbe équipe de S3bisA2 - DUT INFO - IUT BM<br />
-		      We rock !
+		      Site web réalisé par les étudiants de S3 bis A2 - DUT INFO - IUT BM<br />
 		</div>
 	</div>
 </body>

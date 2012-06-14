@@ -239,11 +239,28 @@ class Commande
 			$_SESSION['message'] = "La commande a été annulée";
 		}
 		else
-			$_SESSION['message'] = "La commande n'a pas été annulée";
+			$_SESSION['message'] = "La commande est déjà annulée";
 	}
 	
-	public function fermerCommande($noCommande){
+	public function fermerCommande($noCommande, $idUser, $motif){
+		if(!$this->isClosed($noCommande))
+		{
+			$commande = $this->getCommande($noCommande);
+			$jour = date("Y-m-j");
+			$heure = date("G:i:s");
+			$infoCommande = array('date_fermeture' => $jour,
+								  'heure_fermeture' => $heure,
+						   		  'id_utilisateur_ferme' => $idUser,
+			);
 		
+			if($motif != "") $infoCommande['motif_fermeture'] = $motif;
+				
+			//print_r_html($infoCommande);
+			$this->updateCommande($noCommande, $infoCommande);
+			$_SESSION['message'] = "La commande a été fermée correctement.";
+		}
+		else
+			$_SESSION['message'] = "La commande est déjà fermée.";
 	}
 	
 	public function verifiePresenceCommande($noCommande)

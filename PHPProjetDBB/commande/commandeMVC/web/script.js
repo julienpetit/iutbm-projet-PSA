@@ -1,6 +1,38 @@
+/**
+ * Affiche un icone "coché" à toutes les pièces qui ont étés ajoutées à la commande dans la liste des pièces disponibles.
+ */
+function addClassSelectedPiecesDispo(){
+	// création d'une liste des pièces ajoutées dans la commande
+	pieces = new Array();
+
+	$('#pieceEnvironnement > tbody > tr').each(function(i, value){
+		pieces.push($(value).find("td:first-child").html());
+	});
+
+	$('#piecePrincipales > tbody > tr').each(function(i, value){
+		pieces.push($(value).find("td:first-child").html());
+	});
+
+	// Parcours de la liste des pièces disponibles et ajout de classe "selected" si la pièce à été selectionnée
+	$('#listePieces table > tbody > tr.piece').each(function(i, value){
+		$(value).find('td:last-child').removeClass('selected');
+		if($.inArray($(value).find("td:first-child").html(), pieces) != -1){
+			$(value).find('td:last-child').addClass('selected');
+		}
+	});
+};
+	
 $(document).ready(function() {
 
 
+	/**
+	 * Click sur un bouton qui mérite une confirmation
+	 */
+	$(".confirm").click(function(e){
+		
+	});
+	
+	
 	/**
 	 * Soumission du formulaire
 	 */
@@ -265,29 +297,7 @@ $(document).ready(function() {
 	 */
 
 
-	/**
-	 * Affiche un icone "coché" à toutes les pièces qui ont étés ajoutées à la commande dans la liste des pièces disponibles.
-	 */
-	function addClassSelectedPiecesDispo(){
-		// création d'une liste des pièces ajoutées dans la commande
-		pieces = new Array();
 
-		$('#pieceEnvironnement > tbody > tr').each(function(i, value){
-			pieces.push($(value).find("td:first-child").html());
-		});
-
-		$('#piecePrincipales > tbody > tr').each(function(i, value){
-			pieces.push($(value).find("td:first-child").html());
-		});
-
-		// Parcours de la liste des pièces disponibles et ajout de classe "selected" si la pièce à été selectionnée
-		$('#listePieces table > tbody > tr.piece').each(function(i, value){
-			$(value).find('td:last-child').removeClass('selected');
-			if($.inArray($(value).find("td:first-child").html(), pieces) != -1){
-				$(value).find('td:last-child').addClass('selected');
-			}
-		});
-	};
 
 	/**
 	 * Supprime la ligne de la pièce dont la référence est passée en parametre dans le tableau de pièces
