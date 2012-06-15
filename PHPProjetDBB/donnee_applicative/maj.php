@@ -20,18 +20,18 @@ echo("<body>");
 	<div id="page">
 		<form>
 			<fieldset>
-				<label> Table à selectionner </label>
+				<label> Table à sélectionner </label>
 				<select name="table" onchange="choix_table(this.value)">
-					<option select="selected">Selectionner table</option>
+					<option select="selected">Sélectionner table</option>
 					<option value="fournisseur">Fournisseur</option>
-					<option value="piece">Piece</option>
-					<option value="silouhette">Silouhette</option>
+					<option value="piece">Pièce</option>
+					<option value="silouhette">Silhouette</option>
 					<option value="utilisateur">Utilisateur</option>
 				</select>
 			</fieldset>
 		</form>
 	</div>	
-	<br/><br/>	
+	<br/>	
 	<div><a href='/' class='small green nice button radius' >Accueil</a></div>
 	<div id="page1"></div>	
    </body>

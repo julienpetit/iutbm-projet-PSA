@@ -201,6 +201,7 @@ $(document).ready(function() {
 		if(!verifieQuantite()) { valide = false; }
 		if(!verifieSilhouette()) { valide = false; }
 		if(!verifieEntite()) { valide = false; }
+		if(!verifieVIS()) { valide = false; }
 //		if(!verifieNoDossier()) { valide = false; }
 		if(!valide) return false;
 	});
@@ -324,6 +325,26 @@ $(document).ready(function() {
 		else {
 			if(selectEntite.parent().find(".error-form").length > 0){
 				selectEntite.parent().find(".error-form").remove();		
+			}
+			return true;
+		}
+	}
+	
+	/* TEST CHAMPS DE TEXTE
+	 * Vérifie que le champs désignation est rempli et est un nombre. return true si valide.
+	 * Dans le cas contraire, affichage d'un message + return false
+	 */
+	function verifieVIS(){
+		champs = $("input#ref_vehicule");
+		if(isNaN(champs.val()) || champs.val() == "") {
+			if(champs.parent().find(".error-form").length == 0){
+				champs.parent().append("<span class='error-form'>Veuillez entrez un numéro pour le vis.</span>");
+			}
+			return false;
+		}
+		else {
+			if(champs.parent().find(".error-form").length > 0){
+				champs.parent().find(".error-form").remove();		
 			}
 			return true;
 		}

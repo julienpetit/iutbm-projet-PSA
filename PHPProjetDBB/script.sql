@@ -314,6 +314,7 @@ insert into APPROVISIONNE values ('miroir de rétroviseur T12',2);
 insert into APPROVISIONNE values ('housse de siège T45',8);
 insert into APPROVISIONNE values ('cable de freins T07',7);
 insert into APPROVISIONNE values ('pot echappement T19 sauf T35',5);
+insert into APPROVISIONNE values ('cable de freins T07',9);
 
 insert into DEST_COMMANDE values ('projetpsa.bdd@gmail.com', 1);
 insert into DEST_COMMANDE values ('adresse_mail3@gmail.com', 2);
