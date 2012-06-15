@@ -11,7 +11,12 @@ function printHtml($texte)
 
 function afficheMessage()
 {
-	echo isset($_POST['message']) ? html($_POST['message']) : "";
+	if(isset($_SESSION['message']))
+	{
+		echo html($_SESSION['message']);
+		$_SESSION['message'] = "";
+	}
+	
 }
 
 // Conversion date : AAAA-MM-JJ -> jeudi 10 novembre 2011

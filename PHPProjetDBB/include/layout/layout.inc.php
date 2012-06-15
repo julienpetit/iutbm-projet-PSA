@@ -10,14 +10,16 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 <!-- Styles -->
 <link href='/include/css/global.css' rel='stylesheet' type='text/css'>
 <link href='/include/framework/foundation.css' rel='stylesheet' type='text/css'>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
-<?php foreach ($styles as $css) {
+<link href="/include/js/jquery/css/smoothness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css"/>
+<?php 
+foreach ($styles as $css) {
 	echo "<link href='$css' rel='stylesheet' type='text/css'>\n";
-}?>
+}
+?>
 
 <!-- Scripts -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript" ></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script src="/include/js/jquery/js/jquery-1.7.2.min.js" type="text/javascript" ></script>
+<script src="/include/js/jquery/js/jquery-ui-1.8.21.custom.min.js"></script>
 
 <?php foreach ($scripts as $js) {
 	echo "<script src='$js' type='text/javascript'></script>\n";
@@ -29,14 +31,19 @@ function header_html($title = "Projet PSA iutbm", $styles = array(), $scripts = 
 	<div id='bandeau_connexion'>
 		<div id="info_content">
 			<ul id='menu'>
-				<li><a href='/commande/accueil.php' >Accueil</a></li>
+				<li><a href='/' >Accueil</a></li>
 			</ul>
 			
 			<ul id='infos'>
 				
 				<?php if(isset($_SESSION['id'])) 
-					echo "<li>".html($_SESSION['id'])."</li>";
-					echo "<li><a href='/connexion/deconnexion.php' >Se déconnecter</a></li>"; 
+					  {
+					  	echo "<li>".html($_SESSION['id'])."</li>";
+					  	echo "<li><a href='/connexion/deconnexion.php' >Déconnexion</a></li>";
+					  }
+					  else {
+					  	echo "<li><a href='/connexion/page.php' >Connexion</a></li>";
+					  }
 				?>
 			</ul>
 		</div>
@@ -54,8 +61,7 @@ function footer_html() { ?>
 		</div>
 		<div id='footer'>
 		      <hr />
-		      Site web réalisé par la superbe équipe de S3bisA2 - DUT INFO - IUT BM<br />
-		      We rock !
+		      Site web réalisé par les étudiants de S3 bis A2 - DUT INFO - IUT BM<br />
 		</div>
 	</div>
 </body>

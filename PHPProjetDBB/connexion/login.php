@@ -73,7 +73,7 @@ if ($loginOK) {
 
 	}
 
-	header("Refresh: 0;URL=../commande/accueil.php");
+	header("Location: /bienvenue.html.php");
 	echo"Bonjour ".$data['prenom_utilisateur'].", ".$data['nom_utilisateur']."";
 
 

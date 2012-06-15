@@ -212,7 +212,7 @@ $(document).ready(function() {
 	 */
 	function verifieDesignation(){
 		champs = $("input#des");
-		if(isNaN(champs.val()) || champs.val() == "") {
+		if(isNaN(champs.val()) || champs.val() == "") {
 			if(champs.parent().find(".error-form").length == 0){
 				champs.parent().append("<span class='error-form'>Veuillez entrez un numéro de désignation</span>");
 			}
@@ -252,7 +252,7 @@ $(document).ready(function() {
 	 */
 	function verifieQuantite(){
 		champs = $("input#quant");
-		if(isNaN(champs.val()) || champs.val() == "") {
+		if(isNaN(champs.val()) || champs.val() == "") {
 			if(champs.parent().find(".error-form").length == 0){
 				champs.parent().append("<span class='error-form'>Veuillez entrer un entier pour la quantité </span>");
 			}

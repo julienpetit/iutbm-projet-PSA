@@ -67,7 +67,7 @@ class Commande
 
 
 	public function getCommande($noCommande){
-		$tabCommande = $this->getList(" no_commande = $noCommande ");
+		$tabCommande = $this->getList(" no_commande = '$noCommande' ");
 
 		return isset($tabCommande[0]) ? $tabCommande[0] : null;
 	}
@@ -96,6 +96,8 @@ class Commande
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();
 		}		
+		
+		$_SESSION['message'] = "La commande a été correctement ajoutée.";
 
 		return true;
 	}
@@ -160,8 +162,8 @@ class Commande
 				$sql .= ", ";
 			$i++;
 		}
-		$sql .= " WHERE no_commande = $noCommande";
-		echo $sql;
+		$sql .= " WHERE no_commande = '$noCommande'";
+		//echo $sql;
 		if(!$resultat = mysqli_query($this->link, $sql)) {
 			echo "Erreur de de mise à jour de la commande n°$noCommande.";
 			exit();
@@ -221,20 +223,92 @@ class Commande
 			return false;
 	}
 	
-	public function annulerCommande($noCommande){
+	public function isCommandeDeMasse($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['code_type_commande'] == 'M')
+			return true;
+		else
+			return false;
+	}
+	
+	public function isCommandeSynchrone($noCommande){
+		$commande = $this->getCommande($noCommande);
+		if($commande['code_type_commande'] == 'S')
+			return true;
+		else
+			return false;
+	}
+	
+	
+	public function annulerCommande($noCommande, $idUser, $motif = ""){
 		if(!$this->isCanceled($noCommande))
 		{
 			$commande = $this->getCommande($noCommande);
 			$jour = date("Y-m-j");
 			$heure = date("G:i:s");
 			$infoCommande = array('date_annulation' => $jour, 
-								  'heure_annulation' => $heure);
+								  'heure_annulation' => $heure,
+								  'id_utilisateur_annule' => $idUser
+								  );
+		
+			if($motif != "") $infoCommande['motif_fermeture'] = $motif;
+			
+			//print_r_html($infoCommande);
 			$this->updateCommande($noCommande, $infoCommande);
-			$_POST['message'] = "La commande a été annulée";
+			$_SESSION['message'] = "La commande a été annulée";
 		}
 		else
-			$_POST['message'] = "La commande n'a pas été annulée";
+			$_SESSION['message'] = "La commande est déjà annulée";
 	}
 	
+	public function fermerCommande($noCommande, $idUser, $motif){
+		if(!$this->isClosed($noCommande))
+		{
+			$commande = $this->getCommande($noCommande);
+			$jour = date("Y-m-j");
+			$heure = date("G:i:s");
+			$infoCommande = array('date_fermeture' => $jour,
+								  'heure_fermeture' => $heure,
+						   		  'id_utilisateur_ferme' => $idUser,
+			);
+		
+			if($motif != "") $infoCommande['motif_fermeture'] = $motif;
+				
+			//print_r_html($infoCommande);
+			$this->updateCommande($noCommande, $infoCommande);
+			$_SESSION['message'] = "La commande a été fermée correctement.";
+		}
+		else
+			$_SESSION['message'] = "La commande est déjà fermée.";
+	}
+	
+	public function verifiePresenceCommande($noCommande)
+	{
+		$sql = "SELECT COUNT(*) FROM COMMANDE WHERE no_commande = '$noCommande'";
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "Erreur de comptage";
+			exit();
+		}
+		 
+		$row = mysqli_fetch_row($resultat);
+
+		return $row[0] > 0 ? true : false;
+	}
+	
+	
+	public function autocomplete($chaine)
+	{
+		$sql = "SELECT no_commande FROM COMMANDE WHERE no_commande LIKE '%$chaine%'";
+		if(!$resultat = mysqli_query($this->link, $sql)) {
+			echo "erreur";
+			echo " $sql";
+			exit();
+		}
+		
+		while ($row = mysqli_fetch_row($resultat)){
+			echo "<li>".$row[0]."</li>";
+		}
+		
+	}
 }
 ?>

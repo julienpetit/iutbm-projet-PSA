@@ -1,21 +1,23 @@
 <?php 
- 
-include('../connexion/_connexion.php');
-
+session_start();
+include_once('../connexion/_connexion.php');
+include_once('../include/layout/layout.inc.php');
+include_once('../include/library/library.inc.php');
+include_once('../include/library/bd.inc.php');
+include_once('../include/classes/commande.class.php');
 
 require_once("../fonctionhtml.php");  
 
-html_entete_fichier("accueil","../Style.css","script.js","../controle/controle.js");
+header_html("Liste des commandes", array("style.css"), array("script.js", "../controle/controle.js", "../include/js/development-bundle/jquery.dataTables.min.js"));
 
 mysql_query("SET NAMES UTF8");
-echo("<body>");
-
-
 ?>
-<input type="reset" id="anu" value="Accueil" onclick="document.location.href='../commande/accueil.php';" /> 
-    
-   <div id="content">
-   		<div id="table">
+<div id="content_liste">
+   <br/>
+	<input type="reset" id="anu" value="Accueil" class='small green nice button radius' onclick="document.location.href='../commande/accueil.php';" /> 
+    <br/>
+    <br/>
+   	<div id="table_liste">
 		<table id="tableau_liste">
 		<thead>
 			<tr>
@@ -53,9 +55,8 @@ while($row = mysql_fetch_array($query)){
 }
 	?>
 		</tbody>
-		</table>        
+		</table>
+		<br/>     
 		</div>  	
 	</div>
-    <?php mysql_close(); // deconnexion de la base ?>
-	</body>
-</html>
+<?php footer_html();?>

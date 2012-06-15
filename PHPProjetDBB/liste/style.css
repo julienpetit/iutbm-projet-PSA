@@ -1,0 +1,33 @@
+#content_liste{
+	background: lavender;
+}
+
+#tab_liste {
+	height: 500px;
+	margin-top: 10px;
+	text-align: center;
+}
+
+#tableau_liste {
+	font-size: 13px;
+	width: 960px;
+	background: silver;
+	border-style: solid;
+	border-color: #0000FF;
+	
+}
+
+#tableau_liste thead{
+	background: #8470FF;
+	color: #8470FF;
+	style: bold;
+}
+
+#tableau_liste th {
+	font-size: 13px;
+	font-weight: normal;
+	color: #039;
+	text-align: center;
+	border-collapse: collapse;
+}
+

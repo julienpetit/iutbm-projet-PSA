@@ -41,6 +41,40 @@ function calculAllResteALivrer()
 	addColorResteALivrer();
 }
 
+function verifierNotNegatifRAL()
+{
+	valider = true;
+	
+	$.each($("table tr.piece"), function(index, value){
+		var ral = $(value).find("td.resteALivrer").html();
+		console.log(ral);
+		if(parseInt(ral) < parseInt("0")) 
+		{
+			valider = false;
+		}
+	});
+	if(!valider) alert("Le montant restant à livrer d'une pièce ne peut être négative ou nulle.");
+	return valider;
+}
+
+function verifierNotNegatifQuantite()
+{
+	valider = true;
+	$.each($("table .row_livraisons"), function(index, value){
+	
+		$.each($(value).find("input.quantite"), function(key, val){
+			var quantite = $(val).val();
+			
+			if(parseInt(quantite) < parseInt("0")) 
+			{
+				valider = false;
+			}
+		});
+	});
+	
+	if(!valider) alert("La quantité d'une livraisons ne peut être négative ou nulle.");
+	return valider;
+}
 
 function validerLesLivraisons()
 {
@@ -71,21 +105,32 @@ function validerLesLivraisons()
 
 	});
 	
-	console.log()
-	$.ajax({
-		type: 'post',
-		data: {
-			'noCommande': noCommande,
-			'livraisons': livraisons
-		},
-		url: 'index.php?ajax=ajoutLivraisons',
-		complete: function(x){
-			$('body').append(x.responseText);
-			console.log("complete");
-			calculAllResteALivrer()
-		}
-	});
+	if(verifierNotNegatifQuantite() && verifierNotNegatifRAL())
+	{
+		$.ajax({
+			type: 'post',
+			data: {
+				'noCommande': noCommande,
+				'livraisons': livraisons
+			},
+			url: 'index.php?ajax=ajoutLivraisons',
+			complete: function(x){
+				calculAllResteALivrer();
+				if(x.responseText == "")
+				{
+					alert("Les livraisons ont étés enregistrées.");
+				}
+				else
+				{
+					alert(x.responseText);
+				}
+				
+			}
+		});
+	}
 }
+
+
 
 $(document).ready(function() {
 	$(function() {
@@ -101,5 +146,11 @@ $(document).ready(function() {
 		validerLesLivraisons();
 		console.log("click");
 		e.preventDefault();
+	});
+	
+	$("input.quantite").change(function(e){
+		calculAllResteALivrer();
+		verifierNotNegatifQuantite();
+		verifierNotNegatifRAL();
 	});
 });
