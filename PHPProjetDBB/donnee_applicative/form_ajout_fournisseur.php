@@ -3,11 +3,9 @@ include('../connexion/_connexion.php');
 mysql_query("SET NAMES UTF8");
 ?>
 
-
-
-
-<div id="myform" class="myform" style="height:500px;">
-    <form id="formulaire" name="form" method="post" action="">
+<br />
+<div id="myform" class="myform_uti">
+    <form id="formulaire"  name="form" method="post" action="">
         <h1>Formulaire d'ajout</h1>
         <p>Vous pouvez ajouter un fournisseur</p>
 
@@ -48,6 +46,5 @@ mysql_query("SET NAMES UTF8");
         <button type="button" id="but_save" onClick="ajout_fournisseur()">Ajouter</button> 
         <button type="button" onClick="choix_table('fournisseur')" >Annuler</button>
         
-
     </form>
 </div>
