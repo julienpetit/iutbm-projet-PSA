@@ -125,6 +125,11 @@ function verifierPresenceCommande()
 			document.location.href=link;
 			e.preventDefaut();
 		});
+
+
+		$("#cancel").live('click', function(e){
+			$("#confirmFermer").remove();
+		});
 		
 	});
 
