@@ -3,7 +3,7 @@
 // Paramètres persos
 $host 	= "localhost"; 	// voir hébergeur
 $user 	= "root"; 	// identifiant de votre BD (vide ou "root" en local)
-$pass 	= ""; 	// mot de passe de votre BD (vide en local)
+$pass 	= "root"; 	// mot de passe de votre BD (vide en local)
 $bdd 	= "projetBdd"; 	// nom de la BD
 // --------------------------------
 // connexion
