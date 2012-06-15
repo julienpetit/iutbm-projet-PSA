@@ -1,6 +1,8 @@
-<?php include('../connexion/_connexion.php');
+<?php
 
-mysql_query("SET NAMES UTF8");
+	include('../connexion/_connexion.php');
+	
+	mysql_query("SET NAMES UTF8");
 	$query = "INSERT INTO UTILISATEUR values ('".$_POST['code']."','".$_POST['nom']."','".$_POST['prenom']."','".$_POST['service']."','".$_POST['tel']."','".$_POST['email']."', md5('".$_POST['mdp']."'));";
 	$reponse = mysql_query($query);
 	

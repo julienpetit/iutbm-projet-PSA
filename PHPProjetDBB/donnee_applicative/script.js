@@ -423,8 +423,8 @@ function Modifier_utilisateur(str)
   			{
   				if (xmlhttp.readyState==4 && xmlhttp.status==200)
   		 		{
-    			document.getElementById("page1").innerHTML=xmlhttp.responseText;
-   			}
+  					document.getElementById("page1").innerHTML=xmlhttp.responseText;
+  		 		}
   			}
 			xmlhttp.open("POST","modif_utilisateur.php",true);
 			xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");

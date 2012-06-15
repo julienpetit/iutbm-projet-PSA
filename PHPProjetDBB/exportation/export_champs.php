@@ -13,7 +13,6 @@ mysql_query("SET NAMES UTF8");
 require_once("../fonctionhtml.php");
 require_once("../connexion/verification_connexion.php");
 
-
 mysql_query("SET NAMES UTF8");
 $droit=$_SESSION['no_droit'];
 $tables=$_POST['tables'];
@@ -24,21 +23,27 @@ header_html("Exportation des données", array(), array("accueil.js"));
 <form id='export' name='export' action='export_save.php' method='post'>
 <?php
 foreach($tables as $ligne){
-	try {
-		echo "<fieldset id='nomtable'><legend>$ligne</legend>"; 
+	try{
+		echo "<fieldset id=\"nomtable\"><legend>$ligne</legend>"; 
 		$sql ="SELECT * FROM $ligne;";
 		$resultat = mysql_query($sql);
 		$i = 0;
 		while ($i < mysql_num_fields($resultat)) {
 			$meta = mysql_fetch_field($resultat, $i);
+ 			$donnee = mysql_query("SELECT $meta->name FROM $ligne;");
 			echo "<table id ='tablexp' border='0'>"; 
 			echo "<tr><td class='chek'>";
- 			echo "<input type='checkbox'  id='synchrone' name='champs[]' value='$meta->name'/>";
+ 			echo "<input type='checkbox'  id='synchrone' name='donnee[]' value='$meta->name'/>";
  			echo "<label for='synchrone' id='export'>".$meta->name."</label>";
  			echo "</td>";
  			echo "</table>";
+ 			while($row=mysql_fetch_array($donnee)){
+ 				print_r_html($row);
+ 			}
+ 				
+ 			
+ 			}
 			$i++;
-		}
 		echo "</fieldset>";
 		}
 	catch(PDOException $e){
