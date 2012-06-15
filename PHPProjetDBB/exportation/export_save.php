@@ -7,23 +7,36 @@ $droit=$_SESSION['no_droit'];
 $champs[]=$_POST['champs'];
 $data=0; 
 
-for($i=0;$i<(sizeof($options)-1);$i++) // tant que $i est inferieur au nombre d'éléments du tableau...
-    { 
-	$nombase=$options[$i];
-	try {
-        	$PDO = new PDO('mysql:host=serveurmysql;dbname=s3b1prod','bdds3b1','bdds3b1');
-        	$PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
-        	$PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
-	    }
-	catch(PDOException $e){
-        	echo 'connexion impossible';
-            }
+// for($i=0;$i<(sizeof($options)-1);$i++) // tant que $i est inferieur au nombre d'éléments du tableau...
+//     { 
+// 	$nombase=$options[$i];
+// 	try {
+//         	$PDO = new PDO('mysql:host=serveurmysql;dbname=s3b1prod','bdds3b1','bdds3b1');
+//         	$PDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_WARNING);
+//         	$PDO->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,PDO::FETCH_ASSOC);
+// 	    }
+// 	catch(PDOException $e){
+//         	echo 'connexion impossible';
+//             }
         
- 	$req = $PDO->prepare("SELECT * FROM $nombase;");
- 	$req->execute();
- 	$data = $req->fetchAll();
- 	CSV::export($data,"export_$nombase");
-    }
+//  	$req = $PDO->prepare("SELECT * FROM $nombase;");
+//  	$req->execute();
+//  	$data = $req->fetchAll();
+//  	CSV::export($data,"export_$nombase");
+//     }
+$list = array (
+		array('aaa', 'bbb', 'ccc', 'dddd'),
+		array('123', '456', '789'),
+		array('"aaa"', '"bbb"')
+);
+
+$fp = fopen('file.csv', 'w');
+
+foreach ($list as $fields) {
+	fputcsv($fp, $fields);
+}
+fclose($fp);
+
 
 header("Refresh: 5;URL=../commande/accueil.php");
 echo("<style type=\"text/css\">
