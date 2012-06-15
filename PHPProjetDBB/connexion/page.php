@@ -9,11 +9,24 @@ require_once("../connexion/verification_connexion.php");
 
 mysql_query("SET NAMES UTF8");
 header_html("Connexion",array("", "../include/css/global.css", "../include/framework/foundation.css"),array("fonction.js","verifier.js"), true); 
-
 ?>
+<style>
+	.error {
+		color: red;
+		text-align: center;
+		font-size: 22px;
+	}
+</style>
 <div id="content_connexion">
-	<form action="login.php" method="post" onsubmit="return Verifier_champs(tableau_champs)">
-
+	<form action="login.php" method="post" onsubmit="Verifier_champs(tableau_champs)">
+<?php
+if(isset($_GET["err"]) && $_GET["err"] == "Login") {
+	echo "<p class='error'>Login erroné.</p>";
+}
+if(isset($_GET["err"]) && $_GET["err"] == "mdp") {
+	echo "<p class='error'>Mot de passe erroné.</p>";
+}
+?>
 		<div class="formField">
 			<input type="text" name="login" class='verif' id="login" placeholder="Identifiant">
 			<img id="user-icon" src="/include/css/img/username.png" alt="username">			
@@ -38,12 +51,5 @@ header_html("Connexion",array("", "../include/css/global.css", "../include/frame
 	tableau_champs[1]="password";
 </script>
 
-<?php
-if(isset($_GET["err"]) && $_GET["err"] == "Login") {
-	echo "<p class='error'>Login erroné.</p>";
-}
-if(isset($_GET["err"]) && $_GET["err"] == "mdp") {
-	echo "<p class='error'>Mot de passe erroné.</p>";
-}
-?>
+
 <?php footer_html(); ?>

@@ -50,7 +50,16 @@
 								<td><?php echo $userCommande['nom_utilisateur'] . " " . $userCommande['prenom_utilisateur'] . " - " . $userCommande['id_utilisateur']; ?></td>
 							</tr>
 						</table>	
-							
+						<?php
+						if($modeleCommande->isCanceled($commande['no_commande']))
+						{
+							echo "<div id='commandeCanceled' >Commande annulée</div>";
+						}
+						if($modeleCommande->isClosed($commande['no_commande']))
+						{
+							echo "<div id='commandeClosed' >Commande fermée</div>";
+						}
+						?>
 					</fieldset>
 					
 					

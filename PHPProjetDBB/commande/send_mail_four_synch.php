@@ -174,7 +174,7 @@ if(isset($_POST['four']) &&
 	$headers .= 'Content-Type: multipart/mixed;boundary='.$boundary."\r\n";
 	$headers .= "\r\n";
 	//entete message
-	$title="Commande Unitaire num$numCommande";
+	$title="Commande Unitaire n°$numCommande";
 
 	// Message
 	$msg = 'This is a multipart/mixed message.'."\r\n\r\n";
@@ -216,7 +216,7 @@ if(isset($_POST['four']) &&
 	else
 	{
 
-// 		header("Refresh: 2;URL=accueil.php");
+		header("Refresh: 2;URL=accueil.php");
 		exit();
 	}
 	$sql2="SELECT designation_piece from PIECE where reference_piece='".$ref_piece."';";
@@ -231,15 +231,15 @@ if(isset($_POST['four']) &&
 	}
 	$sql2="INSERT INTO COMPREND VALUES('pieces principales','".$ref_piece."','".$numCommande."',$quant_piece);";
 	$req = mysql_query($sql2) or die('Erreur SQL !<br>'.$sql2.'<br>'.mysql_error());
-// 	header("Refresh: 5;URL=accueil.php");
+	header("Refresh: 5;URL=accueil.php");
 	echo("<p>La commande n&deg;$numCommande est enregistr&eacute; et envoy&eacute;</p><br/><p>Une Copie de la commande est enregistr&eacute; dans le dossier Historique_commande/commande_sync");
 }
 else
 {
 
 	//====== On met dans l'url qu'il y a une erreur ======//
-// 	header("Refresh: 0;URL=pieces_synchrone.php?erreur=1");
-	//echo("un ou plusieurs champ ne sont pas remplies");
+	header("Refresh: 0;URL=pieces_synchrone.php?erreur=1");
+	echo("un ou plusieurs champ ne sont pas remplies");
 
 }
 ?>
