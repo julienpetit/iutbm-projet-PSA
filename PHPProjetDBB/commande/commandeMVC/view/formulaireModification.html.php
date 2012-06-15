@@ -109,9 +109,9 @@
 					
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
-					<input type='submit' class="small blue nice button radius" id='enregistrer' name='enregistrer' value='Enregistrer' />
-					<a href='../../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
-					<input type='button' class="small red nice button radius" id='cancel' name='cancel' value='Effacer' />
+					<input type='submit' class="small green nice button radius" id='enregistrer' name='enregistrer' value='Enregistrer' />
+					<a href='../../commande/accueil.php' class="small red nice button radius" >Annuler la modification</a>
+					<input type='button' class="small blue nice button radius" id='cancel' name='cancel' value='Effacer' />
 				</form>
 			</div>
 

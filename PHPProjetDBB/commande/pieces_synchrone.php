@@ -160,13 +160,13 @@ while($data = mysql_fetch_assoc($req))
 		    </table>
 		</fieldset>
 
-	  <input id="val" type="submit" class="small blue nice button radius" value="Enregistrer la commande">
-	  <a href='../commande/accueil.php' class="small green nice button radius" >Annuler la commande</a>
+	  <input id="val" type="submit" class="small green nice button radius" value="Enregistrer la commande">
+	  <a href='../commande/accueil.php' class="small red nice button radius" >Annuler la commande</a>
 	
 		<!-- Bouton de remise à zéro 
 		On efface les champs en appelant la page courante
 		-->
-		<a href='pieces_synchrone.php' class="small red nice button radius" >Effacer</a>
+		<a href='pieces_synchrone.php' class="small blue nice button radius" >Effacer</a>
 	
 		</div>
 	<div id="pieces_fournie" style="display:none;">

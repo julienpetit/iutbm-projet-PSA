@@ -14,7 +14,7 @@ mysql_query("SET NAMES UTF8");
 ?>
 <div id="content_liste">
    <br/>
-	<input type="reset" id="anu" value="Accueil" class='small green nice button radius' onclick="document.location.href='../commande/accueil.php';" /> 
+	<input type="reset" id="anu" value="Accueil" class='small green nice button radius' onclick="document.location.href='/';" /> 
     <br/>
     <br/>
    	<div id="table_liste">

@@ -105,13 +105,13 @@
 					<input type='hidden' id='noCommande' name='noCommande' value='<?php printHtml($commande['no_commande']); ?>' />		
 					<!-- Boutons de soumission du formulaire -->
 					<a href='./?details=<?php printHtml($commande['no_commande']); ?>' class="small green nice button radius" >Etat des livraisons</a>
-					<a href='./?genererPdf=<?php printHtml($commande['no_commande']); ?>' class="small white nice button radius" >Générer un Pdf</a>
+					<a href='./?genererPdf=<?php printHtml($commande['no_commande']); ?>' class="small blue nice button radius" >Générer un Pdf</a>
 					<?php
 						if(!$modeleCommande->isCanceled($commande['no_commande']))
 						{
-							echo "<a href='/commande/commandeMVC/?annuler=".$commande['no_commande']."' id='annulerCommande' class='small black nice button radius confirm' >Annuler la commande</a>";
+							echo "<a href='/commande/commandeMVC/?annuler=".$commande['no_commande']."' id='annulerCommande' class='small red nice button radius confirm' >Annuler la commande</a>";
 							if(!$modeleCommande->isClosed($commande['no_commande']))
-								echo "<a href='/commande/commandeMVC/?fermer=".$commande['no_commande']."' id='fermerCommande' class='small black nice button radius confirm' >Fermer la commande</a>";
+								echo "<a href='/commande/commandeMVC/?fermer=".$commande['no_commande']."' id='fermerCommande' class='small red nice button radius confirm' >Fermer la commande</a>";
 						}
 					?>
 				</form>

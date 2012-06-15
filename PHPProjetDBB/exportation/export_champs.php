@@ -16,11 +16,12 @@ require_once("../connexion/verification_connexion.php");
 mysql_query("SET NAMES UTF8");
 $droit=$_SESSION['no_droit'];
 $tables=$_POST['tables'];
-html_entete_fichier("accueil","../Style.css","accueil.js");
-echo("<h1 id=\"titreprincipal\">Exportation de champs</h1>
-		<fieldset id=\"fieldexp\"><legend>S&eacute;l&eacute;ction des Champs</legend>");
-echo("<form id=\"export\" name=\"export\" action=\"export_save.php\" method=\"post\">");
+header_html("Exportation des données", array(), array("accueil.js"));
 
+?>
+<fieldset id='fieldexp'><legend>S&eacute;l&eacute;ction des Champs</legend>
+<form id='export' name='export' action='export_save.php' method='post'>
+<?php
 foreach($tables as $ligne){
 	try{
 		echo "<fieldset id=\"nomtable\"><legend>$ligne</legend>"; 
@@ -29,10 +30,10 @@ foreach($tables as $ligne){
 		$i = 0;
 		while ($i < mysql_num_fields($resultat)) {
 			$meta = mysql_fetch_field($resultat, $i);
-			echo "<table id =\"tablexp\" border=\"0\">"; 
-			echo "<tr><td class=\"chek\">";
- 			echo "<input type=\"checkbox\"  id=\"synchrone\" name=\"champs[]\" value=\"$meta->name\"/>";
- 			echo "<label for=\"synchrone\" id=\"export\">".$meta->name."</label>";
+			echo "<table id ='tablexp' border='0'>"; 
+			echo "<tr><td class='chek'>";
+ 			echo "<input type='checkbox'  id='synchrone' name='champs[]' value='$meta->name'/>";
+ 			echo "<label for='synchrone' id='export'>".$meta->name."</label>";
  			echo "</td>";
  			echo "</table>";
 			$i++;
@@ -42,15 +43,14 @@ foreach($tables as $ligne){
 	catch(PDOException $e){
 	}
 }
-echo("</fieldset>
-		<div id=\"sub\">
-		<input type=\"submit\" id=\"val\" value=\"Exporter champs s&eacute;l&eacute;ctionn&eacute;e(s)\"/>
+?>
+</fieldset>
+		<div id='sub'>
+		<input type='submit' id='val' class='small green nice button radius' value='Exporter champs s&eacute;l&eacute;ctionn&eacute;e(s)'/>
 
-		<input type=\"reset\" id=\"anu\" class=\"anul\" value=\"Page D'acceuil\" onclick=\"javascript:document.location.href='../commande/accueil.php'\"/>
+		<a href='/' class='small blue nice button radius' >Accueil</a>
 		</div>
 		</form>
 		</body>
-		</html>");
-
-
-?>
+		</html>
+<?php footer_html(); ?>
