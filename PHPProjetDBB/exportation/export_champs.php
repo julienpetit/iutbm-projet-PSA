@@ -30,14 +30,20 @@ foreach($tables as $ligne){
 		$i = 0;
 		while ($i < mysql_num_fields($resultat)) {
 			$meta = mysql_fetch_field($resultat, $i);
+ 			$donnee = mysql_query("SELECT $meta->name FROM $ligne;");
 			echo "<table id ='tablexp' border='0'>"; 
 			echo "<tr><td class='chek'>";
- 			echo "<input type='checkbox'  id='synchrone' name='champs[]' value='$meta->name'/>";
+ 			echo "<input type='checkbox'  id='synchrone' name='donnee[]' value='$meta->name'/>";
  			echo "<label for='synchrone' id='export'>".$meta->name."</label>";
  			echo "</td>";
  			echo "</table>";
+ 			while($row=mysql_fetch_array($donnee)){
+ 				print_r_html($row);
+ 			}
+ 				
+ 			
+ 			}
 			$i++;
-		}
 		echo "</fieldset>";
 		}
 	catch(PDOException $e){
