@@ -239,7 +239,7 @@ else
 
 	//====== On met dans l'url qu'il y a une erreur ======//
 	header("Refresh: 0;URL=pieces_synchrone.php?erreur=1");
-	echo("un ou plusieurs champ ne sont pas remplies");
+	echo("un ou plusieurs champs ne sont pas remplis");
 
 }
 ?>
