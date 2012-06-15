@@ -9,11 +9,10 @@ mysql_query("SET NAMES UTF8");
         <h1>Formulaire d'ajout</h1>
         <p>Vous pouvez ajouter un utilisateur</p>
 		
-		<br /><br />
+		<br />
 		<label id="label" for="code_utilisateur">Identifiant Utilisateur</label>
 		<input type="text" id="code_utilisateur" value=""/>
 		<br />
-		
 		
 		<label id="label" for="nom_utilisateur">Nom Utilisateur:</label>
 		<input type="text" id="nom_utilisateur" value=""/>
@@ -28,7 +27,7 @@ mysql_query("SET NAMES UTF8");
 		<br />
 		
 		
-		<label id="label" for="no_telephone">Téléphone Utilsiateur:</label>
+		<label id="label" for="no_telephone">Téléphone Utilisateur:</label>
 		<input type="text" id="no_telephone" onchange="verifierTel('no_telephone');" value=""/>
 		<br />
 		

@@ -9,25 +9,31 @@ mysql_query("SET NAMES UTF8");
         <h1>Formulaire d'ajout</h1>
         <p>Vous pouvez ajouter un fournisseur</p>
 
-        
+        <br />
         <label id="label" for="cofor">Code fournisseur</label>
         <input type="text" id="cofor" value=""/>
-        <br/> 
+        <br />
+         
         <label id="label" for="nom_fournisseur">Nom fournisseur</label>
         <input type="text" id="nom_fournisseur" value=""/>
-        <br/>
+        <br />
+        
         <label id="label" for="nom_dest_commande">Nom destinataire</label>
         <input type="text" id="nom_dest_commande" value=""/>
         <br />
+        
         <label id="label" for="mail_dest_commande">Mail destinataire</label>
         <input type="text" id="mail_dest_commande" value="" onchange="testEmail(this.value)"/>
         <br />
+        
         <label id="label" for="mail_copie_commande">Mail copie</label>
         <input type="text" id="mail_copie_commande" value="" onchange="testEmail(this.value)"/>
         <br />
+        
         <label id="label" for="approvisionne">Approvisionne</label>
         <input type="text" id="approvisionne" value="" />
         <br />
+        
         <label id="label">Mode ref vehicule</label>
         <select id="code_mod_ref_vehicule" name="code_mod_ref_vehicule" >
 		    <?php		
