@@ -100,7 +100,7 @@
 					
 					<!-- Boutons de soumission du formulaire -->	
 					<a href='' id='validerLivraisons' class="small green nice button radius" >Valider les livraisons</a>
-					<a href='./?visualiser=<?php printHtml($commande['no_commande']); ?>' class="small red nice button radius" >Retour à la commande</a>
+					<a href='/' class="small red nice button radius" >Annuler la réception</a>
 					
 				</form>
 			</div>
