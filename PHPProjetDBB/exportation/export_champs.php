@@ -13,7 +13,6 @@ mysql_query("SET NAMES UTF8");
 require_once("../fonctionhtml.php");
 require_once("../connexion/verification_connexion.php");
 
-
 mysql_query("SET NAMES UTF8");
 $droit=$_SESSION['no_droit'];
 $tables=$_POST['tables'];
@@ -23,7 +22,7 @@ echo("<h1 id=\"titreprincipal\">Exportation de champs</h1>
 echo("<form id=\"export\" name=\"export\" action=\"export_save.php\" method=\"post\">");
 
 foreach($tables as $ligne){
-	try {
+	try{
 		echo "<fieldset id=\"nomtable\"><legend>$ligne</legend>"; 
 		$sql ="SELECT * FROM $ligne;";
 		$resultat = mysql_query($sql);

@@ -4,7 +4,7 @@ require 'class.csv.php';
 include('../connexion/_connexion.php'); 
 mysql_query("SET NAMES UTF8");
 $droit=$_SESSION['no_droit'];
-$options[]=$_POST['options'];
+$champs[]=$_POST['champs'];
 $data=0; 
 
 for($i=0;$i<(sizeof($options)-1);$i++) // tant que $i est inferieur au nombre d'éléments du tableau...
